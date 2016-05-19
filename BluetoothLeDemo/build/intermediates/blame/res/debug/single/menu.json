@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/menu/main.xml",
+        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/menu/main.xml"
+    },
+    {
+        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/menu/gatt_services.xml",
+        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/menu/gatt_services.xml"
+    }
+]

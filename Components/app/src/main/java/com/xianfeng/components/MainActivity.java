@@ -33,7 +33,18 @@ public class MainActivity extends AppCompatActivity {
         my_button.setAlpha((float) 0.5);
 
         //输入框
-        EditText myEditText = (EditText)findViewById(myTextView);
+        final EditText myEditText = (EditText)findViewById(R.id.myEditText);
+        myEditText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // 响应用户的回车键动作，将EditText中值显示到TextView中
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&(keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    myTextView.setText(myEditText.getText());
+                    return true;
+                }
+                    return false;
+                }
+            });
 
     }
 

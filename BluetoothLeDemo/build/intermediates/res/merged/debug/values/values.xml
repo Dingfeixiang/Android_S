@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#000000</color>
+    <color name="button_selected">#ff419de4</color>
+    <color name="gray">#C7C7C7</color>
+    <color name="green">#88BB53</color>
+    <color name="light_gray">#B0E0E6</color>
+    <color name="light_green">#D1EEEE</color>
+    <color name="light_pink">#FFF8DC</color>
+    <color name="pink">#FFEFD5</color>
+    <color name="red">#7f00</color>
+    <color name="shape_line">#ffcccccc</color>
+    <color name="sliver">#DEDEDE</color>
+    <color name="title_color">#767676</color>
+    <color name="white">#ffffffff</color>
+    <color name="window_bg">#fff0f3f6</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <drawable name="blue">#770000ff</drawable>
+    <drawable name="green">#7700ff00</drawable>
+    <drawable name="light_green">#A9CD7E</drawable>
+    <drawable name="red">#7f00</drawable>
+    <drawable name="yellow">#77ffff00</drawable>
+    <string name="app_name">BLE Demo</string>
+    <string name="ble_not_supported">BLE is not supported</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="error_bluetooth_not_supported">Bluetooth not supported.</string>
+    <string name="label_data">Data:</string>
+    <string name="label_device_address">Device address:</string>
+    <string name="label_state">State:</string>
+    <string name="menu_connect">Connect</string>
+    <string name="menu_disconnect">Disconnect</string>
+    <string name="menu_scan">Scan</string>
+    <string name="menu_stop">Stop</string>
+    <string name="no_data">No data</string>
+    <string name="title_devices">BLE Device Scan</string>
+    <string name="unknown_characteristic">Unknown characteristic</string>
+    <string name="unknown_device">Unknown device</string>
+    <string name="unknown_service">Unknown service</string>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+    <style name="CustomProgressDialog" parent="@style/CustomDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="popupDialog" parent="@android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- <item name="android:windowBackground">@drawable/dialog_bg</item> -->
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+</resources>

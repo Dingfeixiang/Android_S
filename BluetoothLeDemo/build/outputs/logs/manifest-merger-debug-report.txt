@@ -1,0 +1,83 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:2:1-42:12
+	xmlns:android
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:2:11-69
+	package
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:3:5-30
+	android:versionName
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:5:5-30
+		INJECTED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml
+		INJECTED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml
+	android:versionCode
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:4:5-28
+		INJECTED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml
+		INJECTED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml
+uses-sdk
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:7:5-9:41
+	android:targetSdkVersion
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:9:9-38
+	android:minSdkVersion
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:8:9-35
+uses-permission#android.permission.BLUETOOTH
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:11:5-68
+	android:name
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:11:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:12:5-74
+	android:name
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:12:22-71
+uses-permission#android.permission.INTERNET
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:13:5-67
+	android:name
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:13:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:14:5-81
+	android:name
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:14:22-78
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:15:5-84
+	android:name
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:15:22-81
+uses-feature#android.hardware.bluetooth_le
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:17:5-19:35
+	android:required
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:19:9-32
+	android:name
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:18:9-53
+application
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:21:5-40:19
+	android:label
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:24:9-41
+	android:allowBackup
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:22:9-35
+	android:icon
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:23:9-45
+	android:theme
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:25:9-56
+activity#com.android.ble.activity.DeviceScanActivity
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:26:9-34:20
+	android:label
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:28:13-45
+	android:name
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:27:13-71
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:29:13-33:29
+action#android.intent.action.MAIN
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:30:17-69
+	android:name
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:30:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:32:17-77
+	android:name
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:32:27-74
+activity#com.android.ble.activity.DeviceControlActivity
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:35:9-83
+	android:name
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:35:19-80
+service#com.android.ble.service.BluetoothLeService
+ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:37:9-39:38
+	android:enabled
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:39:13-35
+	android:name
+		ADDED from /Users/xianfeng/Desktop/BluetoothLeDemo/AndroidManifest.xml:38:13-70

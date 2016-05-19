@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <drawable name="red">#7f00</drawable>
+    <drawable name="blue">#770000ff</drawable>
+    <drawable name="green">#7700ff00</drawable>
+    <drawable name="light_green">#A9CD7E</drawable>
+    <drawable name="yellow">#77ffff00</drawable>
+
+    <color name="black">#000000</color>
+    <color name="gray">#C7C7C7</color>
+    <color name="title_color">#767676</color>
+    <color name="white">#ffffffff</color>
+    <color name="button_selected">#ff419de4</color>
+    <color name="shape_line">#ffcccccc</color>
+    <color name="window_bg">#fff0f3f6</color>
+    <color name="pink">#FFEFD5</color>
+    <color name="light_pink">#FFF8DC</color>
+    <color name="green">#88BB53</color>
+    <color name="light_green">#D1EEEE</color>
+    <color name="red">#7f00</color>
+    <color name="sliver">#DEDEDE</color>
+    <color name="light_gray">#B0E0E6</color>
+
+</resources>
