@@ -4,15 +4,31 @@
         "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/layout/custom_progressdialog.xml"
     },
     {
+        "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/layout/custom_progressdialog.xml",
+        "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/layout/custom_progressdialog.xml"
+    },
+    {
+        "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/layout/actionbar_indeterminate_progress.xml",
+        "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/layout/actionbar_indeterminate_progress.xml"
+    },
+    {
+        "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/layout/gatt_services_characteristics.xml",
+        "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/layout/gatt_services_characteristics.xml"
+    },
+    {
         "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/layout/gatt_services_characteristics.xml",
         "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/layout/gatt_services_characteristics.xml"
+    },
+    {
+        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/layout/actionbar_indeterminate_progress.xml",
+        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/layout/actionbar_indeterminate_progress.xml"
     },
     {
         "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/layout/listitem_device.xml",
         "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/layout/listitem_device.xml"
     },
     {
-        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/layout/actionbar_indeterminate_progress.xml",
-        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/layout/actionbar_indeterminate_progress.xml"
+        "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/layout/listitem_device.xml",
+        "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/layout/listitem_device.xml"
     }
 ]
