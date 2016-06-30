@@ -126,12 +126,16 @@ public class DeviceControlActivity extends Activity {
         }
     };
 
-    private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
+    //无法合上？
+    public final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
+
         @Override
         public void onReceive(Context context, Intent intent) {
+
             final String action = intent.getAction();
             Bundle extras = intent.getExtras();
             HyBleApduControl mHYBLEAC = new HyBleApduControl();
+
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
                 mConnected = true;
                 updateConnectionState(R.string.connected);
@@ -156,6 +160,8 @@ public class DeviceControlActivity extends Activity {
             } else if (BluetoothLeService.ACTION_GATT_DIDWRITE.equals(action)) {
                 boolean iswrite = extras.getBoolean(BluetoothLeService.EXTRA_DATA);
                 mHYBLEAC.OnWritePackgeFollow(iswrite);
+            }else {
+
             }
         }
     };
