@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/ic_launcher.png",
+        "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/drawable-xxhdpi/ic_launcher.png"
+    },
+    {
         "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-xxhdpi-v4/ic_launcher.png",
         "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/drawable-xxhdpi/ic_launcher.png"
     }
