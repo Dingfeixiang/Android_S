@@ -43,7 +43,7 @@ public class SocketThread extends Thread {
      */
     public void connect() throws Exception {
         mSocket = new Socket();
-        SocketAddress endpoint = new InetSocketAddress(DeviceScanActivity.HOST_IP,
+        SocketAddress endpoint = new InetSocketAddress(.HOST_IP,
                 Integer.parseInt(DeviceScanActivity.HOST_PORT));
         mSocket.connect(endpoint, 10000);
 
