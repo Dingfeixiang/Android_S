@@ -891,11 +891,9 @@ public class DeviceControlActivity extends Activity {
                         Toast.makeText(DeviceControlActivity.this, "核对卡片密钥错误", Toast.LENGTH_SHORT).show();
                     } else if (msg.arg1 == 3) {
                         initUserInfo();
-
                         Toast.makeText(DeviceControlActivity.this, "卡片数据写入失败", Toast.LENGTH_SHORT).show();
                     } else if (msg.arg1 == 4) {
                         initUserInfo();
-
                         Toast.makeText(DeviceControlActivity.this, "卡片数据写入成功,密钥更新失败", Toast.LENGTH_SHORT).show();
                     }
 
