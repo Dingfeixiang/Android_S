@@ -1,4 +1,4 @@
-package com.android.ble.socket;
+package com.xianfeng.services;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +12,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.xianfeng.util.CodeFormat;
-import com.xianfeng.assist.NFC4442Message;
+import com.xianfeng.assist.CardHandler;
 
 
 public class SocketThread extends Thread {
@@ -38,24 +38,10 @@ public class SocketThread extends Thread {
      *
      * @throws Exception
      */
-    public void connect(String HOST_IP,String HOST_PORT) throws Exception {
-        mSocket = new Socket();
-        SocketAddress endpoint = new InetSocketAddress(HOST_IP, Integer.parseInt(HOST_PORT));
-        mSocket.connect(endpoint, 10000);
-
-        mInStream = mSocket.getInputStream();
-        mOutStream = mSocket.getOutputStream();
-    }
-
-    /**
-     * Connect Socket
-     *
-     * @throws Exception
-     */
     public void connect() throws Exception {
         mSocket = new Socket();
-        SocketAddress endpoint = new InetSocketAddress(NFC4442Message.HOST_IP,
-        Integer.parseInt(NFC4442Message.HOST_PORT));
+        SocketAddress endpoint = new InetSocketAddress(CardHandler.HOST_IP,
+        Integer.parseInt(CardHandler.HOST_PORT));
         mSocket.connect(endpoint, 10000);
 
         mInStream = mSocket.getInputStream();
@@ -72,8 +58,8 @@ public class SocketThread extends Thread {
             Log.e(TAG, "Socket_Failed", e);
 
             Message msg = new Message();
-            msg.what = NFC4442Message.MESSAGE_SOCKET;
-            msg.arg1 = 0;
+            msg.what = CardHandler.MESSAGE_SOCKET;
+            msg.arg1 = CardHandler.ERROT_SOCKET_CONNECT_FAILED;
             mHandler.sendMessage(msg);
 
             return;
@@ -87,8 +73,8 @@ public class SocketThread extends Thread {
             Log.e(TAG, "Send data exception", e);
 
             Message msg = new Message();
-            msg.what = NFC4442Message.MESSAGE_UI;
-            msg.arg1 = 1;
+            msg.what = CardHandler.MESSAGE_UI;
+            msg.arg1 = CardHandler.ERROT_SOCKET_SEND_EXCEPTION;
             mHandler.sendMessage(msg);
 
             return;
@@ -105,7 +91,7 @@ public class SocketThread extends Thread {
                         + ", Data Length: " + String.valueOf(length));
 
                 Message msg = new Message();
-                msg.what = NFC4442Message.MESSAGE_UI;
+                msg.what = CardHandler.MESSAGE_UI;
                 msg.arg1 = mType;
                 msg.obj = bytes;
                 mHandler.sendMessage(msg);
@@ -114,8 +100,8 @@ public class SocketThread extends Thread {
             Log.e(TAG, "Receive data exception", e);
 
             Message msg = new Message();
-            msg.what = NFC4442Message.MESSAGE_UI;
-            msg.arg1 = 2;
+            msg.what = CardHandler.MESSAGE_UI;
+            msg.arg1 = CardHandler.ERROT_SOCKET_RECEIVE_EXCEPTION;
             mHandler.sendMessage(msg);
         }
     }

@@ -14,10 +14,8 @@ import android.nfc.Tag;
 import com.xianfeng.nfcdemo.NFCActivity;
 import com.xianfeng.util.CodeFormat;
 
-import com.broadstar.nfccardsdk.LogicCard;
-import com.broadstar.nfccardsdk.NfcReader;
-import com.broadstar.nfccardsdk.exception.APDUException;
-import com.broadstar.nfccardsdk.exception.ReaderException;
+import com.broadstar.nfccardsdk.*;
+import com.broadstar.nfccardsdk.exception.*;
 
 /**
  * Created by xianfeng on 16/6/30.
@@ -52,9 +50,6 @@ public class NfcManager{
 
     // 外部界面
     private NFCActivity activity_;
-
-
-
 
     //初始化
     public void initAdapter(NFCActivity activity){
@@ -93,8 +88,6 @@ public class NfcManager{
             nfcAdapter_.enableForegroundDispatch(activity, pendingIntent, FILTERS, TECHLISTS);
         }
     }
-
-    //
     public void disableForegroundDispatch(NFCActivity activity){
         if (nfcAdapter_ != null)
             nfcAdapter_.disableForegroundDispatch(activity);
@@ -102,8 +95,12 @@ public class NfcManager{
 
 
     /*
-    *   从Intent中读取数据
+    *   卡片读写
     * */
+    private String intentData_ = null;
+    public String dataReaded(){return intentData_;}
+
+    //从Intent中读取数据
     public void readDataFromIntent(Intent intent){
 
         if (!NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())){
@@ -148,7 +145,10 @@ public class NfcManager{
             //获取数据字符串
             String iWant = dealData(data);
             System.out.println("获取到的字符串为："+iWant);
-            activity_.refreshStatus(iWant);
+
+            //记录卡片读取的原始信息
+            intentData_ = iWant;
+            activity_.refreshStatus("已获取到卡片信息"); //测试顺利
 
         } catch (ReaderException e) {
             e.printStackTrace();
@@ -161,19 +161,17 @@ public class NfcManager{
 
     private String dealData(byte[] data) {
         System.out.println ("处理数据");
-        String stringData = CodeFormat.bytesToHexString(data);
-        String result = stringData.substring(0, 32);
-        for(int i=1; i<16; i++) {
-            result = result + "\n" + stringData.substring(i * 32, (i + 1) * 32);
-        }
-        return result;
+        String iWant = CodeFormat.bytesToHexString(data);
+        return iWant;
+    }
+
+    public void writeCard(){
+
     }
 
     /**
      * 读取逻辑卡主存储区全部数据
      * @return 数据
-     * @throws ReaderException
-     * @throws APDUException
      */
     public synchronized byte[] readAllBlock() throws ReaderException, APDUException {
         //分两次读取，每次读取一半

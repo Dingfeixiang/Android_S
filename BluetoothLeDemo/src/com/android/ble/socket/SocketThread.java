@@ -19,8 +19,8 @@ public class SocketThread extends Thread {
     // Debugging
     private static final String TAG = "SocketThread";
 
-    // private String HOST_IP = "115.236.0.2";
-    // private String HOST_PORT = "8040";
+//     private String HOST_IP = "115.236.0.2";
+//     private String HOST_PORT = "8040";
 
     private Handler mHandler = null;
     private String mData = null;
@@ -43,8 +43,8 @@ public class SocketThread extends Thread {
      */
     public void connect() throws Exception {
         mSocket = new Socket();
-        SocketAddress endpoint = new InetSocketAddress(.HOST_IP,
-                Integer.parseInt(DeviceScanActivity.HOST_PORT));
+        SocketAddress endpoint = new InetSocketAddress(DeviceScanActivity.HOST_IP,
+        Integer.parseInt(DeviceScanActivity.HOST_PORT));
         mSocket.connect(endpoint, 10000);
 
         mInStream = mSocket.getInputStream();
