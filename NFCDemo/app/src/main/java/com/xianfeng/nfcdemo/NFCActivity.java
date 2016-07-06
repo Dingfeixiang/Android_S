@@ -46,6 +46,7 @@ public class NFCActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         //读取数据
         nfcManager_.readDataFromIntent(intent);
+
     }
 
 
