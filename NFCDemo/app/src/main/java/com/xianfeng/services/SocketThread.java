@@ -12,7 +12,6 @@ import android.os.Message;
 import android.util.Log;
 
 import com.xianfeng.util.CodeFormat;
-import com.xianfeng.assist.CardHandler;
 
 
 public class SocketThread extends Thread {

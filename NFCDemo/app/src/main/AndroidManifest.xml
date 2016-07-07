@@ -9,10 +9,10 @@
     <application
         android:allowBackup="true"
         android:label="NFC Demo"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+~
         <!--launchMode配置Activity不可转变屏幕（防止Intent丢失，支付宝也是这样做的）-->
         <activity
             android:name=".NFCActivity"

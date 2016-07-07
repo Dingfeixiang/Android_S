@@ -1,19 +1,18 @@
-package com.xianfeng.assist;
+package com.xianfeng.services;
 
 import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.widget.Toast;
-import android.os.Looper;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.xianfeng.nfcdemo.NFCActivity;
-import com.xianfeng.services.NfcManager;
 import com.xianfeng.util.CodeFormat;
+import com.xianfeng.util.Arith;
+import com.xianfeng.assist.*;
+
 
 /**
  * Created by xianfeng on 16/6/30.
@@ -24,8 +23,9 @@ public class CardHandler{
 
     public static final int MESSAGE_READ = 0;
     public static final int MESSAGE_WRITE = 1;
+//    public static final int MESSAGE_WRITE_DONE = 3;
+
     public static final int MESSAGE_UI = 2;
-    public static final int MESSAGE_WRITEDATA = 3;
     public static final int MESSAGE_ERROR = 4;
     public static final int MESSAGE_SOCKET = 5;
 
@@ -38,7 +38,8 @@ public class CardHandler{
     private static final String SINGNAL_READDATA_PRE    = "LYGASGS150100010001"; //发送读卡数据
     private static final String SINGNAL_WRITEDATA_PRE   = "LYGASGS210100010001"; //发送写卡数据
 
-    private static final String SINGNAL_CARD_RECEIVEDATA_SUCCESS = "9000";
+//    private static final String SINGNAL_CARD_RECEIVEDATA_SUCCESS = "9000";
+
     private static final String SINGNAL_SOCKET_RECEIVEDATA_SUCCESS = "0000";
     private static final int MESSAGE_RIGHT_LENGTH = 512;
 
@@ -73,7 +74,9 @@ public class CardHandler{
         //子线程中不可以操作UI，使用Handler进行消息传递
         @Override
         public void run() {
-            String type = (String) param_.get("TYPE");
+            //获取参数
+            String  type = (String) param_.get(NFCActivity.CARD_PARAM_KEY_TYPE);
+            Integer write_value = (Integer)param_.get(NFCActivity.CARD_PARAM_KEY_WRITE_VALUE);
             String nfcGetted = nfcManager_.dataReaded();
 
             msg = new Message();
@@ -93,13 +96,22 @@ public class CardHandler{
                     msg.what = MESSAGE_ERROR;
                     msg.arg1 = ERROR_READ_FAILED;
                 }
+                hander.sendMessage(msg);
             } else if (type == OPERATION_WRITE_TYPE) {
                 // 写卡
-
+                Log.i(TAG, "开始回传气量和卡片信息");
+                getWriteData(write_value.intValue());
+                Log.i(TAG, "回传气量和卡片信息成功");
             }
-            hander.sendMessage(msg);
         }
 
+        // 回传购气量
+        private void getWriteData(int writeData) {
+            msg = new Message();
+            msg.what = MESSAGE_WRITE;
+            msg.arg2 = writeData;
+            hander.sendMessage(msg);
+        }
     }
 
     //数据处理
@@ -114,13 +126,12 @@ public class CardHandler{
             switch (msg.what) {
                 case MESSAGE_READ:
                     //开启socket
-                    String sendData = dataSendToServerForRead(nfcManager_.dataReaded());
-                    activity_.startSocket(sendData, MESSAGE_READ);
+                    String sendRead = dataSendToServerForRead(nfcManager_.dataReaded());
+                    activity_.startSocket(sendRead, MESSAGE_READ);
                     break;
                 case MESSAGE_WRITE:
-                    activity_.dialogDimiss();
-                    activity_.initUserInfo();
-                    activity_.showAlertView("写卡成功");
+                    String sendWrite = dataSendToServerForWrite(nfcManager_.dataReaded(),msg.arg2);
+                    activity_.startSocket(sendWrite, MESSAGE_WRITE);
                     break;
                 case MESSAGE_UI:
                     byte[] data = (byte[]) msg.obj;
@@ -130,22 +141,29 @@ public class CardHandler{
                         // 返回码
                         String retCode = CodeFormat
                                 .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 5, 9)), 4).trim();
-                        Log.i(TAG, "返回码: " + retCode);
+                        Log.i(TAG, "服务器返回码: " + retCode);
+
                         if (!retCode.equals(SINGNAL_SOCKET_RECEIVEDATA_SUCCESS)){
-                            activity_.showAlertView("解析数据失败");
+                            String errorCode = getErrorStr(retCode);
+                            activity_.showAlertView(errorCode);
                         }else {
-                            CardInfo iWant = parseDataForRead(data);
-                            activity_.updateUI(iWant);
+                            if (msg.arg1 == MESSAGE_READ){
+                                CardInfo iWant = parseDataForRead(data);
+                                activity_.updateUI(iWant);
+                            }else if(msg.arg1 == MESSAGE_WRITE){
+                                CardInfo iWant = parseDataForWrite(data);
+                                activity_.updateUI(iWant);
+                                nfcManager_.writeCard((WriteCardInfo) iWant);
+                            }
                         }
                         Log.i(TAG, "**********数据解析结束**********");
                         activity_.dialogDimiss();
                     } catch (Exception e) {
-                        Log.i(TAG, "数据解析异常");
+                        Log.i(TAG, "UI:数据解析异常");
                         activity_.showAlertView("数据解析异常");
+                        activity_.dialogDimiss();
+                        nfcManager_.reconvertStatus();
                     }
-
-                    break;
-                case MESSAGE_WRITEDATA:
 
                     break;
                 case MESSAGE_ERROR:
@@ -164,11 +182,11 @@ public class CardHandler{
                     } else if (msg.arg1 == ERROR_READ_EMPTY){
                         activity_.showAlertView("没有获取到数据，请重新贴卡！");
                     }
+                    nfcManager_.reconvertStatus();
 
                     break;
                 case MESSAGE_SOCKET:
                     activity_.dialogDimiss();
-
                     if (msg.arg1 == ERROT_SOCKET_CONNECT_FAILED) {
                         activity_.showAlertView("SOCKET连接失败");
                     } else if (msg.arg1 == ERROT_SOCKET_SEND_EXCEPTION) {
@@ -176,7 +194,7 @@ public class CardHandler{
                     } else if (msg.arg1 == ERROT_SOCKET_RECEIVE_EXCEPTION) {
                         activity_.showAlertView("数据接收异常");
                     }
-
+                    nfcManager_.reconvertStatus();
                     break;
                 default:
                     break;
@@ -195,19 +213,10 @@ public class CardHandler{
         return sBuilder.toString();
     }
 
-    //写卡时向服务器发送的数据
-    public String dataSendToServerForWrite(String originData,String toBeWritten){
-        StringBuilder sBuilder = new StringBuilder();
-        sBuilder.append(SINGNAL_WRITEDATA_PRE);
-        sBuilder.append(toBeWritten);
-        sBuilder.append(originData.substring(0,originData.length()-4));
-        return sBuilder.toString();
-    }
-
-    //解析服务器返回的数据
+    //读取时解析服务器返回的数据
     public CardInfo parseDataForRead(byte[] data) {
         Log.i(TAG, "**********数据解析开始**********");
-        CardInfo iWant = new CardInfo();
+        ReadCardInfo iWant = new ReadCardInfo();
 
         try {
             // 返回码
@@ -270,8 +279,9 @@ public class CardHandler{
                 String price = CodeFormat
                         .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 195, 201)), 6)
                         .trim();
-                Log.i(TAG, "购气单价: " + price);
-                iWant.price = price;
+                double money = Arith.div(Integer.parseInt(price), 100.0);
+                Log.i(TAG, "购气单价: " + money);
+                iWant.price = money;
 
                 // 最大可购气量
                 String maxPurchase = CodeFormat
@@ -295,6 +305,140 @@ public class CardHandler{
 
         return iWant;
     };
+
+
+    //写卡时向服务器发送的数据
+    public String dataSendToServerForWrite(String originData,int toBeWritten){
+        StringBuilder sBuilder = new StringBuilder();
+        sBuilder.append(SINGNAL_WRITEDATA_PRE);
+        //右对齐，共四位，左补0，十进制
+        String writeStr = String.format("% 4d",toBeWritten);
+        if (writeStr.length() > 4)
+            writeStr = "   0";
+        sBuilder.append(writeStr);
+        sBuilder.append(originData);
+        return sBuilder.toString();
+    }
+
+    //写卡时解析服务器返回数据
+    public CardInfo parseDataForWrite(byte[] data) {
+
+        WriteCardInfo iWant = new WriteCardInfo();
+
+        try {
+            // 交易获申请日期
+            String transDate = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 9, 17)), 8)
+                    .trim();
+            Log.i(TAG, "交易获申请日期: " + transDate);
+            iWant.transDate = transDate;
+
+            // 交易获申请时间
+            String transTime = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 17, 21)), 4)
+                    .trim();
+            Log.i(TAG, "交易获申请时间: " + transTime);
+            iWant.transTime = transTime;
+
+            // 公司顺序号
+            String ComSeq = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 21, 29)), 8)
+                    .trim();
+            Log.i(TAG, "公司顺序号: " + ComSeq);
+            iWant.comSeq = ComSeq;
+
+            // 卡类型
+            String cardType = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 29, 31)), 2)
+                    .trim();
+            Log.i(TAG, "卡类型: " + cardType);
+            iWant.cardType = cardType;
+
+            // 用户号
+            String userID = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 31, 47)), 16)
+                    .trim();
+            Log.i(TAG, "用户号: " + userID);
+            iWant.userID = userID;
+
+            // 用户名称
+            String userName = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 47, 111)), 64)
+                    .trim();
+            Log.i(TAG, "用户名称: " + userName);
+            iWant.username = userName;
+
+            // 用户（用气）性质
+            String userDesc = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 111, 113)), 2)
+                    .trim();
+            Log.i(TAG, "用户（用气）性质: " + userDesc);
+            iWant.userDesc = userDesc;
+
+            // 购气金额
+            String amount = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 113, 121)), 8)
+                    .trim();
+            double money = Arith.div(Integer.parseInt(amount), 100.0);
+            Log.i(TAG, "购气金额: " + money);
+            iWant.amount = money;
+
+            // 购气次数
+            String purchaseCount = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 121, 127)), 6)
+                    .trim();
+            Log.i(TAG, "购气次数: " + purchaseCount);
+            iWant.purchaseCount = purchaseCount;
+
+            // 密码长度
+            String pwLength = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 127, 129)), 2)
+                    .trim();
+            Log.i(TAG, "密码长度: " + pwLength);
+            iWant.pwLength = pwLength;
+
+            // 写保护密码
+            String verifyPw = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 129, 145)), 16)
+                    .trim();
+            Log.i(TAG, "写保护密码: " + verifyPw);
+            iWant.verifyPw = verifyPw;
+
+            // 新密码
+            String newPw = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 145, 161)), 16)
+                    .trim();
+            Log.i(TAG, "新密码: " + newPw);
+            iWant.pwNew = newPw;
+
+            // 写卡起始地址
+            String offset = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 161, 165)), 4)
+                    .trim();
+            Log.i(TAG, "写卡起始地址: " + offset);
+            iWant.offset = offset;
+
+            // 写卡长度
+            String wrLength = CodeFormat
+                    .hexStr2IntStr(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 165, 167)))
+                    .trim();
+            Log.i(TAG, "写卡长度ַ: " + wrLength);
+            iWant.wrLength = wrLength;
+
+            // 写卡数据
+            String dataBuf = CodeFormat
+                    .hexToStringGBK(CodeFormat.byteArr2HexStr(Arrays.copyOfRange(data, 167, 679)), 512)
+                    .trim();
+            Log.i(TAG, "写卡数据: " + dataBuf);
+            iWant.dataBuf = dataBuf;
+
+        }
+        catch (Exception e) {
+            Log.i(TAG, "数据解析异常");
+        }
+
+        return iWant;
+    }
 
     //错误代码
     private String getErrorStr(String retCode) {
