@@ -23,7 +23,7 @@ public class CardHandler{
 
     public static final int MESSAGE_READ = 0;
     public static final int MESSAGE_WRITE = 1;
-    public static final int MESSAGE_WRITE_DONE = 3;
+//    public static final int MESSAGE_WRITE_DONE = 3;
 
     public static final int MESSAGE_UI = 2;
     public static final int MESSAGE_ERROR = 4;
@@ -38,7 +38,7 @@ public class CardHandler{
     private static final String SINGNAL_READDATA_PRE    = "LYGASGS150100010001"; //发送读卡数据
     private static final String SINGNAL_WRITEDATA_PRE   = "LYGASGS210100010001"; //发送写卡数据
 
-    private static final String SINGNAL_CARD_RECEIVEDATA_SUCCESS = "9000";
+//    private static final String SINGNAL_CARD_RECEIVEDATA_SUCCESS = "9000";
 
     private static final String SINGNAL_SOCKET_RECEIVEDATA_SUCCESS = "0000";
     private static final int MESSAGE_RIGHT_LENGTH = 512;
@@ -114,8 +114,6 @@ public class CardHandler{
         }
     }
 
-
-
     //数据处理
     @SuppressLint("HandlerLeak")
     public final Handler hander = new Handler() {
@@ -134,11 +132,6 @@ public class CardHandler{
                 case MESSAGE_WRITE:
                     String sendWrite = dataSendToServerForWrite(nfcManager_.dataReaded(),msg.arg2);
                     activity_.startSocket(sendWrite, MESSAGE_WRITE);
-                    break;
-                case MESSAGE_WRITE_DONE:
-                    activity_.dialogDimiss();
-//                    activity_.initUserInfo();
-                    activity_.showAlertView("写卡成功");
                     break;
                 case MESSAGE_UI:
                     byte[] data = (byte[]) msg.obj;

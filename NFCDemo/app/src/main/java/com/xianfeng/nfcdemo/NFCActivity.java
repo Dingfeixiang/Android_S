@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import com.xianfeng.services.CardHandler;
 import com.xianfeng.assist.CardInfo;
@@ -64,6 +65,8 @@ public class NFCActivity extends AppCompatActivity {
             }
         });
         mCardWrite.setOnClickListener(new View.OnClickListener() {
+            private String iii = "";
+
             @Override
             public void onClick(View v) {
                 String buyText = mBuyAmount.getText().toString().trim();
@@ -172,7 +175,7 @@ public class NFCActivity extends AppCompatActivity {
     public void updateUI(CardInfo info) {
         if (info instanceof ReadCardInfo) {
             ReadCardInfo rInfo = (ReadCardInfo) info;
-            tv0.setText("输入气量应不大于：" + rInfo.maxPurchase);
+            tv0.setText("输入气量应小于：" + rInfo.maxPurchase);
             tv1.setText("用户地址：");
             mCardAddr.setText(rInfo.userAddr);
             tv2.setText("用户姓名：");
@@ -187,7 +190,7 @@ public class NFCActivity extends AppCompatActivity {
             mBuyAmount.setText("");
         } else if (info instanceof WriteCardInfo) {
             WriteCardInfo wInfo = (WriteCardInfo) info;
-            tv0.setText("购气金额为：" + String.valueOf(wInfo.amount));
+            tv0.setText("购气次数为：" + wInfo.purchaseCount);
             tv1.setText("交易公司：");
             mCardAddr.setText(wInfo.comSeq);
             tv2.setText("用户姓名：");

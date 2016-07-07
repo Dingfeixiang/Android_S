@@ -200,7 +200,7 @@ public class NfcManager{
         }
         try {
             card_.checkPW(CodeFormat.hexStringToBytes(iWant));
-            activity_.displayToast("密码校验成功");
+//            activity_.displayToast("密码校验成功");
             return true;
         } catch (ReaderException e) {
             e.printStackTrace();
