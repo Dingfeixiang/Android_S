@@ -5,15 +5,16 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/promt"
+        android:id="@+id/tv0"
         android:layout_width="fill_parent"
-        android:layout_height="51dp"
+        android:layout_height="50dp"
         android:scrollbars="vertical"
         android:singleLine="false"
         android:text="请将卡片贴在手机背面"
         android:autoText="true"
         android:textAlignment="center"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:paddingTop="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
         android:paddingTop="5dp" >
 
         <TextView
-            android:id="@+id/userAddr"
+            android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:labelFor="@+id/edt_card_no"
@@ -56,7 +57,7 @@
         android:paddingTop="5dp" >
 
         <TextView
-            android:id="@+id/tv_card_name"
+            android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:labelFor="@+id/edt_card_no"
@@ -87,7 +88,7 @@
         android:paddingTop="5dp" >
 
         <TextView
-            android:id="@+id/tv_card_no"
+            android:id="@+id/tv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:labelFor="@+id/edt_card_no"
@@ -117,7 +118,7 @@
         android:paddingTop="5dp" >
 
         <TextView
-            android:id="@+id/tv_card_amount"
+            android:id="@+id/tv4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:labelFor="@+id/edt_card_amount"
@@ -147,7 +148,7 @@
         android:paddingTop="5dp" >
 
         <TextView
-            android:id="@+id/tv_card_price"
+            android:id="@+id/tv5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:labelFor="@+id/edt_card_amount"
@@ -177,7 +178,7 @@
         android:paddingTop="5dp" >
 
         <TextView
-            android:id="@+id/tv_card_buyamount"
+            android:id="@+id/tv6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:labelFor="@+id/edt_card_buyamount"
@@ -210,7 +211,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="读卡" />
+            android:text="清空" />
 
         <Button
             android:id="@+id/btn_writecard"

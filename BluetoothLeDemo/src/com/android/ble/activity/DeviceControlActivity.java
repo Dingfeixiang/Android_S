@@ -674,7 +674,6 @@ public class DeviceControlActivity extends Activity {
                     initUserInfo();
 
                     Toast.makeText(DeviceControlActivity.this, "写卡成功", Toast.LENGTH_SHORT).show();
-
                     break;
                 case MESSAGE_UI:
                     byte[] data = (byte[]) msg.obj;
