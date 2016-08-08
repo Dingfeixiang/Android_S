@@ -31,7 +31,7 @@ public class NfcManager{
 
     //NFC
     private NfcAdapter nfcAdapter_;
-    private PendingIntent pendingIntent;
+    private PendingIntent pendingIntent_;
     public static String[][] TECHLISTS; //NFC技术列表
     public static IntentFilter[] FILTERS; //过滤器
 
@@ -59,7 +59,7 @@ public class NfcManager{
         //初始化nfc适配器
         nfcAdapter_ = NfcAdapter.getDefaultAdapter(activity);
         //初始化卡片信息
-        pendingIntent = PendingIntent.getActivity(activity, 0,
+        pendingIntent_ = PendingIntent.getActivity(activity, 0,
                             new Intent(activity, activity.getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
         //保留外部变量
         activity_ = activity;
@@ -86,7 +86,7 @@ public class NfcManager{
 
     public void enableForegroundDispatch(NFCActivity activity){
         if (nfcAdapter_ != null) {
-            nfcAdapter_.enableForegroundDispatch(activity, pendingIntent, FILTERS, TECHLISTS);
+            nfcAdapter_.enableForegroundDispatch(activity, pendingIntent_, FILTERS, TECHLISTS);
         }
     }
     public void disableForegroundDispatch(NFCActivity activity){

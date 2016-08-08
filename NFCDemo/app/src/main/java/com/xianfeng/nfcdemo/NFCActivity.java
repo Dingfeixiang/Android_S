@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import com.xianfeng.services.CardHandler;
 import com.xianfeng.assist.CardInfo;
