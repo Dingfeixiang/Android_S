@@ -53,7 +53,8 @@ import android.widget.Toast;
  */
 @SuppressLint({ "NewApi", "InflateParams" })
 public class DeviceScanActivity extends ListActivity {
-	// Debugging
+
+	// DebuggingDeviceScanActivity
 	private static final String TAG = "DeviceScanActivity";
 
 	private static final String PATH = Environment.getExternalStorageDirectory().getPath() + "/BT_ICDEMO/";
