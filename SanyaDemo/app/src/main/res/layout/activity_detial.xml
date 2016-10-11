@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_detial"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.xianfeng.sanyademo.DetialActivity">
+
+    <RelativeLayout
+        android:id="@+id/editRel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:id="@+id/area"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="14dp"
+            android:clickable="true"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/arview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="区域信息"
+                android:textColor="#000"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/degree"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:layout_toRightOf="@+id/arview"
+                android:prompt="@string/degrees_prompt" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/price"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/area"
+            android:clickable="true"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/pview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="价格信息"
+                android:textColor="#000"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/pdegree"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:layout_toRightOf="@+id/pview"
+                android:prompt="@string/degrees_prompt" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/accountRel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/price"
+            android:layout_marginTop="14dp"
+            android:clickable="true"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="用户姓名"
+                android:textColor="#000"
+                android:textSize="17sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"/>
+
+            <EditText
+                android:id="@+id/accountEdittext"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:layout_toRightOf="@+id/account"
+                android:hint=""
+                android:textSize="18sp"
+                android:background="@drawable/edit_bg"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/pwdRel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/accountRel"
+            android:clickable="true"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/pwdview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="用户地址"
+                android:textColor="#000"
+                android:textSize="17sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+            <EditText
+                android:id="@+id/pwdEdittext"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:layout_toRightOf="@+id/pwdview"
+                android:hint=""
+                android:textSize="18sp"
+                android:background="@drawable/edit_bg"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/number"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pwdRel"
+            android:clickable="true"
+            android:gravity="center_vertical" >
+        <TextView
+            android:id="@+id/nview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="表具编号"
+            android:textColor="#000"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/ntext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dip"
+            android:layout_toRightOf="@+id/nview"
+            android:background="@drawable/edit_bg"
+            android:hint=""
+            android:textSize="18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/amount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/number"
+            android:clickable="true"
+            android:gravity="center_vertical" >
+            <TextView
+                android:id="@+id/aview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="换表气量"
+                android:textColor="#000"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/atext"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:layout_toRightOf="@+id/aview"
+                android:background="@drawable/edit_bg"
+                android:hint=""
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/money"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/amount"
+            android:clickable="true"
+            android:gravity="center_vertical" >
+            <TextView
+                android:id="@+id/mview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="换算为表金额为:"
+                android:textColor="#000"
+                android:textSize="17sp" />
+            <TextView
+                android:id="@+id/mvalue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_toRightOf="@+id/mview"
+                android:text="0"
+                android:textColor="#000"
+                android:textSize="17sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/buttons"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/money"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:gravity="center_vertical" >
+
+            <Button
+                android:text="提交信息"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/read"
+                android:layout_marginLeft="16dp"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:layout_gravity="center"
+                />
+
+            <Button
+                android:text="制卡"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/write"
+                android:layout_toRightOf="@+id/read"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:layout_gravity="center"
+                />
+            
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

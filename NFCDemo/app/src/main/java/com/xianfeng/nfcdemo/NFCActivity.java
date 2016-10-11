@@ -46,7 +46,7 @@ public class NFCActivity extends AppCompatActivity
         // Register callback
         //注册回调函数
         mAdapter.setNdefPushMessageCallback(this, this);
-        mAdapter.setOnNdefPushCompleteCallback(this, this);
+//        mAdapter.setOnNdefPushCompleteCallback(this, this);
     }
 
     @Override
