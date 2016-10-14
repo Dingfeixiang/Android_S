@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/src/main/jniLibs"><file name="armeabi/libmwReader.so" path="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/src/main/jniLibs/armeabi/libmwReader.so"/></source></dataSet><dataSet config="debug"><source path="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/src/debug/jniLibs"/></dataSet></merger>

@@ -35,13 +35,6 @@ public class NFCActivity extends AppCompatActivity {
     //socket相关
     private SocketThread socketThread_;
 
-<<<<<<< HEAD
-        // Register callback
-        //注册回调函数
-        mAdapter.setNdefPushMessageCallback(this, this);
-//        mAdapter.setOnNdefPushCompleteCallback(this, this);
-    }
-=======
     //双击退出控制项
     private long exitTime = 0;
 
@@ -50,7 +43,6 @@ public class NFCActivity extends AppCompatActivity {
     private EditText mCardAddr,mCardName, mCardNo, mCardAmount, mCardPrice, mBuyAmount;
     private Button mCardRead, mCardWrite;
     private static CustomProgressDialog cpd_Dialog;
->>>>>>> NFC-dev
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

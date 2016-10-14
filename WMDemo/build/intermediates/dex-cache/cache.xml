@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-22.2.1_172d934f53f7a92f7a334fde0cca3224a3462f94/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/libs/mwcard-5.0.0.8.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="43ababfa8c1db8831e1e54da316c824d0b6367ef">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/transforms/dex/debug/folders/1000/2/mwcard-5.0.0.8_79852b9e993d1d6a616b1bcb1f11ccb70660a467/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/xianfeng/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-22.2.1_9b9dc58389ef2c3dda30e3afa869375cfc87bbf5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-22.2.1_effeb2df7159461487bc56ed0d88b019505d9f2e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="43be334d047c8cdfdf43403c41c70f73091ad57d">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b8f1b4f59045b9b9982f986a977de6e7e8a92d6d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="362ac3a76c1867080075463bf9be3fdd8f073729">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_1e34bb7919c233cdd95be16840cbf39c06d4109d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-22.2.1_f7686a7f92b7a91d3cf028ecf42969eb216dc9e4/classes.dex" />
+    </item>
+
+</items>

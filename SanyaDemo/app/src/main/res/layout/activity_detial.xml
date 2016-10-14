@@ -69,7 +69,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dip"
                 android:layout_toRightOf="@+id/pview"
-                android:prompt="@string/degrees_prompt" />
+                android:prompt="@string/degrees_prompt2" />
 
         </RelativeLayout>
 
@@ -97,7 +97,7 @@
             <EditText
                 android:id="@+id/accountEdittext"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35sp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dip"
                 android:layout_toRightOf="@+id/account"
@@ -128,7 +128,7 @@
             <EditText
                 android:id="@+id/pwdEdittext"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35sp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dip"
                 android:layout_toRightOf="@+id/pwdview"
@@ -157,7 +157,7 @@
         <EditText
             android:id="@+id/ntext"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35sp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dip"
             android:layout_toRightOf="@+id/nview"
@@ -185,7 +185,7 @@
             <EditText
                 android:id="@+id/atext"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35sp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dip"
                 android:layout_toRightOf="@+id/aview"

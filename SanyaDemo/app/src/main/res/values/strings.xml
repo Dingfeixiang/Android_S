@@ -12,7 +12,19 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="degrees_prompt">请选择区域:</string>
+    <string name="degrees_prompt2">请选择阶梯价:</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+
+    //WM
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="nodata">暂无数据</string>
+    <string name="back">返回</string>
+    <string name="edit">编辑</string>
+    <string name="done">完成</string>
+    <string name="add">添加</string>
+    <string name="save">保存</string>
+
 </resources>
