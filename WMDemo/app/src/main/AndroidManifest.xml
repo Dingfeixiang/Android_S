@@ -22,11 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.example.mwreader.Card"
             android:label="@string/title_activity_card" >
         </activity>
-        
+
         <activity
             android:name="com.mwreader.bluetooth.SearchActivity"
             android:screenOrientation="portrait"

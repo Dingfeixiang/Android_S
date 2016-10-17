@@ -1,16 +1,9 @@
 package com.xianfeng.sanyademo;
 
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.ContextWrapper;
+
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.hardware.usb.UsbDevice;
-import android.hardware.usb.UsbManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,32 +12,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
 
-import java.util.HashMap;
-import java.util.Iterator;
-
-
-//WM
-import com.mwcard.Reader;
-import com.mwcard.ReaderAndroidUsb;
-import com.mwcard.ReaderAndroidCom;
-import com.mwreader.bluetooth.ClsUtils;
 import com.mwreader.bluetooth.SearchActivity;
-
-
+import com.xianfeng.sanyademo.util.*;
 
 public class DetialActivity extends AppCompatActivity {
 
-    private static final String TAG = null;
+    private static final String TAG = "DetialActivity";
     //布局
     EditText    username,address,number,gasAmount;
     TextView    moneyView;
     Button      submit,facture;
 
-    //WM相关
-    public static Reader myReader;   // =new ReaderAndroidUsb();
-    public static ReaderAndroidUsb readerAndroidUsb; // 安卓usb打开方式跟串口方式不一样
-
-
+    MWManager mwManger = MWManager.getHelper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,76 +34,13 @@ public class DetialActivity extends AppCompatActivity {
         //初始化布局
         initView();
 
-        
+        //初始化读写卡器
+        initModule();
 
 
     }
 
 
-    private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver() {
-
-        public int fold = 1;
-        public void onReceive(Context paramAnonymousContext, Intent paramAnonymousIntent) {
-
-            if ("com.android.example.USB_PERMISSION".equals(paramAnonymousIntent.getAction())){
-
-                try {
-
-                    UsbDevice i = ((UsbDevice) paramAnonymousIntent.getParcelableExtra("device"));
-                    if (paramAnonymousIntent.getBooleanExtra("permission", false))
-                        ;
-
-                    return;
-                } finally {
-
-                }
-            }
-        }
-    };
-
-    /**
-     * @return 0 表示初始化成功，其他值表示失败
-     */
-    public int initUsbDevice() {
-        int st = 1;
-        ContextWrapper mContext = null;
-        final String ACTION_USB_PERMISSION = "com.example.hellojni.USB_PERMISSION";
-        PendingIntent mPermissionIntent = PendingIntent.getBroadcast(this, 0,
-                new Intent(ACTION_USB_PERMISSION), 0);
-        IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
-        registerReceiver(this.mUsbReceiver, filter);
-
-        UsbManager manager = (UsbManager) getSystemService("usb");
-        HashMap<String, UsbDevice> deviceList = manager.getDeviceList();
-        Iterator<UsbDevice> deviceIterator = deviceList.values().iterator();
-
-        while (deviceIterator.hasNext()) {
-            UsbDevice device = deviceIterator.next();
-
-            Log.i(TAG, device.getDeviceName() + " "
-                            + Integer.toHexString(device.getVendorId()) + " "
-                            + Integer.toHexString(device.getProductId()));
-            if (!ReaderAndroidUsb.isSupported(device)) {
-                continue;
-            }
-            manager.requestPermission(device, mPermissionIntent);
-
-            readerAndroidUsb = new ReaderAndroidUsb(manager);
-
-            try {
-                st = readerAndroidUsb.openReader(device);
-                if (st >= 0) {
-                    myReader = readerAndroidUsb;
-                    st = 0;
-                    break;
-                }
-            } catch (Exception e) {
-                // TODO: handle exception
-                Log.e(TAG, "openDevice failed");
-            }
-        }
-        return st;
-    }
 
     //交互逻辑
     class ButtonClickListener implements OnClickListener {
@@ -141,6 +57,13 @@ public class DetialActivity extends AppCompatActivity {
             }
         }
     }
+
+    void initModule(){
+        //这个是什么作用?
+//        SerialPortFinder mSerialPortFinder = new SerialPortFinder();
+
+    }
+
 
     //布局相关
     void initView(){
@@ -160,6 +83,7 @@ public class DetialActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         menu.findItem(R.id.clear).setVisible(true);
+        menu.findItem(R.id.connect).setVisible(true);
         return true;
     }
 
@@ -167,6 +91,19 @@ public class DetialActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.clear:
+
+                break;
+            case R.id.connect:
+
+                try {
+                    mwManger.closeDevice();
+                    //浏览蓝牙设备
+                    Intent intent = new Intent(DetialActivity.this,
+                            SearchActivity.class);
+                    startActivityForResult(intent, 1);
+                }catch (Exception ex) {
+                    System.out.print("这里有问题!");
+                }
 
                 break;
         }

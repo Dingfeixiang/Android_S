@@ -16,16 +16,16 @@
         "source": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_alert_dialog_material.xml"
     },
     {
-        "merged": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
-        "source": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_list_menu_item_layout.xml"
+        "merged": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/src/main/res/layout/activity_main.xml"
     },
     {
         "merged": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
         "source": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/notification_template_part_time.xml"
     },
     {
-        "merged": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
-        "source": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/src/main/res/layout/activity_main.xml"
+        "merged": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_list_menu_item_layout.xml"
     },
     {
         "merged": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
@@ -84,12 +84,12 @@
         "source": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_list_menu_item_icon.xml"
     },
     {
-        "merged": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
-        "source": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_expanded_menu_layout.xml"
-    },
-    {
         "merged": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
         "source": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/res/layout/abc_expanded_menu_layout.xml"
     },
     {
         "merged": "/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",

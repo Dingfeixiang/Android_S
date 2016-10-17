@@ -41,16 +41,16 @@ public class Card extends Activity {
 	private Button btn_cpureset,btn_sendCMD,btn_cpudown;
 	private Button btn_opencard,btn_CMDsend,btn_closecard;  
 	//private ArrayAdapter<String> adapter;  
-	private ViewPager viewPager;//Ò³¿¨ÄÚÈİ
-	private ImageView imageView;// ¶¯»­Í¼Æ¬
+	private ViewPager viewPager;//é¡µå¡å†…å®¹
+	private ImageView imageView;// åŠ¨ç”»å›¾ç‰‡
 	private TextView textView1,textView2,textView3;
-	private List<View> views;// TabÒ³ÃæÁĞ±í
-	private int offset = 0;// ¶¯»­Í¼Æ¬Æ«ÒÆÁ¿
-	private int currIndex = 0;// µ±Ç°Ò³¿¨±àºÅ
-	private int bmpW;// ¶¯»­Í¼Æ¬¿í¶È
-	private View view1,view3;//¸÷¸öÒ³¿¨
-	private MainActivity Mactivity;//ÉùÃ÷Ö÷ACTIVITY¶ÔÏó
-	private int st=0;//º¯Êı·µ»Ø×´Ì¬Âë
+	private List<View> views;// Tabé¡µé¢åˆ—è¡¨
+	private int offset = 0;// åŠ¨ç”»å›¾ç‰‡åç§»é‡
+	private int currIndex = 0;// å½“å‰é¡µå¡ç¼–å·
+	private int bmpW;// åŠ¨ç”»å›¾ç‰‡å®½åº¦
+	private View view1,view3;//å„ä¸ªé¡µå¡
+	private MainActivity Mactivity;//å£°æ˜ä¸»ACTIVITYå¯¹è±¡
+	private int st=0;//å‡½æ•°è¿”å›çŠ¶æ€ç 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -82,7 +82,7 @@ public class Card extends Activity {
 		viewPager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
 	 /**
-	  *  ³õÊ¼»¯Í·±ê
+	  *  åˆå§‹åŒ–å¤´æ ‡
 	  */
 
 	private void InitTextView() {
@@ -96,21 +96,21 @@ public class Card extends Activity {
 	}
 
 	/**
-	 2      * ³õÊ¼»¯¶¯»­
+	 2      * åˆå§‹åŒ–åŠ¨ç”»
 	 3 */
 
 	private void InitImageView() {
 		imageView= (ImageView) findViewById(R.id.cursor);
-		bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.a).getWidth();// »ñÈ¡Í¼Æ¬¿í¶È
+		bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.a).getWidth();// è·å–å›¾ç‰‡å®½åº¦
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
-		int screenW = dm.widthPixels;// »ñÈ¡·Ö±æÂÊ¿í¶È
-		offset = (screenW / 3 - bmpW) / 2;// ¼ÆËãÆ«ÒÆÁ¿
+		int screenW = dm.widthPixels;// è·å–åˆ†è¾¨ç‡å®½åº¦
+		offset = (screenW / 3 - bmpW) / 2;// è®¡ç®—åç§»é‡
 		Matrix matrix = new Matrix();
 		matrix.postTranslate(offset, 0);
-		imageView.setImageMatrix(matrix);// ÉèÖÃ¶¯»­³õÊ¼Î»ÖÃ
+		imageView.setImageMatrix(matrix);// è®¾ç½®åŠ¨ç”»åˆå§‹ä½ç½®
 	}
-	//µ¥Ñ¡°´Å¥×´Ì¬ÊµÊ±»ñÈ¡
+	//å•é€‰æŒ‰é’®çŠ¶æ€å®æ—¶è·å–
 	private int radiovalue()
 	{
 		int i =0;String msg="";
@@ -152,10 +152,10 @@ public class Card extends Activity {
 			
 	}
 	
-	public void a_cpureset(View source)//CPU²Ù×÷¿¨Æ¬ÃüÁî´¥·¢º¯Êı
+	public void a_cpureset(View source)//CPUæ“ä½œå¡ç‰‡å‘½ä»¤è§¦å‘å‡½æ•°
 	{
-		EditText PUTip=(EditText) findViewById(R.id.lay1_Tip); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText Recv=(EditText) findViewById(R.id.lay1_edit_recv); //·µ»ØÊı¾İ
+		EditText PUTip=(EditText) findViewById(R.id.lay1_Tip); //æç¤ºä¿¡æ¯æ¡†
+		EditText Recv=(EditText) findViewById(R.id.lay1_edit_recv); //è¿”å›æ•°æ®
 		
 		String tip1="",tip2="",tip="",str="";
 		int len=0,v=0;
@@ -166,7 +166,7 @@ public class Card extends Activity {
 		try
 		{
 			String data=MainActivity.myReader.smartCardReset(v,0);
-			PUTip.setText("ÉÏµç¸´Î»³É¹¦");
+			PUTip.setText("ä¸Šç”µå¤ä½æˆåŠŸ");
 			Recv.setText(data);
 		}
 		catch (Exception ex)
@@ -175,20 +175,20 @@ public class Card extends Activity {
 			PUTip.setText(ex.getMessage());
     	}
 	}
-	public void a_sendCMD(View source)//CPU²Ù×÷¿¨Æ¬ÃüÁî´¥·¢º¯Êı
+	public void a_sendCMD(View source)//CPUæ“ä½œå¡ç‰‡å‘½ä»¤è§¦å‘å‡½æ•°
 	{
 		String strsend="",data="";
 		int v=0;
-		EditText PUTip=(EditText) findViewById(R.id.lay1_Tip); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText Recv=(EditText) findViewById(R.id.lay1_edit_recv); //·µ»ØÊı¾İ
-		EditText Send=(EditText) findViewById(R.id.lay1_edit_send); //·¢ËÍÊı¾İ 
+		EditText PUTip=(EditText) findViewById(R.id.lay1_Tip); //æç¤ºä¿¡æ¯æ¡†
+		EditText Recv=(EditText) findViewById(R.id.lay1_edit_recv); //è¿”å›æ•°æ®
+		EditText Send=(EditText) findViewById(R.id.lay1_edit_send); //å‘é€æ•°æ® 
 		
 		strsend=Send.getText().toString();
 		v=radiovalue();
 		try
 		{
 			data=MainActivity.myReader.smartCardCommand(v, strsend);
-			PUTip.setText("·¢ËÍÃüÁî³É¹¦");
+			PUTip.setText("å‘é€å‘½ä»¤æˆåŠŸ");
 			Recv.setText(data);
 		}
 		catch (Exception ex)
@@ -197,16 +197,16 @@ public class Card extends Activity {
 			PUTip.setText(ex.getMessage());
     	}
 	}
-	public void a_cpudown(View source)//CPU²Ù×÷¿¨Æ¬ÃüÁî´¥·¢º¯Êı
+	public void a_cpudown(View source)//CPUæ“ä½œå¡ç‰‡å‘½ä»¤è§¦å‘å‡½æ•°
 	{
-		EditText PUTip=(EditText) findViewById(R.id.lay1_Tip); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText Recv=(EditText) findViewById(R.id.lay1_edit_recv); //·µ»ØÊı¾İ
+		EditText PUTip=(EditText) findViewById(R.id.lay1_Tip); //æç¤ºä¿¡æ¯æ¡†
+		EditText Recv=(EditText) findViewById(R.id.lay1_edit_recv); //è¿”å›æ•°æ®
 		String tip="";
 		int v=radiovalue();
 		try
 		{
 			MainActivity.myReader.smartCardPowerDown(v);
-			PUTip.setText("·¢ËÍÃüÁî³É¹¦");
+			PUTip.setText("å‘é€å‘½ä»¤æˆåŠŸ");
 			Recv.setText("");
 		}
 		catch (Exception ex)
@@ -216,17 +216,17 @@ public class Card extends Activity {
     	}
 	}
 
-	public void bt_rfcard(View source)/*ÒÔÏÂÊÇM1¿¨²Ù×÷´¥·¢º¯Êı*/
+	public void bt_rfcard(View source)/*ä»¥ä¸‹æ˜¯M1å¡æ“ä½œè§¦å‘å‡½æ•°*/
 	{
-		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_CardNo=(EditText) findViewById(R.id.lay3_edit_cardno); //ÌáÊ¾ĞÅÏ¢¿ò
+		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_CardNo=(EditText) findViewById(R.id.lay3_edit_cardno); //æç¤ºä¿¡æ¯æ¡†
 		
 		try
 		{
 			MainActivity.myReader.halt();
 			String snr=MainActivity.myReader.openCard(1);
 			E_CardNo.setText(snr);
-			PUTip.setText("´ò¿ª¿¨Æ¬³É¹¦¡£");
+			PUTip.setText("æ‰“å¼€å¡ç‰‡æˆåŠŸã€‚");
 		}
 		catch (Exception ex)
     	{
@@ -239,23 +239,23 @@ public class Card extends Activity {
 		byte[] key_asc=new byte[40];
 		byte[] key=new byte[20];
 		int addr=0,nSector=0,len=0;
-		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Blockaddr=(EditText) findViewById(R.id.lay3_edit_blockaddr); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Section=(EditText) findViewById(R.id.lay3_edit_section); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Secrect=(EditText) findViewById(R.id.lay3_edit_secrect); //ÌáÊ¾ĞÅÏ¢¿ò
+		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Blockaddr=(EditText) findViewById(R.id.lay3_edit_blockaddr); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Section=(EditText) findViewById(R.id.lay3_edit_section); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Secrect=(EditText) findViewById(R.id.lay3_edit_secrect); //æç¤ºä¿¡æ¯æ¡†
 		int v=lay3radiovalue();
 		String str_addr=E_Blockaddr.getText().toString();
 		String str_key=E_Secrect.getText().toString();
 		String str_section=E_Section.getText().toString();
 		if(str_addr.isEmpty()||str_section.isEmpty())
-		{	PUTip.setText("ÉÈÇøºÅ»ò¿éµØÖ·²»ÄÜÎª¿Õ");
+		{	PUTip.setText("æ‰‡åŒºå·æˆ–å—åœ°å€ä¸èƒ½ä¸ºç©º");
 			return;
 		}
 		
 		try
 		{
 			MainActivity.myReader.mifareAuth(v, Integer.parseInt(str_section), str_key);
-			PUTip.setText("ÈÏÖ¤³É¹¦¡£");
+			PUTip.setText("è®¤è¯æˆåŠŸã€‚");
 		}
 		catch (Exception ex)
     	{
@@ -267,14 +267,14 @@ public class Card extends Activity {
 		byte[] rdata_asc=new byte[64];
 		byte[] rdata=new byte[32];
 		int addr=0,nSector=0,len=0;
-		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Blockaddr=(EditText) findViewById(R.id.lay3_edit_blockaddr); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Section=(EditText) findViewById(R.id.lay3_edit_section); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Read=(EditText) findViewById(R.id.lay3_edit_read); //ÌáÊ¾ĞÅÏ¢¿ò
+		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Blockaddr=(EditText) findViewById(R.id.lay3_edit_blockaddr); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Section=(EditText) findViewById(R.id.lay3_edit_section); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Read=(EditText) findViewById(R.id.lay3_edit_read); //æç¤ºä¿¡æ¯æ¡†
 		String str_addr=E_Blockaddr.getText().toString();
 		String str_section=E_Section.getText().toString();
 		if(str_addr.isEmpty()||str_section.isEmpty())
-		{	PUTip.setText("ÉÈÇøºÅ»ò¿éµØÖ·²»ÄÜÎª¿Õ");
+		{	PUTip.setText("æ‰‡åŒºå·æˆ–å—åœ°å€ä¸èƒ½ä¸ºç©º");
 			return;
 		}
 		
@@ -284,7 +284,7 @@ public class Card extends Activity {
 			blockNo=blockNo+Integer.parseInt(str_addr);
 			String data=MainActivity.myReader.mifareRead(blockNo);
 			E_Read.setText(data);
-			PUTip.setText("¶ÁÊı¾İ³É¹¦¡£");
+			PUTip.setText("è¯»æ•°æ®æˆåŠŸã€‚");
 		}
 		catch (Exception ex)
     	{
@@ -297,26 +297,26 @@ public class Card extends Activity {
 		byte[] wdata_asc=new byte[64];
 		byte[] wdata=new byte[32];
 		int addr=0,nSector=0,len=0;
-		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Blockaddr=(EditText) findViewById(R.id.lay3_edit_blockaddr); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Section=(EditText) findViewById(R.id.lay3_edit_section); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Write=(EditText) findViewById(R.id.lay3_edit_write); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Read=(EditText) findViewById(R.id.lay3_edit_read); //ÌáÊ¾ĞÅÏ¢¿ò
+		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Blockaddr=(EditText) findViewById(R.id.lay3_edit_blockaddr); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Section=(EditText) findViewById(R.id.lay3_edit_section); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Write=(EditText) findViewById(R.id.lay3_edit_write); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Read=(EditText) findViewById(R.id.lay3_edit_read); //æç¤ºä¿¡æ¯æ¡†
 		String str_wdata=E_Write.getText().toString();
 		String str_addr=E_Blockaddr.getText().toString();
 		String str_section=E_Section.getText().toString();
 		if(str_addr.isEmpty()||str_section.isEmpty())
-		{	PUTip.setText("ÉÈÇøºÅ»ò¿éµØÖ·²»ÄÜÎª¿Õ");
+		{	PUTip.setText("æ‰‡åŒºå·æˆ–å—åœ°å€ä¸èƒ½ä¸ºç©º");
 			return;
 		}
 		if (str_wdata.length()>32)
 		{
-			PUTip.setText("Ğ´Êı¾İ³¤¶È³¬¹ıÁË32¸ö×Ö·û¡£");
+			PUTip.setText("å†™æ•°æ®é•¿åº¦è¶…è¿‡äº†32ä¸ªå­—ç¬¦ã€‚");
 			return;
 		}
 		if (Integer.parseInt(str_addr)==3)
 		{
-			PUTip.setText("ÃÜÂëÇø£¬ÇëÎğ²Ù×÷.");
+			PUTip.setText("å¯†ç åŒºï¼Œè¯·å‹¿æ“ä½œ.");
 			return;
 		}
 		
@@ -326,7 +326,7 @@ public class Card extends Activity {
 			blockNo=blockNo+Integer.parseInt(str_addr);
 			MainActivity.myReader.mifareWrite(blockNo, str_wdata);
 			E_Read.setText("");
-			PUTip.setText("Ğ´Êı¾İ³É¹¦¡£");
+			PUTip.setText("å†™æ•°æ®æˆåŠŸã€‚");
 		}
 		catch (Exception ex)
     	{
@@ -338,14 +338,14 @@ public class Card extends Activity {
 	{
 		int []Ivalue=new int[50];
 		int addr=0,nSector=0,value=0,len=0;
-		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Blockaddr=(EditText) findViewById(R.id.lay3_edit_blockaddr); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Section=(EditText) findViewById(R.id.lay3_edit_section); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Value=(EditText) findViewById(R.id.lay3_edit_blockvalue); //ÌáÊ¾ĞÅÏ¢¿ò
+		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Blockaddr=(EditText) findViewById(R.id.lay3_edit_blockaddr); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Section=(EditText) findViewById(R.id.lay3_edit_section); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Value=(EditText) findViewById(R.id.lay3_edit_blockvalue); //æç¤ºä¿¡æ¯æ¡†
 		String str_addr=E_Blockaddr.getText().toString();
 		String str_section=E_Section.getText().toString();
 		if(str_addr.isEmpty()||str_section.isEmpty())
-		{	PUTip.setText("ÉÈÇøºÅ/¿éµØÖ·²»ÄÜÎª¿Õ");
+		{	PUTip.setText("æ‰‡åŒºå·/å—åœ°å€ä¸èƒ½ä¸ºç©º");
 			return;
 		}
 		
@@ -355,7 +355,7 @@ public class Card extends Activity {
 			blockNo=blockNo+Integer.parseInt(str_addr);
 			long val=MainActivity.myReader.mifareReadVal(blockNo);
 			E_Value.setText(String.valueOf(val));
-			PUTip.setText("¶Á¿éÖµ³É¹¦¡£");
+			PUTip.setText("è¯»å—å€¼æˆåŠŸã€‚");
 		}
 		catch (Exception ex)
     	{
@@ -366,15 +366,15 @@ public class Card extends Activity {
 	public void bt_rfwriteval(View source)
 	{
 		int addr=0,nSector=0,value=0,len=0;
-		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Blockaddr=(EditText) findViewById(R.id.lay3_edit_blockaddr); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Section=(EditText) findViewById(R.id.lay3_edit_section); //ÌáÊ¾ĞÅÏ¢¿ò
-		EditText E_Valueop=(EditText) findViewById(R.id.lay3_edit_valueop); //ÌáÊ¾ĞÅÏ¢¿ò
+		EditText PUTip=(EditText) findViewById(R.id.lay3_edit_tip); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Blockaddr=(EditText) findViewById(R.id.lay3_edit_blockaddr); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Section=(EditText) findViewById(R.id.lay3_edit_section); //æç¤ºä¿¡æ¯æ¡†
+		EditText E_Valueop=(EditText) findViewById(R.id.lay3_edit_valueop); //æç¤ºä¿¡æ¯æ¡†
 		String str_value=E_Valueop.getText().toString();
 		String str_addr=E_Blockaddr.getText().toString();
 		String str_section=E_Section.getText().toString();
 		if(str_addr.isEmpty()||str_section.isEmpty()||str_value.isEmpty())
-		{	PUTip.setText("ÉÈÇøºÅ/¿éµØÖ·/Öµ ²»ÄÜÎª¿Õ");
+		{	PUTip.setText("æ‰‡åŒºå·/å—åœ°å€/å€¼ ä¸èƒ½ä¸ºç©º");
 			return;
 		}
 		
@@ -383,7 +383,7 @@ public class Card extends Activity {
 			int blockNo=MainActivity.myReader.mifareBlockAbs(Integer.parseInt(str_section));
 			blockNo=blockNo+Integer.parseInt(str_addr);
 			int val=MainActivity.myReader.mifareInitVal(blockNo, Integer.parseInt(str_value));
-			PUTip.setText("Ğ´¿éÖµ³É¹¦¡£");
+			PUTip.setText("å†™å—å€¼æˆåŠŸã€‚");
 		}
 		catch (Exception ex)
     	{
@@ -393,7 +393,7 @@ public class Card extends Activity {
 
 	/** 
 	 *     
-	 * Í·±êµã»÷¼àÌı 3 */
+	 * å¤´æ ‡ç‚¹å‡»ç›‘å¬ 3 */
 	private class MyOnClickListener implements OnClickListener{
         private int index=0;
         public MyOnClickListener(int i){
@@ -438,8 +438,8 @@ public class Card extends Activity {
 
     public class MyOnPageChangeListener implements OnPageChangeListener{
 
-    	int one = offset * 2 + bmpW;// Ò³¿¨1 -> Ò³¿¨2 Æ«ÒÆÁ¿
-		int two = one * 2;// Ò³¿¨1 -> Ò³¿¨3 Æ«ÒÆÁ¿
+    	int one = offset * 2 + bmpW;// é¡µå¡1 -> é¡µå¡2 åç§»é‡
+		int two = one * 2;// é¡µå¡1 -> é¡µå¡3 åç§»é‡
 		public void onPageScrollStateChanged(int arg0) {
 			
 			
@@ -454,22 +454,22 @@ public class Card extends Activity {
 			String strtip;
 			Animation animation = new TranslateAnimation(one*currIndex, one*arg0, 0, 0);
 			currIndex = arg0;
-			animation.setFillAfter(true);// True:Í¼Æ¬Í£ÔÚ¶¯»­½áÊøÎ»ÖÃ
+			animation.setFillAfter(true);// True:å›¾ç‰‡åœåœ¨åŠ¨ç”»ç»“æŸä½ç½®
 			animation.setDuration(300);
 			imageView.startAnimation(animation);
-			//Toast.makeText(WeiBoActivity.this, "ÄúÑ¡ÔñÁË"+ viewPager.getCurrentItem()+"Ò³¿¨", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(WeiBoActivity.this, "æ‚¨é€‰æ‹©äº†"+ viewPager.getCurrentItem()+"é¡µå¡", Toast.LENGTH_SHORT).show();
 			int num=viewPager.getCurrentItem();
 			if(num==0)
 			{
-				strtip="Äú¿ÉÒÔ²Ù×÷CPU¿¨";
+				strtip="æ‚¨å¯ä»¥æ“ä½œCPUå¡";
 			}
 			else if(num==1)
 			{	
-				strtip="Äú¿ÉÒÔ²Ù×÷M1¿¨";
+				strtip="æ‚¨å¯ä»¥æ“ä½œM1å¡";
 			}
 			else
 			{
-				strtip="Äú¿ÉÒÔ²Ù×÷M1¿¨";
+				strtip="æ‚¨å¯ä»¥æ“ä½œM1å¡";
 			}
 			Toast.makeText(Card.this, strtip, Toast.LENGTH_SHORT).show();
 		}

@@ -19,6 +19,7 @@ import com.mwcard.ReaderAndroidCom;
 import com.mwcard.ReaderAndroidUsb;
 import com.mwcard.RootCmd;
 import com.mwcard.Reader;
+
 import com.mwreader.bluetooth.ClsUtils;
 import com.mwreader.bluetooth.SearchActivity;
 
@@ -74,14 +75,14 @@ public class MainActivity extends Activity {
 	private List<String> titleList;
 	private ArrayAdapter<String> adapter;
 	// private Button weibo_button;
-	private Button btn_operate;// ½øÈë¿¨Æ¬²Ù×÷
+	private Button btn_operate;// è¿›å…¥å¡ç‰‡æ“ä½œ
 	private Button btn_openport;// open port
 	private Button btn_closeport;// close port
 	// private Button btn_readeprom;// read eeprom
 	// private Button btn_writeeprom;// write eeprom
 	// private Button btn_cardstate;// read cardstate
 	private Button btn_beep; // beep
-	// ½Ó´¥CPU¿¨
+	// æ¥è§¦CPUå¡
 	private Button btn_icpoweron;
 	private Button btn_iccommand;
 	private Button btn_icpoweroff;
@@ -94,7 +95,8 @@ public class MainActivity extends Activity {
 	private int openflag = 0;
 
 	public static Reader myReader;// =new ReaderAndroidUsb();
-	public static ReaderAndroidUsb readerAndroidUsb; // °²×¿usb´ò¿ª·½Ê½¸ú´®¿Ú·½Ê½²»Ò»Ñù
+
+	public static ReaderAndroidUsb readerAndroidUsb; // å®‰å“usbæ‰“å¼€æ–¹å¼è·Ÿä¸²å£æ–¹å¼ä¸ä¸€æ ·
 
 	private UsbDeviceConnection connection = null;
 
@@ -116,7 +118,7 @@ public class MainActivity extends Activity {
 	};
 
 	/**
-	 * @return 0 ±íÊ¾³õÊ¼»¯³É¹¦£¬ÆäËûÖµ±íÊ¾Ê§°Ü
+	 * @return 0 è¡¨ç¤ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶ä»–å€¼è¡¨ç¤ºå¤±è´¥
 	 */
 	public int initUsbDevice() {
 		int st = 1;
@@ -162,9 +164,9 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		getWindow().setSoftInputMode(
-				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); // ÎÄ±¾ÊäÈë¿òÄ¬ÈÏ²»»ñµÃ½¹µã
+				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN); // æ–‡æœ¬è¾“å…¥æ¡†é»˜è®¤ä¸è·å¾—ç„¦ç‚¹
 
-		//ĞÂ½¨
+		//æ–°å»º
 		initView();
 		// initUsbDevice();
 
@@ -191,12 +193,12 @@ public class MainActivity extends Activity {
 		// view2 = lf.inflate(R.layout.layout2, null);
 		// view3 = lf.inflate(R.layout.layout3, null);
 
-		viewList = new ArrayList<View>();// ½«Òª·ÖÒ³ÏÔÊ¾µÄView×°ÈëÊı×éÖĞ
+		viewList = new ArrayList<View>();// å°†è¦åˆ†é¡µæ˜¾ç¤ºçš„Viewè£…å…¥æ•°ç»„ä¸­
 		viewList.add(view1);
 		// viewList.add(view2);
 		// viewList.add(view3);
 
-		titleList = new ArrayList<String>();// Ã¿¸öÒ³ÃæµÄTitleÊı¾İ
+		titleList = new ArrayList<String>();// æ¯ä¸ªé¡µé¢çš„Titleæ•°æ®
 		titleList.add("R6");
 		// titleList.add("X5");
 		// titleList.add("OTHERS");
@@ -253,16 +255,16 @@ public class MainActivity extends Activity {
 				radio3 = (RadioButton) findViewById(R.id.radioButton3);
 				// radio2.setEnabled(false);
 
-				// ´´½¨°´Å¥¶ÔÏó
+				// åˆ›å»ºæŒ‰é’®å¯¹è±¡
 				btn_openport = (Button) findViewById(R.id.btnopenport);
 				btn_closeport = (Button) findViewById(R.id.btncloseport);
 				// btn_cardstate = (Button)findViewById(R.id.btncardstate);
 				btn_beep = (Button) findViewById(R.id.btnbeep);
 				// btn_readeprom = (Button)findViewById(R.id.btnreadeeprom);
 				// btn_writeeprom= (Button)findViewById(R.id.btnwriteeeprom);
-				// CPU ¿¨
+				// CPU å¡
 				// btn_icpoweron = (Button)findViewById(R.id.btncpureset);
-				// ÉèÖÃ¼àÌı
+				// è®¾ç½®ç›‘å¬
 				btn_openport.setOnClickListener(new ButtonClickListener());
 				btn_closeport.setOnClickListener(new ButtonClickListener());
 				// btn_cardstate.setOnClickListener(new ButtonClickListener());
@@ -277,7 +279,7 @@ public class MainActivity extends Activity {
 		viewPager.setAdapter(pagerAdapter);
 	}
 
-	/* ÒÔÏÂÊÇÉè±¸²Ù×÷µÄ´¥·¢ */
+	/* ä»¥ä¸‹æ˜¯è®¾å¤‡æ“ä½œçš„è§¦å‘ */
 	class ButtonClickListener implements OnClickListener {
 		@Override
 		public void onClick(View v) {
@@ -293,7 +295,7 @@ public class MainActivity extends Activity {
 					} catch (Exception ex) {
 					}
 
-					if (radio1.isChecked()) // À¶ÑÀ
+					if (radio1.isChecked()) // è“ç‰™
 					{
 
 						Intent intent = new Intent(MainActivity.this,
@@ -303,9 +305,9 @@ public class MainActivity extends Activity {
 						// st=myReader.openReader();
 
 					} 
-					else if (radio2.isChecked()) {	// U¿Ú
+					else if (radio2.isChecked()) {	// Uå£
 						if (initUsbDevice() != 0) {
-							ETversion.setText("´ò¿ªÉè±¸Ê§°Ü");
+							ETversion.setText("æ‰“å¼€è®¾å¤‡å¤±è´¥");
 							return;
 						}
 						// myReader=new Reader();
@@ -313,11 +315,11 @@ public class MainActivity extends Activity {
 
 						ETversion.setText(myReader.getHardwareVer());
 						ETsnr.setText(myReader.getSerialNumber());
-						Tip.setText("Éè±¸Á¬½Ó³É¹¦.");
+						Tip.setText("è®¾å¤‡è¿æ¥æˆåŠŸ.");
 						btn_operate.setEnabled(true);
 					}
 						/*
-						 * if (radio2.isChecked()) //´®¿Ú { myReader=new Reader();
+						 * if (radio2.isChecked()) //ä¸²å£ { myReader=new Reader();
 						 * String str=""; openflag=0; for (int
 						 * i=0;i<portstr.length;i++) { try {
 						 * str=str+portstr[i]+",";
@@ -326,7 +328,7 @@ public class MainActivity extends Activity {
 						 * 
 						 * if (st>=0) { openflag=1; break; } }
 						 * 
-						 * if (openflag==0) { Tip.setText("Éè±¸Á¬½ÓÊ§°Ü."+str);
+						 * if (openflag==0) { Tip.setText("è®¾å¤‡è¿æ¥å¤±è´¥."+str);
 						 * return; } }
 						 */
 						// myReader.openReader("/dev/s3c2410_serial3",
@@ -337,12 +339,12 @@ public class MainActivity extends Activity {
 						if (st >= 0)
 						{
 							st = myReader.beep(2, 2, 2);
-							Tip.setText("Éè±¸Á¬½Ó³É¹¦.");
+							Tip.setText("è®¾å¤‡è¿æ¥æˆåŠŸ.");
 							btn_operate.setEnabled(true);
 						}
 						else
 						{
-							ETversion.setText("´ò¿ªÉè±¸Ê§°Ü");
+							ETversion.setText("æ‰“å¼€è®¾å¤‡å¤±è´¥");
 						}
 					}
 				} catch (Exception ex) {
@@ -357,7 +359,7 @@ public class MainActivity extends Activity {
 					// myReader.mBTHSocket.close();
 					myReader.closeReader();
 					ETversion.setText("");
-					Tip.setText("Éè±¸¹Ø±Õ³É¹¦.");
+					Tip.setText("è®¾å¤‡å…³é—­æˆåŠŸ.");
 				} catch (Exception ex) {
 					Tip.setText(ex.getMessage());
 				}
@@ -379,15 +381,15 @@ public class MainActivity extends Activity {
 			}
 		}
 
-		private final EditText ETsnr = (EditText) findViewById(R.id.ETsnr);// Ğ´EPROMÊı¾İ
+		private final EditText ETsnr = (EditText) findViewById(R.id.ETsnr);// å†™EPROMæ•°æ®
 		// private final EditText
-		// ETadrress=(EditText)findViewById(R.id.ETadrress);//EPROM µØÖ·
+		// ETadrress=(EditText)findViewById(R.id.ETadrress);//EPROM åœ°å€
 		// private final EditText
-		// ETlength=(EditText)findViewById(R.id.ETlength);//EPROM µØÖ·
-		private final EditText Tip = (EditText) findViewById(R.id.layout1_Tip); // ÌáÊ¾ĞÅÏ¢¿ò
-		private final EditText ETversion = (EditText) findViewById(R.id.ETversion);// °æ±¾ĞÅÏ¢¿ò
+		// ETlength=(EditText)findViewById(R.id.ETlength);//EPROM åœ°å€
+		private final EditText Tip = (EditText) findViewById(R.id.layout1_Tip); // æç¤ºä¿¡æ¯æ¡†
+		private final EditText ETversion = (EditText) findViewById(R.id.ETversion);// ç‰ˆæœ¬ä¿¡æ¯æ¡†
 		// private final EditText
-		// ETreaddata=(EditText)findViewById(R.id.ETreaddata);//EEROMĞÅÏ¢¿ò
+		// ETreaddata=(EditText)findViewById(R.id.ETreaddata);//EEROMä¿¡æ¯æ¡†
 
 		private String str_in;
 		public int st = 0;
@@ -396,7 +398,7 @@ public class MainActivity extends Activity {
 	}
 
 	/**
-	 * °Ñ×Ö·û´®È¥¿Õ¸ñºó×ª»»³ÉbyteÊı×é¡£Èç"37 5a"×ª³É[0x37][0x5A]
+	 * æŠŠå­—ç¬¦ä¸²å»ç©ºæ ¼åè½¬æ¢æˆbyteæ•°ç»„ã€‚å¦‚"37 5a"è½¬æˆ[0x37][0x5A]
 	 * 
 	 * @param
 	 * @return
@@ -410,16 +412,16 @@ public class MainActivity extends Activity {
 		return integer.intValue();
 	}
 
-	// À¶ÑÀµ÷ÓÃÁ¬½Ó³É¹¦ºó£¬»Øµ÷µ½Õâ¸ö½Ó¿Ú
+	// è“ç‰™è°ƒç”¨è¿æ¥æˆåŠŸåï¼Œå›è°ƒåˆ°è¿™ä¸ªæ¥å£
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		switch (resultCode) { // resultCodeÎª»Ø´«µÄ±ê¼Ç£¬ÎÒÔÚBÖĞ»Ø´«µÄÊÇRESULT_OK
+		switch (resultCode) { // resultCodeä¸ºå›ä¼ çš„æ ‡è®°ï¼Œæˆ‘åœ¨Bä¸­å›ä¼ çš„æ˜¯RESULT_OK
 		case RESULT_OK:
-			Bundle b = data.getExtras(); // dataÎªBÖĞ»Ø´«µÄIntent
-			String str = b.getString("connected");// str¼´Îª»Ø´«µÄÖµ
+			Bundle b = data.getExtras(); // dataä¸ºBä¸­å›ä¼ çš„Intent
+			String str = b.getString("connected");// strå³ä¸ºå›ä¼ çš„å€¼
 			if (str.equals("connectedok")) {
-				EditText ETsnr = (EditText) findViewById(R.id.ETsnr);// Ğ´EPROMÊı¾İ
-				EditText Tip = (EditText) findViewById(R.id.layout1_Tip); // ÌáÊ¾ĞÅÏ¢¿ò
-				final EditText ETversion = (EditText) findViewById(R.id.ETversion);// °æ±¾ĞÅÏ¢¿ò
+				EditText ETsnr = (EditText) findViewById(R.id.ETsnr);// å†™EPROMæ•°æ®
+				EditText Tip = (EditText) findViewById(R.id.layout1_Tip); // æç¤ºä¿¡æ¯æ¡†
+				final EditText ETversion = (EditText) findViewById(R.id.ETversion);// ç‰ˆæœ¬ä¿¡æ¯æ¡†
 
 				try {
 					ETversion.setText(myReader.getHardwareVer());
@@ -431,7 +433,7 @@ public class MainActivity extends Activity {
 					return;
 				}
 				btn_operate.setEnabled(true);
-				Tip.setText("Éè±¸Á¬½Ó³É¹¦.");
+				Tip.setText("è®¾å¤‡è¿æ¥æˆåŠŸ.");
 			}
 			break;
 		default:
@@ -445,19 +447,19 @@ public class MainActivity extends Activity {
 		return true;
 	}
 	/*
-	 * private void InitItem() { String[] m_arr = {"CPU¿¨","SAM1","SAM2","SAM3"};
+	 * private void InitItem() { String[] m_arr = {"CPUå¡","SAM1","SAM2","SAM3"};
 	 * Spinner spinner; spinner = (Spinner) findViewById(R.id.spinner1);
-	 * spinner.setPrompt("ÇëÑ¡ÔñÑÕÉ«" ); //½«¿ÉÑ¡ÄÚÈİÓëArrayAdapterÁ¬½ÓÆğÀ´ adapter = new
+	 * spinner.setPrompt("è¯·é€‰æ‹©é¢œè‰²" ); //å°†å¯é€‰å†…å®¹ä¸ArrayAdapterè¿æ¥èµ·æ¥ adapter = new
 	 * ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,m_arr);
-	 * //ÉèÖÃÏÂÀ­ÁĞ±íµÄ·ç¸ñ
+	 * //è®¾ç½®ä¸‹æ‹‰åˆ—è¡¨çš„é£æ ¼
 	 * adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item
-	 * ); //½«adapter Ìí¼Óµ½spinnerÖĞ spinner.setAdapter(adapter); //Ìí¼ÓÊÂ¼şSpinnerÊÂ¼ş¼àÌı
-	 * spinner.setOnItemSelectedListener(new SpinnerSelectedListener()); //ÉèÖÃÄ¬ÈÏÖµ
+	 * ); //å°†adapter æ·»åŠ åˆ°spinnerä¸­ spinner.setAdapter(adapter); //æ·»åŠ äº‹ä»¶Spinneräº‹ä»¶ç›‘å¬
+	 * spinner.setOnItemSelectedListener(new SpinnerSelectedListener()); //è®¾ç½®é»˜è®¤å€¼
 	 * spinner.setVisibility(View.VISIBLE); } class SpinnerSelectedListener
 	 * implements OnItemSelectedListener{
 	 * 
 	 * public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long
-	 * arg3) { //view.setText("ÄãµÄÑªĞÍÊÇ£º"+m[arg2]);
+	 * arg3) { //view.setText("ä½ çš„è¡€å‹æ˜¯ï¼š"+m[arg2]);
 	 * Toast.makeText(MainActivity.this, "yes", Toast.LENGTH_SHORT).show(); }
 	 * 
 	 * public void onNothingSelected(AdapterView<?> arg0) { } }

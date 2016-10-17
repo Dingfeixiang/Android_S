@@ -59,30 +59,30 @@ public class SearchActivity extends BaseActivity implements
 	private boolean connectFlag=false;
 	private int connetTime =0;
 
-	// ´´½¨Ò»¸ö½ÓÊÕACTION_FOUND¹ã²¥µÄBroadcastReceiver
+	// åˆ›å»ºä¸€ä¸ªæ¥æ”¶ACTION_FOUNDå¹¿æ’­çš„BroadcastReceiver
 	private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
 
-			// ·¢ÏÖÉè±¸
+			// å‘ç°è®¾å¤‡
 			if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-				// ´ÓIntentÖĞ»ñÈ¡Éè±¸¶ÔÏó
+				// ä»Intentä¸­è·å–è®¾å¤‡å¯¹è±¡
 				BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-				// ½«Éè±¸Ãû³ÆºÍµØÖ··ÅÈëarray adapter£¬ÒÔ±ãÔÚListViewÖĞÏÔÊ¾
+				// å°†è®¾å¤‡åç§°å’Œåœ°å€æ”¾å…¥array adapterï¼Œä»¥ä¾¿åœ¨ListViewä¸­æ˜¾ç¤º
 				arraySource.add(device);
 				bleAdapter.notifyDataSetChanged();
 				//showMessage(device.getName() + "\n" + device.getAddress());
 
 			}else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)){
 				arraySource.clear();
-				initNavigation("ÕıÔÚÉ¨ÃèÀ¶ÑÀÉè±¸...");
+				initNavigation("æ­£åœ¨æ‰«æè“ç‰™è®¾å¤‡...");
 			}else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
-				initNavigation("À¶ÑÀÉè±¸É¨ÃèÍê³É¡£");
+				initNavigation("è“ç‰™è®¾å¤‡æ‰«æå®Œæˆã€‚");
 			}else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)){
 				if (connectFlag)
 				{
-					initNavigation("À¶ÑÀÉè±¸Á¬½Ó³É¹¦¡£");
-					Toast toast=Toast.makeText(getApplicationContext(), "À¶ÑÀÉè±¸Á¬½Ó³É¹¦¡£", Toast.LENGTH_SHORT);
+					initNavigation("è“ç‰™è®¾å¤‡è¿æ¥æˆåŠŸã€‚");
+					Toast toast=Toast.makeText(getApplicationContext(), "è“ç‰™è®¾å¤‡è¿æ¥æˆåŠŸã€‚", Toast.LENGTH_SHORT);
 					toast.show();
 
 					Intent intent1=new Intent();
@@ -91,19 +91,19 @@ public class SearchActivity extends BaseActivity implements
 					finish();
 				}
 			}else if(BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
-				// ×´Ì¬¸Ä±äµÄ¹ã²¥
+				// çŠ¶æ€æ”¹å˜çš„å¹¿æ’­
 				BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 				int   connectState = device.getBondState();
 				switch (connectState) {
 					case BluetoothDevice.BOND_NONE:
 						break;
 					case BluetoothDevice.BOND_BONDING:
-						initNavigation("ÕıÔÚÅä¶Ô..¡£");
+						initNavigation("æ­£åœ¨é…å¯¹..ã€‚");
 						break;
 					case BluetoothDevice.BOND_BONDED:
 						int i=0;
 						//try {
-						// Á¬½Ó
+						// è¿æ¥
 						// connect(device);
 						// } catch (IOException e) {
 						//      e.printStackTrace();
@@ -116,9 +116,9 @@ public class SearchActivity extends BaseActivity implements
 				BluetoothDevice btDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 				try
 				{
-					ClsUtils.setPin(btDevice, "000000"); // ÊÖ»úºÍÀ¶ÑÀ²É¼¯Æ÷Åä¶Ô
+					ClsUtils.setPin(btDevice, "000000"); // æ‰‹æœºå’Œè“ç‰™é‡‡é›†å™¨é…å¯¹
 					ClsUtils.createBond(btDevice);
-					ClsUtils.cancelPairingUserInput(btDevice); //Ä³Ğ©ÊÖ»úÔÚ´Ë´¦»áÅ×³öÒì³££¬Èô¹ûÓĞĞèÒª´¦ÀíµÄ¿ÉÔÚcatchÖĞ´¦Àí
+					ClsUtils.cancelPairingUserInput(btDevice); //æŸäº›æ‰‹æœºåœ¨æ­¤å¤„ä¼šæŠ›å‡ºå¼‚å¸¸ï¼Œè‹¥æœæœ‰éœ€è¦å¤„ç†çš„å¯åœ¨catchä¸­å¤„ç†
 				}
 				catch (Exception e)
 				{
@@ -140,7 +140,7 @@ public class SearchActivity extends BaseActivity implements
 		adapter = BluetoothAdapter.getDefaultAdapter();
 		if (!adapter.isEnabled())
 			adapter.enable();
-		// ×¢²áBroadcastReceiver
+		// æ³¨å†ŒBroadcastReceiver
 		IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
 		filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
 		filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
@@ -152,7 +152,7 @@ public class SearchActivity extends BaseActivity implements
 		filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
 		filter.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
 		filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
-		this.registerReceiver(mReceiver, filter); // ²»ÒªÍüÁËÖ®ºó½â³ı°ó¶¨
+		this.registerReceiver(mReceiver, filter); // ä¸è¦å¿˜äº†ä¹‹åè§£é™¤ç»‘å®š
 
 		// If we're already discovering, stop it
 		if (adapter.isDiscovering()) {
@@ -196,7 +196,7 @@ public class SearchActivity extends BaseActivity implements
 
 	@SuppressWarnings("static-access")
 	protected void initView() {
-		initNavigation("À¶ÑÀÉè±¸");
+		initNavigation("è“ç‰™è®¾å¤‡");
 		list = (ListView) this.findViewById(Res.id.list);
 
 		list.setOnItemClickListener(this);
@@ -213,7 +213,7 @@ public class SearchActivity extends BaseActivity implements
 		// TODO Auto-generated method stub
 		super.initNavigation(title);
 		navigateView.setRightHideBtn(false);
-		navigateView.rightBtn.setText("Ë¢ĞÂ");
+		navigateView.rightBtn.setText("åˆ·æ–°");
 		navigateView.rightBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -238,14 +238,14 @@ public class SearchActivity extends BaseActivity implements
 	}
 
 	/**
-	 * Á¬½ÓÑ¡¶¨µÄÀ¶ÑÀÉè±¸£¬ÔÚÁ¬½ÓÖ®Ç°£¬ÏÈ½øĞĞÅĞ¶ÏÓĞÎŞÅä¶Ô£¬Èç¹ûÃ»ÓĞÅä¶Ô£¬Ôò½øĞĞÀ¶ÑÀµÄÅä¶Ô¡£
+	 * è¿æ¥é€‰å®šçš„è“ç‰™è®¾å¤‡ï¼Œåœ¨è¿æ¥ä¹‹å‰ï¼Œå…ˆè¿›è¡Œåˆ¤æ–­æœ‰æ— é…å¯¹ï¼Œå¦‚æœæ²¡æœ‰é…å¯¹ï¼Œåˆ™è¿›è¡Œè“ç‰™çš„é…å¯¹ã€‚
 	 * @param -selectDevice
 	 * @return
 	 */
 	protected boolean connectDevice(BluetoothDevice device,String strPsw) {
 		try {
-			adapter.cancelDiscovery(); //È¡ÏûËÑË÷À¶ÑÀÉè±¸
-			if (!adapter.isEnabled()) //ÅĞ¶ÏÀ¶ÑÀÊÇ·ñ´ò¿ª
+			adapter.cancelDiscovery(); //å–æ¶ˆæœç´¢è“ç‰™è®¾å¤‡
+			if (!adapter.isEnabled()) //åˆ¤æ–­è“ç‰™æ˜¯å¦æ‰“å¼€
 			{
 				adapter.enable();
 			}
@@ -255,9 +255,9 @@ public class SearchActivity extends BaseActivity implements
     			try
     			{
     				Log.d("mylog", "NOT BOND_BONDED");
-    				ClsUtils.setPin(device, strPsw); // ÊÖ»úºÍÀ¶ÑÀ²É¼¯Æ÷Åä¶Ô
+    				ClsUtils.setPin(device, strPsw); // æ‰‹æœºå’Œè“ç‰™é‡‡é›†å™¨é…å¯¹
     				ClsUtils.createBond( device);
-    				remoteDevice = device; // Åä¶ÔÍê±Ï¾Í°ÑÕâ¸öÉè±¸¶ÔÏó´«¸øÈ«¾ÖµÄremoteDevice
+    				remoteDevice = device; // é…å¯¹å®Œæ¯•å°±æŠŠè¿™ä¸ªè®¾å¤‡å¯¹è±¡ä¼ ç»™å…¨å±€çš„remoteDevice
     			}
     			catch (Exception e)
     			{
@@ -275,9 +275,9 @@ public class SearchActivity extends BaseActivity implements
     			Log.d("mylog", "HAS BOND_BONDED");
     			try
     			{
-    				ClsUtils.setPin(device, strPsw); // ÊÖ»úºÍÀ¶ÑÀ²É¼¯Æ÷Åä¶Ô
+    				ClsUtils.setPin(device, strPsw); // æ‰‹æœºå’Œè“ç‰™é‡‡é›†å™¨é…å¯¹
     				ClsUtils.createBond(device);
-    				remoteDevice = device; // Èç¹û°ó¶¨³É¹¦£¬¾ÍÖ±½Ó°ÑÕâ¸öÉè±¸¶ÔÏó´«¸øÈ«¾ÖµÄremoteDevice
+    				remoteDevice = device; // å¦‚æœç»‘å®šæˆåŠŸï¼Œå°±ç›´æ¥æŠŠè¿™ä¸ªè®¾å¤‡å¯¹è±¡ä¼ ç»™å…¨å±€çš„remoteDevice
     			}
     			catch (Exception e)
     			{
@@ -289,19 +289,19 @@ public class SearchActivity extends BaseActivity implements
     			}
     		}*/
 
-			// Á¬½Ó½¨Á¢Ö®Ç°µÄÏÈÅä¶Ô
+			// è¿æ¥å»ºç«‹ä¹‹å‰çš„å…ˆé…å¯¹
 			if (device.getBondState() == BluetoothDevice.BOND_NONE) {
 				Method creMethod = BluetoothDevice.class
 						.getMethod("createBond");
-				Log.e("TAG", "¿ªÊ¼Åä¶Ô");
+				Log.e("TAG", "å¼€å§‹é…å¯¹");
 				creMethod.invoke(device);
 			} else {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-			//DisplayMessage("ÎŞ·¨Åä¶Ô£¡");
+			//DisplayMessage("æ— æ³•é…å¯¹ï¼");
 			e.printStackTrace();
-			Toast toast=Toast.makeText(getApplicationContext(),"Åä¶Ô³ö´í£¬´íÎóÎª:"+ e.getMessage(), Toast.LENGTH_LONG);
+			Toast toast=Toast.makeText(getApplicationContext(),"é…å¯¹å‡ºé”™ï¼Œé”™è¯¯ä¸º:"+ e.getMessage(), Toast.LENGTH_LONG);
 			toast.show();
 
 			connetTime++;
@@ -310,12 +310,12 @@ public class SearchActivity extends BaseActivity implements
 
 		try {
 			mBTHSocket.connect();
-			//DisplayMessage("Á¬½Ó³É¹¦!");
+			//DisplayMessage("è¿æ¥æˆåŠŸ!");
 			connectFlag = true;
 
 			return true;
 		} catch (IOException e) {
-			//DisplayMessage("Á¬½ÓÊ§°Ü£¡");
+			//DisplayMessage("è¿æ¥å¤±è´¥ï¼");
 			connetTime++;
 			connectFlag = false;
 		} finally {
@@ -332,7 +332,7 @@ public class SearchActivity extends BaseActivity implements
 
 		try{
 
-			//initNavigation("ÕıÔÚÁ¬½ÓËùÑ¡ÔñµÄÀ¶ÑÀÉè±¸...");
+			//initNavigation("æ­£åœ¨è¿æ¥æ‰€é€‰æ‹©çš„è“ç‰™è®¾å¤‡...");
 
 			adapter.cancelDiscovery();
 
@@ -369,7 +369,7 @@ public class SearchActivity extends BaseActivity implements
 					MainActivity.myReader=mwab;
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					Toast toast=Toast.makeText(getApplicationContext(), "´ò¿ª¶ÁĞ´Æ÷³ö´í£¬´íÎóÎª:"+e.getMessage(), Toast.LENGTH_LONG);
+					Toast toast=Toast.makeText(getApplicationContext(), "æ‰“å¼€è¯»å†™å™¨å‡ºé”™ï¼Œé”™è¯¯ä¸º:"+e.getMessage(), Toast.LENGTH_LONG);
 					toast.show();
 
 					e.printStackTrace();
@@ -377,7 +377,7 @@ public class SearchActivity extends BaseActivity implements
 			}
 			else
 			{
-				Toast toast=Toast.makeText(getApplicationContext(), "À¶ÑÀÉè±¸Á¬½Ó³ö´í£¬ÇëÖØÊÔ!", Toast.LENGTH_LONG);
+				Toast toast=Toast.makeText(getApplicationContext(), "è“ç‰™è®¾å¤‡è¿æ¥å‡ºé”™ï¼Œè¯·é‡è¯•!", Toast.LENGTH_LONG);
 				toast.show();
 			}
 
@@ -406,10 +406,10 @@ public class SearchActivity extends BaseActivity implements
 		String action = intent.getAction();
 		this.connectedOrDis(action);
 		if (RFStarBLEService.ACTION_GATT_CONNECTED.equals(action)) {
-			Log.d(App.TAG, "111111111 è¿æ¥å®Œæˆ");
+			Log.d(App.TAG, "111111111 æ©ç‚´å¸´ç€¹å±¾åš");
 			dialog.show();
 		} else if (RFStarBLEService.ACTION_GATT_DISCONNECTED.equals(action)) {
-			Log.d(App.TAG, "111111111 è¿æ¥æ–­å¼€");
+			Log.d(App.TAG, "111111111 æ©ç‚´å¸´é‚î…ç´‘");
 			dialog.hide();
 		} else if (RFStarBLEService.ACTION_GATT_SERVICES_DISCOVERED
 				.equals(action)) {

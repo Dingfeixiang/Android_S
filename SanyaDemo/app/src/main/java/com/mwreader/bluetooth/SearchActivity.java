@@ -28,7 +28,7 @@ import android.widget.Toast;
 
 
 import com.mwcard.ReaderAndroidBlueTooth;
-import com.xianfeng.sanyademo.DetialActivity;
+import com.xianfeng.sanyademo.util.MWManager;
 
 /**
  * 
@@ -365,7 +365,7 @@ public  class SearchActivity
 					mwab.beep(2, 10, 10);
 
                     //中中中
-                    DetialActivity.myReader=mwab;
+                    MWManager.getHelper().myReader=mwab;
 
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

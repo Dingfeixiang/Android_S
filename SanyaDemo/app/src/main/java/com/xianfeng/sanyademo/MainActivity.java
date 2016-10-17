@@ -9,6 +9,7 @@ import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = null;
 //    public static final String EXTRAS_NAME = "NAME";
 //    public static final String EXTRAS_PASSWORD = "PASSWORD";
 
