@@ -35,7 +35,7 @@
                 android:textSize="17sp" />
 
             <Spinner
-                android:id="@+id/degree"
+                android:id="@+id/adegree"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -74,10 +74,38 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/accountRel"
+            android:id="@+id/gas"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/price"
+            android:clickable="true"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/gview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="用气类型"
+                android:textColor="#000"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/gdegree"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dip"
+                android:layout_toRightOf="@+id/gview"
+                android:prompt="@string/degrees_prompt2" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/accountRel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gas"
             android:layout_marginTop="14dp"
             android:clickable="true"
             android:gravity="center_vertical" >

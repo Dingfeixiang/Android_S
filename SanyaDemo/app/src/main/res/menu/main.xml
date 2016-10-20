@@ -15,6 +15,11 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/download"
+        android:title="下载"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom|withText"/>
+
     <item android:id="@+id/connect"
         android:title="连接"
         android:orderInCategory="100"

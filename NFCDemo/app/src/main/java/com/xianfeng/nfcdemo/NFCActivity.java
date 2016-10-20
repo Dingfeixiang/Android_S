@@ -114,10 +114,13 @@ public class NFCActivity extends AppCompatActivity {
         tv5.setText("燃气单价");
         nfcManager_.reconvertStatus();
     }
+
+
     public void startSocket(String data, int type) {
         socketThread_ = new SocketThread(cardHandler_.hander, data, type);
         socketThread_.start();
     }
+
     private void operateCard(Map<String, Object> param) {
         if (cpd_Dialog == null) {
             cpd_Dialog = CustomProgressDialog.createDialog(NFCActivity.this);
@@ -126,6 +129,7 @@ public class NFCActivity extends AppCompatActivity {
         if (!cpd_Dialog.isShowing()) {
             cpd_Dialog.show();
         }
+
         //内部类的用法
         ThreadPoolUtils.execute(cardHandler_.new sendCommand(param));
     }

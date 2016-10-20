@@ -4,7 +4,7 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.0"
-    timestamp="218139615671682"
+    timestamp="242070390873060"
     token="2711257421974040409"
     verifier="FULL_BUILD_REQUESTED" >
 
@@ -26,7 +26,7 @@
         type="MAIN" />
 
     <build
-        timestamp="218139615671682"
+        timestamp="242070390873060"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/Users/xianfeng/Desktop/Android_Study/WMDemo/app/build/outputs/apk/app-debug.apk"
