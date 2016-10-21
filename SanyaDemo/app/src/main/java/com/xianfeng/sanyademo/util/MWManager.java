@@ -40,7 +40,7 @@ public class MWManager {
     public static synchronized MWManager getHelper() {
         if (instance == null)
         {
-            synchronized (DataManager.class)
+            synchronized (SQLiteHelperOrm.class)
             {
                 if (instance == null)
                     instance = new MWManager();

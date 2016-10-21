@@ -10,28 +10,29 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View.OnClickListener;
+import android.text.TextWatcher;
+import android.text.Editable;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+import android.util.Log;
 
 import java.util.HashMap;
 import java.util.List;
-import java.io.File;
+//import java.io.File;
 import java.util.Map;
 
-import com.j256.ormlite.dao.Dao;
-import java.sql.SQLException;
+//import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.mwreader.bluetooth.SearchActivity;
 import com.xianfeng.sanyademo.model.*;
 import com.xianfeng.sanyademo.util.*;
 
-public class DetialActivity extends AppCompatActivity {
+
+public class DetialActivity extends AppCompatActivity{
 
     private static final String TAG = "DetialActivity";
-
-    //与其他类交互键名
-    public static final String KEY = "KEY";
 
     //布局
     Spinner     aspinner,pspinner,gspinner;
@@ -41,13 +42,14 @@ public class DetialActivity extends AppCompatActivity {
 
     //管理器
     MWManager   mwManger = MWManager.getHelper();
-    DataManager dataManager = DataManager.getHelper(this);
-    Downloader  downloader = Downloader.getHelper();
+    DataProcesser   processer = DataProcesser.getInstance();
+    public SQLiteHelperOrm db = new SQLiteHelperOrm(this);
 
     //数据
     private String[]    aValues;
     private String[]    pValues;
     private String[]    gValues;
+    private float gasValue = 0;
 
 
     @Override
@@ -58,11 +60,13 @@ public class DetialActivity extends AppCompatActivity {
 
         //初始化布局
         initView();
-
         //初始化数据等
         initModule();
 
+
     }
+
+
 
 
     //交互逻辑 button
@@ -95,20 +99,37 @@ public class DetialActivity extends AppCompatActivity {
         }
     }
 
+    //EditText交互
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+            Log.d("TAG","onTextChanged--------------->");
+        }
 
-/********      交互       **********/
+        @Override
+        public void afterTextChanged(Editable s) {
+            // TODO Auto-generated method stub
+            Log.d("TAG","afterTextChanged--------------->");
+            //设置换算金额
+            gasAmount.setText(String.valueOf(gasValue) + "元");
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+            // TODO Auto-generated method stub
+            Log.d("TAG","beforeTextChanged--------------->");
+        }
+    };
+
+    /********      交互       **********/
 
     //左边按钮
     void submitButtonAction(){
-
-        try{
-            AreaData area = new AreaData();
-            area.setAreaname("这是测试");
-            dataManager.getDao(AreaData.class).create(area);
-        }catch (Exception ex){
-
-        }
-//        new UserDao(this).add(area);
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put(processer.TYPE,processer.MESSAGE_DB);
+        ThreadPoolUtils.execute(processer.new sendCommand(param));
     }
 
     //右边按钮
@@ -119,8 +140,8 @@ public class DetialActivity extends AppCompatActivity {
     //下载数据
     void downloadData(){
         Map<String, Object> param = new HashMap<String, Object>();
-        param.put(KEY,"");
-        ThreadPoolUtils.execute(downloader.new sendCommand(param));
+        param.put(processer.TYPE,processer.MESSAGE_SOAP);
+        processer.excuteCommandOnBackground(param);
     }
 
     //将表数据存储到数据库
@@ -128,7 +149,6 @@ public class DetialActivity extends AppCompatActivity {
         if(list.size()>0){
             for(User u:list){
                 try{
-
                     System.out.println("添加");
                 }catch (Exception ex) {
                     System.out.println("添加失败!");
@@ -150,8 +170,27 @@ public class DetialActivity extends AppCompatActivity {
         }
     }
 
+    /********      交互       **********/
+
+
+
+    /********      UI与初始化相关       **********/
+
+    //更新UI
+    public void updateUI(DataResult result){
+
+        setupSpinnerValues(aspinner,result.areas);
+        setupSpinnerValues(pspinner,result.prices);
+        setupSpinnerValues(gspinner,result.gastypes);
+//        username.setText("");
+//        address.setText("");
+//        number.setText("");
+//        gasAmount.setText("");
+//        moneyView.setText("");
+    }
+
     //清除数据
-    void clearData(){
+    public void clearData(){
         String[] none = new String[0];
         setupSpinnerValues(aspinner,none);
         setupSpinnerValues(pspinner,none);
@@ -163,38 +202,14 @@ public class DetialActivity extends AppCompatActivity {
         moneyView.setText("");
     }
 
-    /********      交互       **********/
-
-
-
-/********      初始化相关       **********/
-
     void initModule(){
-        //创建数据目录
-        createDir(dataManager.FILE_PATH);
+        //
+        processer.detialActivity = this;
         //打开数据库
-        dataManager.openDatabase();
+        db.setDataPath(SQLiteHelperOrm.FILE_PATH);
+
         //这个是什么作用?
 //        SerialPortFinder mSerialPortFinder = new SerialPortFinder();
-    }
-
-    public static boolean createDir(String destDirName) {
-        File dir = new File(destDirName);
-        if (dir.exists()) {
-            System.out.println("创建目录" + destDirName + "失败，目标目录已经存在");
-            return false;
-        }
-        if (!destDirName.endsWith(File.separator)) {
-            destDirName = destDirName + File.separator;
-        }
-        //创建目录
-        if (dir.mkdirs()) {
-            System.out.println("创建目录" + destDirName + "成功！");
-            return true;
-        } else {
-            System.out.println("创建目录" + destDirName + "失败！");
-            return false;
-        }
     }
 
     //布局相关
@@ -215,6 +230,7 @@ public class DetialActivity extends AppCompatActivity {
 
         submit.setOnClickListener(new ButtonClickListener());
         facture.setOnClickListener(new ButtonClickListener());
+        gasAmount.addTextChangedListener(textWatcher);
     }
 
     //设置spinner数据
@@ -236,7 +252,6 @@ public class DetialActivity extends AppCompatActivity {
         spinner.setVisibility(View.VISIBLE);
     }
 
-    /********      初始化相关       **********/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -264,6 +279,11 @@ public class DetialActivity extends AppCompatActivity {
                 break;
         }
         return true;
+    }
+
+    void alertMessage(String text){
+        Toast.makeText(getApplicationContext(), text,
+                Toast.LENGTH_SHORT).show();
     }
 
 }
