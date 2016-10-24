@@ -19,8 +19,8 @@ import java.util.Map;
 public class Downloader {
 
     public interface Callbackable {
-
-        public void loginResult(boolean isSuccess);
+        void loginResult(boolean isSuccess);
+//        void basedataResult();
     }
 
     public static final String SERVICE_NS = ""; //WebService的命名空间
@@ -53,7 +53,16 @@ public class Downloader {
 
 
     public void loginRequest(String jsonString,Callbackable callbackable){
-        callbackable.loginResult(true);
+
+        //登录接口回调后调用
+        if (callbackable != null)
+            callbackable.loginResult(true);
+    }
+
+    public void achieveBasedataRequest(String jsonString,Callbackable callbackable){
+
+        //
+
     }
 
 

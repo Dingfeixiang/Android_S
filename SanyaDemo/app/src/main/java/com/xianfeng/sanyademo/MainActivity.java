@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                if (!true)
+                if (true)
                 {
                     loginDetial();
                 }else {
