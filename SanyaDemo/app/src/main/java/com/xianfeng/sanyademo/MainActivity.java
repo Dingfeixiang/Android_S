@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.xianfeng.sanyademo.util.DataProcesser;
 
+import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,14 +35,17 @@ public class MainActivity extends AppCompatActivity {
 
         //
         nameET = (EditText)findViewById(R.id.accountEdittext);
+        nameET.setText("admins");
         passwordET = (EditText)findViewById(R.id.pwdEdittext);
+        passwordET.setText("000000");
+
         loginBtn = (Button)findViewById(R.id.login);
         loginBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                if (true)
+                if (!true)
                 {
                     loginDetial();
                 }else {
@@ -68,11 +72,20 @@ public class MainActivity extends AppCompatActivity {
         Map<String, Object> param = new HashMap();
         param.put(processer.TYPE,processer.MESSAGE_LOGIN);
 
-        Map<String, String> values = new HashMap();
-        values.put("name",nameET.getText().toString().trim());
-        values.put("password",passwordET.getText().toString().trim());
+        JSONObject jsonObject = new JSONObject();
+        try{
+            jsonObject.put("username",nameET.getText().toString().trim());
+            jsonObject.put("password",passwordET.getText().toString().trim());
+        }catch (Exception ex){
+            System.out.println("登录数据组装出错!");
+        }
+        param.put(processer.INFO,jsonObject);
 
-        param.put(processer.INFO,values);
+//        Map<String, String> values = new HashMap();
+//        values.put("name",nameET.getText().toString().trim());
+//        values.put("password",passwordET.getText().toString().trim());
+//        param.put(processer.INFO,values);
+
         processer.excuteCommandOnBackground(param);
     }
 

@@ -21,13 +21,15 @@ import android.util.Log;
 
 import java.util.HashMap;
 import java.util.List;
-//import java.io.File;
 import java.util.Map;
+
 
 //import com.j256.ormlite.android.apptools.OrmLiteBaseActivity;
 import com.mwreader.bluetooth.SearchActivity;
 import com.xianfeng.sanyademo.model.*;
 import com.xianfeng.sanyademo.util.*;
+
+import org.json.JSONObject;
 
 
 public class DetialActivity extends AppCompatActivity{
@@ -36,8 +38,8 @@ public class DetialActivity extends AppCompatActivity{
 
     //布局
     Spinner     aspinner,pspinner,gspinner;
-    EditText    username,address,number,gasAmount;
-    TextView    moneyView;
+    EditText    usernameET,addressET,numberET,gasAmountET;
+    TextView    moneyView,cardView;
     Button      submit,facture;
 
     //管理器
@@ -49,7 +51,12 @@ public class DetialActivity extends AppCompatActivity{
     private String[]    aValues;
     private String[]    pValues;
     private String[]    gValues;
+
+    private String areainfo = "";
+    private String priceinfo = "";
+    private String gastypeinfo = "";
     private float gasValue = 0;
+    private String cardNumberString = "";
 
 
     @Override
@@ -63,7 +70,7 @@ public class DetialActivity extends AppCompatActivity{
         //初始化数据等
         initModule();
 
-
+//        CardInfo.writeOrders()
     }
 
 
@@ -90,7 +97,18 @@ public class DetialActivity extends AppCompatActivity{
         @Override
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
-
+            if (arg1 == aspinner){
+                String cardNumber = aValues[arg2];
+                areainfo = cardNumber;
+            }else if(arg1 == pspinner){
+                String cardNumber = pValues[arg2];
+                priceinfo = cardNumber;
+            }else if(arg1 == gspinner){
+                String cardNumber = gValues[arg2];
+                gastypeinfo = cardNumber;
+            }
+            //设置显示当前选择的项
+            arg0.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -112,7 +130,7 @@ public class DetialActivity extends AppCompatActivity{
             // TODO Auto-generated method stub
             Log.d("TAG","afterTextChanged--------------->");
             //设置换算金额
-            gasAmount.setText(String.valueOf(gasValue) + "元");
+            gasAmountET.setText(String.valueOf(gasValue) + "元");
         }
 
         @Override
@@ -123,24 +141,96 @@ public class DetialActivity extends AppCompatActivity{
         }
     };
 
+
     /********      交互       **********/
 
     //左边按钮
     void submitButtonAction(){
+        if (usernameET.getText().toString().trim().equals("")) {
+            alertMessage("用户不能为空!");
+            return;
+        }
+        if (addressET.getText().toString().trim().equals("")){
+            alertMessage("地址不能为空!");
+            return;
+        }
+        if (numberET.getText().toString().trim().equals("")){
+            alertMessage("用户编号不能为空!");
+            return;
+        }
+        if (areainfo.equals("")){
+            alertMessage("请选择区域信息!");
+            return;
+        }
+        if (priceinfo.equals("")){
+            alertMessage("请选择价格信息!");
+            return;
+        }
+        if (gastypeinfo.equals("")){
+            alertMessage("请选择用气类型!");
+            return;
+        }
+
+        String moneyViewStr = moneyView.getText().toString().trim();
+        String valueStr = moneyViewStr.substring(0,moneyViewStr.length()-1);
+        gasValue = Float.valueOf(valueStr).floatValue();
+        establishAccount();
+    }
+    //请求开户
+    void establishAccount(){
+        Map<String, Object> param = new HashMap();
+        param.put(processer.TYPE,processer.MESSAGE_ACCOUNT);
+        JSONObject jsonObject = new JSONObject();
+        try{
+            String username = usernameET.getText().toString().trim();
+            String address = addressET.getText().toString().trim();
+            String money = String.valueOf(gasValue);
+            String areaid = areainfo;
+            String priceno = priceinfo;
+            String usergastype = gastypeinfo;
+
+            //拼接请求json
+            jsonObject.put("username",username);
+            jsonObject.put("areaid",areaid);
+            jsonObject.put("address",address);
+            jsonObject.put("priceno",priceno);
+            jsonObject.put("usergastype",usergastype);
+            jsonObject.put("money",money);
+
+        }catch (Exception ex){
+            System.out.println("开户数据组装出错!");
+        }
+        param.put(processer.INFO,jsonObject);
+        processer.excuteCommandOnBackground(param);
+    }
+    //开户结果
+    public void establishAccountResult(boolean result,String cardNum,String userNum){
+        if (result == true){
+            alertMessage("开户成功!");
+        }else {
+            alertMessage("开户失败!");
+        }
+    }
+
+
+    //右边按钮
+    void writeButtonAction(){
         Map<String, Object> param = new HashMap<String, Object>();
         param.put(processer.TYPE,processer.MESSAGE_DB);
         ThreadPoolUtils.execute(processer.new sendCommand(param));
     }
+    //请求制卡
+    //制卡结果
 
-    //右边按钮
-    void writeButtonAction(){
 
-    }
 
     //下载数据
     void downloadData(){
         Map<String, Object> param = new HashMap<String, Object>();
-        param.put(processer.TYPE,processer.MESSAGE_SOAP);
+        param.put(processer.INFO,null);
+        param.put(processer.TYPE,processer.MESSAGE_BASEDATA);
+
+
         processer.excuteCommandOnBackground(param);
     }
 
@@ -170,6 +260,19 @@ public class DetialActivity extends AppCompatActivity{
         }
     }
 
+    //清除数据
+    public void clearData(){
+        String[] none = new String[0];
+        setupSpinnerValues(aspinner,none);
+        setupSpinnerValues(pspinner,none);
+        setupSpinnerValues(gspinner,none);
+        usernameET.setText("");
+        addressET.setText("");
+        numberET.setText("");
+        gasAmountET.setText("");
+        moneyView.setText("");
+    }
+
     /********      交互       **********/
 
 
@@ -189,19 +292,7 @@ public class DetialActivity extends AppCompatActivity{
 //        moneyView.setText("");
     }
 
-    //清除数据
-    public void clearData(){
-        String[] none = new String[0];
-        setupSpinnerValues(aspinner,none);
-        setupSpinnerValues(pspinner,none);
-        setupSpinnerValues(gspinner,none);
-        username.setText("");
-        address.setText("");
-        number.setText("");
-        gasAmount.setText("");
-        moneyView.setText("");
-    }
-
+    //初始化数据等
     void initModule(){
         //
         processer.detialActivity = this;
@@ -218,19 +309,20 @@ public class DetialActivity extends AppCompatActivity{
         pspinner = (Spinner) findViewById(R.id.pdegree);
         gspinner = (Spinner) findViewById(R.id.gdegree);
 
-        username = (EditText) findViewById(R.id.accountEdittext);
-        address = (EditText) findViewById(R.id.pwdEdittext);//可以换行
-        number = (EditText) findViewById(R.id.ntext);//限制10个长度
-        gasAmount = (EditText) findViewById(R.id.atext);
+        usernameET = (EditText) findViewById(R.id.accountEdittext);
+        addressET = (EditText) findViewById(R.id.pwdEdittext);//可以换行
+        numberET = (EditText) findViewById(R.id.ntext);//限制10个长度
+        gasAmountET = (EditText) findViewById(R.id.atext);
 
         moneyView = (TextView) findViewById(R.id.mvalue);
+//        cardView = (TextView) findViewById(R.id.cardvalue);
 
         submit = (Button) findViewById(R.id.read);
         facture = (Button) findViewById(R.id.write);
 
         submit.setOnClickListener(new ButtonClickListener());
         facture.setOnClickListener(new ButtonClickListener());
-        gasAmount.addTextChangedListener(textWatcher);
+        gasAmountET.addTextChangedListener(textWatcher);
     }
 
     //设置spinner数据
@@ -251,7 +343,6 @@ public class DetialActivity extends AppCompatActivity{
         //设置默认值
         spinner.setVisibility(View.VISIBLE);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

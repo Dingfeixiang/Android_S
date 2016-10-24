@@ -4,28 +4,22 @@ package com.xianfeng.sanyademo.util;
  * Created by xianfeng on 2016/10/11.
  */
 
-import android.annotation.SuppressLint;
-import android.os.Handler;
-import android.os.Message;
-import android.telecom.Call;
-
+import org.json.JSONObject;
+import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.transport.HttpTransportSE;
 import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.serialization.*;
+import org.xmlpull.v1.XmlPullParserException;
 
-import java.util.Map;
+import java.io.IOException;
 
 //下载管理,ksoap2
 public class Downloader {
 
+    //请求回调接口
     public interface Callbackable {
-        void loginResult(boolean isSuccess);
-//        void basedataResult();
+        void soapResponse(JSONObject jsonObject);
     }
-
-    public static final String SERVICE_NS = ""; //WebService的命名空间
-    public static final String SERVICE_URL = "http://192.168.4.90:90/xfWeb.asmx";//WebService提供服务的URL
-
 
     //数据库操作单例
     private static Downloader instance;
@@ -45,26 +39,68 @@ public class Downloader {
         return instance;
     }
 
-    // 创建HttpTransportSE传输对象
-    HttpTransportSE httptransport = new HttpTransportSE(SERVICE_URL);
+    private static final String SERVICE_NAMESPACE =  "http://tempuri.org/";
+    private static final String SERVICE_URL = "http://192.168.4.90:90/xfWeb.asmx"; //WebService的命名空间
 
+    //方法调用名称
+    public static final String getAppDownloadDB = "AppDownloadBD";
+    public static final String getAppLogin = "AppLogin";
+    public static final String getAppAccount = "AppAccount";
+
+    // 创建HttpTransportSE传输对象
+    HttpTransportSE httptransport = null;
     // 使用SOAP1.1协议创建Envelop对象
     SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 
+    //请求与回调
+    public void soapRequest(String method, JSONObject jsonObject, Callbackable callbackable) throws IOException, XmlPullParserException {
+        SoapObject request = null;
+        request = new SoapObject(SERVICE_NAMESPACE, method);
 
-    public void loginRequest(String jsonString,Callbackable callbackable){
+        if (jsonObject != null){
+            String paramjson = jsonObject.toString();
+            request.addProperty("paramjson",paramjson);
+        }
 
-        //登录接口回调后调用
-        if (callbackable != null)
-            callbackable.loginResult(true);
+        envelope.bodyOut = request;
+        envelope.dotNet = true;
+        envelope.setOutputSoapObject(request);
+
+        try{
+            httptransport = new HttpTransportSE(SERVICE_URL);
+            httptransport.call(SERVICE_NAMESPACE + method,envelope);
+
+            Object responseJson = null;
+            String responseStr = "";
+            // 设置不返回null
+            if (envelope.getResponse() != null) {
+                responseJson = envelope.getResponse();
+                responseStr = responseJson.toString();
+            } else {
+                responseStr = "";
+            }
+            System.out.println(responseStr);
+            JSONObject returnJson = new JSONObject();
+            returnJson.put("result",responseStr);
+            callbackable.soapResponse(returnJson);
+
+        }catch (Exception ex){
+            System.out.print(ex.getMessage());
+            callbackable.soapResponse(null);
+        }
     }
 
-    public void achieveBasedataRequest(String jsonString,Callbackable callbackable){
-
-        //
-
-    }
-
+//    public static void stopCall() throws ErrorMessage {
+//        if (transport != null) {
+//            try {
+//                transport.getServiceConnection().disconnect();
+//            } catch (IOException e) {
+//                throw new ErrorMessage(e.getMessage());
+//            }
+//        } else {
+//            throw new ErrorMessage("取消失败");
+//        }
+//    }
 
 }
 

@@ -7,8 +7,12 @@ import android.os.Message;
 import com.j256.ormlite.dao.Dao;
 import com.xianfeng.sanyademo.model.AreaData;
 
+import java.lang.reflect.Array;
+import java.util.List;
 import java.util.Map;
 import com.xianfeng.sanyademo.*;
+
+import org.json.JSONObject;
 
 
 /**
@@ -24,13 +28,13 @@ public class DataProcesser{
     public static final String INFO = "INFO"; //交互数据
 
     //交互消息类型(对应TYPE)
-    public static final int MESSAGE_UI = 1;
-    public static final int MESSAGE_SOAP = 2;
-    public static final int MESSAGE_ERROR_SOAP = 3;
-    public static final int MESSAGE_DB = 4;
-    public static final int MESSAGE_ERROR_DB = 5;
-    public static final int MESSAGE_LOGIN = 6;
-    public static final int MESSAGE_LOGIN_RETURN = 7;
+    public static final int MESSAGE_DB = 1;
+    public static final int MESSAGE_ERROR_DB = 2;
+
+    public static final int MESSAGE_LOGIN = 3; //登录
+    public static final int MESSAGE_BASEDATA = 4; //基础数据
+    public static final int MESSAGE_ACCOUNT = 5; //开户
+//    public static final int MESSAGE_ERROR_SOAP = 6;//SOAP请求错误
 
 
     //数据库操作单例
@@ -60,6 +64,7 @@ public class DataProcesser{
     public class sendCommand implements Runnable {
 
         private Map<String, Object> param_ = null;
+
         private Message msg = null;
         private Dao<AreaData,Integer> areaDao;
 
@@ -73,8 +78,8 @@ public class DataProcesser{
             //获取参数
             int type = (int) param_.get(TYPE);
             msg = new Message();
-            if(type == MESSAGE_DB){
-                //保存数据
+
+            if(type == MESSAGE_DB){//数据库操作
                 try{
                     msg.what = MESSAGE_DB;
                     AreaData area = new AreaData();
@@ -88,28 +93,37 @@ public class DataProcesser{
                     System.out.println("添加错误");
                     msg.what = MESSAGE_ERROR_DB;
                 }
-            }else if(type == MESSAGE_SOAP){
-                //下载数据
-                try{
-                    msg.what = MESSAGE_SOAP;
 
-                }catch (Exception ex){
-                    msg.what = MESSAGE_ERROR_SOAP;
+            }else {//网络请求操作
+                String method = "";
+
+                if(type == MESSAGE_BASEDATA){ //拉取基础数据
+                    msg.what = MESSAGE_BASEDATA;
+                    method = downloader.getAppDownloadDB;
+                }
+                else if(type == MESSAGE_LOGIN) { //登录
+                    msg.what = MESSAGE_LOGIN;
+                    method = downloader.getAppLogin;
+
+                }else if (type == MESSAGE_ACCOUNT){ //开户
+                    msg.what = MESSAGE_ACCOUNT;
+                    method = downloader.getAppAccount;
                 }
 
-            }else if(type == MESSAGE_LOGIN){
-                msg.what = MESSAGE_LOGIN;
-                String jsonStr = "";
-                downloader.loginRequest(jsonStr, new Downloader.Callbackable() {
-                    @Override
-                    public void loginResult(boolean isSuccess) {
-                        if (isSuccess){
-                            msg.arg1 = 1;
-                        }else {
-                            msg.arg1 = 0;
+                try{
+                    JSONObject josnstr = (JSONObject) param_.get(INFO);
+                    downloader.soapRequest(method, josnstr, new Downloader.Callbackable() {
+                        @Override
+                        public void soapResponse(JSONObject jsonObject) {
+                            System.out.print(jsonObject);
+                            msg.obj = jsonObject;
                         }
-                    }
-                });
+                    });
+                }catch (Exception ex){
+                    System.out.println("数据请求错误!");
+                    msg.obj = null;
+                }
+
             }
 
             //回调
@@ -129,9 +143,6 @@ public class DataProcesser{
             //主线程
             switch (msg.what) {
 
-                case MESSAGE_UI:
-
-                    break;
                 case MESSAGE_DB:
 
                     break;
@@ -139,25 +150,59 @@ public class DataProcesser{
 
                     break;
 
-                case MESSAGE_SOAP:
-                    break;
-
-                case MESSAGE_ERROR_SOAP:
-
-                    break;
 
                 //登录结果
                 case MESSAGE_LOGIN:
-                    if (msg.arg1 == 0){
+                    try{
+                        JSONObject jsonObject = (JSONObject) msg.obj;
+                        boolean loginResult;
+                        loginResult = jsonObject.getBoolean("result");
+                        mainActivity.loginResultDispose(loginResult);
+
+                    }catch (Exception ex){
+                        System.out.println("登录回传解析错误!");
                         mainActivity.loginResultDispose(false);
-                    }else {
-                        mainActivity.loginResultDispose(true);
                     }
                     break;
 
+                //开户结果
+                case MESSAGE_ACCOUNT:
+                    try{
+                        JSONObject jsonObject = (JSONObject) msg.obj;
+                        boolean establishResult = jsonObject.getBoolean("result");
+                        String cardNumber = jsonObject.getString("cardno");
+                        String userNumber = jsonObject.getString("systemno");
+                        detialActivity.establishAccountResult(establishResult,cardNumber,userNumber);
+
+                    }catch (Exception ex){
+                        System.out.println("登录回传解析错误!");
+                        detialActivity.establishAccountResult(false,"","");
+                    }
+                    break;
+
+                //基础数据拉取结果
+                case MESSAGE_BASEDATA:
+                    try{
+                        JSONObject jsonObject = (JSONObject) msg.obj;
+                        //解析数据
+
+
+                    }catch(Exception ex){
+                        System.out.println("基础信息解析错误!");
+                    }
+
+                    break;
+
+
                 default:
                     break;
+
             }
         }
     };
+
+    private List<Array> parseBasedataJSONObject(JSONObject jsonObject){
+
+        return null;
+    }
 }
