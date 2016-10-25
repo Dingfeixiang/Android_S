@@ -41,7 +41,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dip"
                 android:layout_toRightOf="@+id/arview"
-                android:prompt="@string/degrees_prompt" />
+                android:popupBackground="@color/black"/>
 
         </RelativeLayout>
 
@@ -69,7 +69,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dip"
                 android:layout_toRightOf="@+id/pview"
-                android:prompt="@string/degrees_prompt2" />
+                android:popupBackground="@color/black"/>
 
         </RelativeLayout>
 
@@ -97,7 +97,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dip"
                 android:layout_toRightOf="@+id/gview"
-                android:prompt="@string/degrees_prompt2" />
+                android:popupBackground="@color/black"/>
 
         </RelativeLayout>
 
@@ -250,10 +250,37 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/buttons"
+            android:id="@+id/cardnumber"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/money"
+            android:clickable="true"
+            android:gravity="center_vertical" >
+            <TextView
+                android:id="@+id/cview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="您的卡号为:"
+                android:textColor="#000"
+                android:textSize="17sp" />
+            <TextView
+                android:id="@+id/ctview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_toRightOf="@+id/cview"
+                android:text=""
+                android:textColor="#000"
+                android:textSize="17sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/buttons"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cardnumber"
             android:layout_marginTop="16dp"
             android:clickable="true"
             android:gravity="center_vertical" >

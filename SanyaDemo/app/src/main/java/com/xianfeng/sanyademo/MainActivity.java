@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     Button loginBtn;
     EditText nameET,passwordET;
 
+    //data
+    String companyString = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         nameET.setText("admins");
         passwordET = (EditText)findViewById(R.id.pwdEdittext);
         passwordET.setText("000000");
+        companyString = "008001";
 
         loginBtn = (Button)findViewById(R.id.login);
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -45,10 +49,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                if (!true)
+                if (true)
                 {
+                    //需要数据库
                     loginDetial();
                 }else {
+                    //登录已完成
                     String name = nameET.getText().toString().trim();
                     String pass = passwordET.getText().toString().trim();
                     if (!name.equalsIgnoreCase("")) {
@@ -61,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                         alertMessage("请输入用户名!");
                     }
                 }
-
             }
         });
 
@@ -76,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         try{
             jsonObject.put("username",nameET.getText().toString().trim());
             jsonObject.put("password",passwordET.getText().toString().trim());
+            jsonObject.put("companycode",companyString);
         }catch (Exception ex){
             System.out.println("登录数据组装出错!");
         }

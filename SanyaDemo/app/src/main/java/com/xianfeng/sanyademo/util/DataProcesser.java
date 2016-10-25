@@ -7,11 +7,13 @@ import android.os.Message;
 import com.j256.ormlite.dao.Dao;
 import com.xianfeng.sanyademo.model.AreaData;
 
-import java.lang.reflect.Array;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import com.xianfeng.sanyademo.*;
+import com.xianfeng.sanyademo.model.ChargeData;
+import com.xianfeng.sanyademo.model.GasData;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 
@@ -36,6 +38,18 @@ public class DataProcesser{
     public static final int MESSAGE_ACCOUNT = 5; //开户
 //    public static final int MESSAGE_ERROR_SOAP = 6;//SOAP请求错误
 
+    //数据类型
+    private static final int DATATYPE_USERDATA = 99;
+    private static final int DATATYPE_ACCOUNTDATA = 100;
+
+    private static final int DATATYPE_AREADATA = 101;
+    private static final int DATATYPE_CHARGEDATA = 102;
+    private static final int DATATYPE_GASDATA = 103;
+
+    //数据存储
+    public ArrayList<AreaData> areaDatas = new ArrayList<>();
+    public ArrayList<ChargeData>  chargeDatas= new ArrayList<>();
+    public ArrayList<GasData> gasDatas = new ArrayList<>();
 
     //数据库操作单例
     private static DataProcesser instance;
@@ -127,7 +141,12 @@ public class DataProcesser{
             }
 
             //回调
-            hander.sendMessage(msg);
+            try{
+                hander.sendMessage(msg);
+            }catch (Exception ex){
+                System.out.println("");
+            }
+
         }
     }
 
@@ -185,8 +204,12 @@ public class DataProcesser{
                     try{
                         JSONObject jsonObject = (JSONObject) msg.obj;
                         //解析数据
-
-
+                        areaDatas = parseBasedataJSONObject(jsonObject,DATATYPE_AREADATA);
+                        chargeDatas = parseBasedataJSONObject(jsonObject,DATATYPE_CHARGEDATA);
+                        gasDatas = parseBasedataJSONObject(jsonObject,DATATYPE_GASDATA);
+                        //返回数据
+                        detialActivity.downloadBasedataResult(areaDatas,chargeDatas,gasDatas);
+                        System.out.println("解析结束");
                     }catch(Exception ex){
                         System.out.println("基础信息解析错误!");
                     }
@@ -201,8 +224,82 @@ public class DataProcesser{
         }
     };
 
-    private List<Array> parseBasedataJSONObject(JSONObject jsonObject){
+    private ArrayList parseBasedataJSONObject(JSONObject jsonObject,int datatype){
 
-        return null;
+        ArrayList  datalist = new ArrayList();
+
+        try{
+            String stringIwant = jsonObject.getString("result");
+            JSONObject valueIwant = new JSONObject(stringIwant);
+
+            JSONArray arrayIwant = new JSONArray();
+            if (datatype == DATATYPE_AREADATA){
+                arrayIwant = valueIwant.getJSONArray("area");
+            }else if (datatype == DATATYPE_CHARGEDATA){
+                arrayIwant = valueIwant.getJSONArray("price");
+            }else if (datatype == DATATYPE_GASDATA){
+                arrayIwant = valueIwant.getJSONArray("usergastype");
+            }
+            for (int i=0; i<arrayIwant.length();i++){
+
+                if (datatype == DATATYPE_AREADATA){
+
+                    JSONObject objectIwant = arrayIwant.getJSONObject(i);
+                    String areaid = objectIwant.getString("areaid");
+                    String areaname = objectIwant.getString("areaname");
+
+                    AreaData areaData = new AreaData();
+                    areaData.setAreaid(areaid);
+                    areaData.setAreaname(areaname);
+                    datalist.add(areaData);
+
+                }else if (datatype == DATATYPE_CHARGEDATA){
+
+                    JSONObject objectIwant = arrayIwant.getJSONObject(i);
+                    String priceno = objectIwant.getString("priceno");
+                    String pricestartdate = objectIwant.getString("pricestartdate");
+                    String pricecycle = objectIwant.getString("pricecycle");
+                    String cyclestartdate = objectIwant.getString("cyclestartdate");
+                    String clearflag = objectIwant.getString("clearflag");
+                    String laddprice1 = objectIwant.getString("laddprice1");
+                    String laddprice2 = objectIwant.getString("laddprice2");
+                    String laddprice3 = objectIwant.getString("laddprice3");
+                    String laddvalue1 = objectIwant.getString("laddvalue1");
+                    String laddvalue2 = objectIwant.getString("laddvalue2");
+                    String pricename = objectIwant.getString("pricename");
+                    String pricever = objectIwant.getString("pricever");
+
+                    ChargeData chargeData = new ChargeData();
+                    chargeData.setPricename(pricename);
+                    chargeData.setPricever(pricever);
+                    chargeData.setPriceno(priceno);
+                    chargeData.setPricestartdate(pricestartdate);
+                    chargeData.setPricecycle(pricecycle);
+                    chargeData.setCyclestartdate(cyclestartdate);
+                    chargeData.setClearflag(clearflag);
+                    chargeData.setLaddprice1(laddprice1);
+                    chargeData.setLaddprice2(laddprice2);
+                    chargeData.setLaddprice3(laddprice3);
+                    chargeData.setLaddvalue1(laddvalue1);
+                    chargeData.setLaddvalue2(laddvalue2);
+                    datalist.add(chargeData);
+
+                }else if (datatype == DATATYPE_GASDATA){
+
+                    JSONObject objectIwant = arrayIwant.getJSONObject(i);
+                    String usergastype = objectIwant.getString("usergastype");
+                    String usergastypename = objectIwant.getString("usergastypename");
+
+                    GasData gasData = new GasData();
+                    gasData.setUsergastype(usergastype);
+                    gasData.setUsergastypename(usergastypename);
+                    datalist.add(gasData);
+                }
+            }
+
+        }catch (Exception ex){
+            System.out.println("基础数据解析过程错误！");
+        }
+        return datalist;
     }
 }

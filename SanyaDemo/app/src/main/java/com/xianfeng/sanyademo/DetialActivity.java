@@ -1,6 +1,7 @@
 package com.xianfeng.sanyademo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,15 +50,15 @@ public class DetialActivity extends AppCompatActivity{
     public SQLiteHelperOrm db = new SQLiteHelperOrm(this);
 
     //数据
-    private String[]    aValues;
-    private String[]    pValues;
-    private String[]    gValues;
+    private DataResult  dataResult = new DataResult(); //界面信息结果保存
 
-    private String areainfo = "";
-    private String priceinfo = "";
-    private String gastypeinfo = "";
-    private float gasValue = 0;
-    private String cardNumberString = "";
+    //开户请求需要数据
+    private String areainfo = ""; //区域
+    private String priceinfo = ""; //价格
+    private String gastypeinfo = ""; //用气
+    private float gasValue = 0; //金额
+    private String cardNumberString = ""; //卡号
+    private String userNumber = ""; //用户号
 
 
     @Override
@@ -97,14 +99,16 @@ public class DetialActivity extends AppCompatActivity{
         @Override
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
+            TextView tv = (TextView) arg1;
+            tv.setTextColor(Color.BLACK);
             if (arg1 == aspinner){
-                String cardNumber = aValues[arg2];
+                String cardNumber = dataResult.areas.get(arg2);
                 areainfo = cardNumber;
             }else if(arg1 == pspinner){
-                String cardNumber = pValues[arg2];
+                String cardNumber = dataResult.prices.get(arg2);
                 priceinfo = cardNumber;
             }else if(arg1 == gspinner){
-                String cardNumber = gValues[arg2];
+                String cardNumber = dataResult.gastypes.get(arg2);
                 gastypeinfo = cardNumber;
             }
             //设置显示当前选择的项
@@ -174,6 +178,7 @@ public class DetialActivity extends AppCompatActivity{
         String moneyViewStr = moneyView.getText().toString().trim();
         String valueStr = moneyViewStr.substring(0,moneyViewStr.length()-1);
         gasValue = Float.valueOf(valueStr).floatValue();
+        cardNumberString = cardView.getText().toString().trim();
         establishAccount();
     }
     //请求开户
@@ -207,11 +212,14 @@ public class DetialActivity extends AppCompatActivity{
     public void establishAccountResult(boolean result,String cardNum,String userNum){
         if (result == true){
             alertMessage("开户成功!");
+            cardNumberString = cardNum;
+            userNumber = userNum;
         }else {
             alertMessage("开户失败!");
+            cardNumberString = "";
+            userNumber = "";
         }
     }
-
 
     //右边按钮
     void writeButtonAction(){
@@ -224,14 +232,48 @@ public class DetialActivity extends AppCompatActivity{
 
 
 
-    //下载数据
+    //下载基础数据
     void downloadData(){
         Map<String, Object> param = new HashMap<String, Object>();
         param.put(processer.INFO,null);
         param.put(processer.TYPE,processer.MESSAGE_BASEDATA);
-
-
         processer.excuteCommandOnBackground(param);
+    }
+    //基础数据返回
+    public void downloadBasedataResult(ArrayList<AreaData> areaDatas,
+                                ArrayList<ChargeData> chargeDatas,
+                                ArrayList<GasData> gasDatas){
+
+        //设置区域信息
+        List<String> alist = new ArrayList<>();
+        for (int i=0;i<areaDatas.size();i++){
+            AreaData dataIwant = areaDatas.get(i);
+            String value = dataIwant.getAreaname();
+            alist.add(value);
+        }
+        dataResult.areas = alist;
+
+        //设置价格信息
+        List<String> clist = new ArrayList<>();
+        for (int i=0;i<chargeDatas.size();i++){
+            ChargeData dataIwant = chargeDatas.get(i);
+            String value = dataIwant.getPricename() + dataIwant.getPriceno();
+            clist.add(value);
+        }
+        dataResult.prices = clist;
+
+        //设置用气类型
+        List<String> glist = new ArrayList<>();
+        for (int i=0;i<gasDatas.size();i++){
+            GasData dataIwant = gasDatas.get(i);
+            String value = dataIwant.getUsergastypename();
+            glist.add(value);
+        }
+        dataResult.gastypes = glist;
+
+        //更新UI
+        updateUI(dataResult);
+        cardView.setText("222");
     }
 
     //将表数据存储到数据库
@@ -262,7 +304,8 @@ public class DetialActivity extends AppCompatActivity{
 
     //清除数据
     public void clearData(){
-        String[] none = new String[0];
+        List<String> none = new ArrayList<>();
+        none.add("");
         setupSpinnerValues(aspinner,none);
         setupSpinnerValues(pspinner,none);
         setupSpinnerValues(gspinner,none);
@@ -271,6 +314,7 @@ public class DetialActivity extends AppCompatActivity{
         numberET.setText("");
         gasAmountET.setText("");
         moneyView.setText("");
+        cardView.setText("");
     }
 
     /********      交互       **********/
@@ -282,9 +326,26 @@ public class DetialActivity extends AppCompatActivity{
     //更新UI
     public void updateUI(DataResult result){
 
+        if (result.areas.size() == 0){
+            List<String> strings = new ArrayList<>();
+            strings.add("");
+            result.areas = strings;
+        }
+        if (result.prices.size() == 0){
+            List<String> strings = new ArrayList<>();
+            strings.add("");
+            result.prices = strings;
+        }
+        if (result.gastypes.size() == 0) {
+            List<String> strings = new ArrayList<>();
+            strings.add("");
+            result.gastypes = strings;
+        }
+
         setupSpinnerValues(aspinner,result.areas);
         setupSpinnerValues(pspinner,result.prices);
         setupSpinnerValues(gspinner,result.gastypes);
+
 //        username.setText("");
 //        address.setText("");
 //        number.setText("");
@@ -315,7 +376,7 @@ public class DetialActivity extends AppCompatActivity{
         gasAmountET = (EditText) findViewById(R.id.atext);
 
         moneyView = (TextView) findViewById(R.id.mvalue);
-//        cardView = (TextView) findViewById(R.id.cardvalue);
+        cardView = (TextView) findViewById(R.id.ctview);
 
         submit = (Button) findViewById(R.id.read);
         facture = (Button) findViewById(R.id.write);
@@ -323,20 +384,26 @@ public class DetialActivity extends AppCompatActivity{
         submit.setOnClickListener(new ButtonClickListener());
         facture.setOnClickListener(new ButtonClickListener());
         gasAmountET.addTextChangedListener(textWatcher);
+
+//        List list = new ArrayList();
+//        list.add("测试");
+//        list.add("开始");
+//        list.add("结束");
+//        setupSpinnerValues(aspinner,list);
     }
 
     //设置spinner数据
-    void setupSpinnerValues(Spinner spinner, String[] values){
-
+    void setupSpinnerValues(Spinner spinner, List<String> values){
         //将可选内容与ArrayAdapter连接起来
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,values);
+//        String[]
+        ArrayAdapter<String> adapter = new ArrayAdapter(this.getApplicationContext(),
+                android.R.layout.simple_spinner_item,values);
 
-        //设置下拉列表的风格
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //将adapter 添加到spinner中
         spinner.setAdapter(adapter);
-
+//
         //添加事件Spinner事件监听
         spinner.setOnItemSelectedListener(new SpinnerSelectedListener());
 
