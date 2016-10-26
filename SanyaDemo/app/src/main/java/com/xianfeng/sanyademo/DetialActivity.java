@@ -2,6 +2,8 @@ package com.xianfeng.sanyademo;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -134,7 +136,7 @@ public class DetialActivity extends AppCompatActivity{
             // TODO Auto-generated method stub
             Log.d("TAG","afterTextChanged--------------->");
             //设置换算金额
-            gasAmountET.setText(String.valueOf(gasValue) + "元");
+            moneyView.setText(String.valueOf(gasValue) + "元");
         }
 
         @Override
@@ -309,11 +311,12 @@ public class DetialActivity extends AppCompatActivity{
         setupSpinnerValues(aspinner,none);
         setupSpinnerValues(pspinner,none);
         setupSpinnerValues(gspinner,none);
+
         usernameET.setText("");
         addressET.setText("");
         numberET.setText("");
         gasAmountET.setText("");
-        moneyView.setText("");
+        moneyView.setText("" + "元");
         cardView.setText("");
     }
 
@@ -436,7 +439,7 @@ public class DetialActivity extends AppCompatActivity{
                 clearData();
                 break;
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
     void alertMessage(String text){
@@ -444,5 +447,11 @@ public class DetialActivity extends AppCompatActivity{
                 Toast.LENGTH_SHORT).show();
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.out.println("返回");
+    }
 }
 
