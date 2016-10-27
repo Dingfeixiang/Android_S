@@ -21,7 +21,8 @@ import com.mwcard.ReaderAndroidCom;
 import com.mwcard.ReaderAndroidUsb;
 import com.mwreader.bluetooth.ClsUtils;
 import com.mwreader.bluetooth.SearchActivity;
-import com.xianfeng.sanyademo.MainActivity;
+
+
 //import com.mwcard.ReaderAndroidCom;
 //import com.mwreader.bluetooth.ClsUtils;
 //import com.mwreader.bluetooth.SearchActivity;
@@ -39,7 +40,7 @@ public class MWManager {
     public static synchronized MWManager getHelper() {
         if (instance == null)
         {
-            synchronized (DataManager.class)
+            synchronized (SQLiteHelperOrm.class)
             {
                 if (instance == null)
                     instance = new MWManager();
@@ -49,7 +50,7 @@ public class MWManager {
     }
 
     //WM相关
-    public static Reader myReader;   // =new ReaderAndroidUsb();
+    public static Reader myReader;   // new ReaderAndroidUsb();
     public static ReaderAndroidUsb readerAndroidUsb; // 安卓usb打开方式跟串口方式不一样
 
     //当前处理的Acitivity

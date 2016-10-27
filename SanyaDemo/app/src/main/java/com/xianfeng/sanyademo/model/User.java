@@ -1,4 +1,4 @@
-package com.xianfeng.sanyademo.util;
+package com.xianfeng.sanyademo.model;
 
 import com.j256.ormlite.table.DatabaseTable;
 import com.j256.ormlite.field.DatabaseField;
@@ -19,7 +19,8 @@ public class User {
      */
     //可以用javax.persistence注解： @Id,@Column
     @DatabaseField(generatedId=true)
-    private int userId;
+    private int userHold;
+
     //用户名
     @DatabaseField
     private String userName;
@@ -30,15 +31,12 @@ public class User {
     public User() {
         //必须提供无参构造函数，这样查询的时候可以返回查询出来的对象
     }
-    public User(String userName, String password) {
-        this.userName = userName;
-        this.password = password;
+
+    public int getUserHold() {
+        return userHold;
     }
-    public int getUserId() {
-        return userId;
-    }
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserHold(int userHold) {
+        this.userHold = userHold;
     }
     public String getUserName() {
         return userName;
@@ -52,4 +50,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

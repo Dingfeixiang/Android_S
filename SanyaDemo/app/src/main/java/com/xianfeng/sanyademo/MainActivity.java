@@ -5,35 +5,133 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.xianfeng.sanyademo.util.DataProcesser;
+
+import org.json.JSONObject;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.xianfeng.sanyademo.view.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = null;
 //    public static final String EXTRAS_NAME = "NAME";
 //    public static final String EXTRAS_PASSWORD = "PASSWORD";
+    DataProcesser processer = DataProcesser.getInstance();
+    private static CustomProgressDialog cpd_Dialog = null;
+
+    //UI
+    Button loginBtn;
+    EditText nameET,passwordET;
+
+    //data
+    String companyString = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button loginBtn = (Button)findViewById(R.id.login);
+        //
+        processer.mainActivity = this;
 
+        //
+        nameET = (EditText)findViewById(R.id.accountEdittext);
+        nameET.setText("admins");
+        passwordET = (EditText)findViewById(R.id.pwdEdittext);
+        passwordET.setText("000000");
+        companyString = "008001";
+
+        if (cpd_Dialog == null) {
+            cpd_Dialog = CustomProgressDialog.createDialog(this);
+        }
+
+
+        loginBtn = (Button)findViewById(R.id.login);
         loginBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                //这里就可以判断账号密码是否正确了，这里让大家自己试验动手一下谢谢如果账号密码是admin 123456就成功
-                //否则就提示登陆失败，大家试一试吧，我这里直接跳转了，没做验证
-
-                //这个是直接跳转到MainActivity
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, DetialActivity.class);
-                startActivity(intent);
-
+                if (true)
+                {
+                    //需要数据库
+                    loginDetial();
+                }else {
+                    //登录
+                    String name = nameET.getText().toString().trim();
+                    String pass = passwordET.getText().toString().trim();
+                    if (!name.equalsIgnoreCase("")) {
+                        if (!pass.equalsIgnoreCase("")){
+                            if (!cpd_Dialog.isShowing()) {
+                                cpd_Dialog.show();
+                            }
+                            loginRequest();
+                        }else {
+                            alertMessage("请输入密码!");
+                        }
+                    } else {
+                        alertMessage("请输入用户名!");
+                    }
+                }
             }
         });
+
+    }
+
+    //下载数据
+    void loginRequest(){
+        Map<String, Object> param = new HashMap();
+        param.put(processer.TYPE,processer.MESSAGE_LOGIN);
+
+        JSONObject jsonObject = new JSONObject();
+        try{
+            jsonObject.put("username",nameET.getText().toString().trim());
+            jsonObject.put("password",passwordET.getText().toString().trim());
+            jsonObject.put("companycode",companyString);
+        }catch (Exception ex){
+            System.out.println("登录数据组装出错!");
+        }
+        param.put(processer.INFO,jsonObject);
+
+//        Map<String, String> values = new HashMap();
+//        values.put("name",nameET.getText().toString().trim());
+//        values.put("password",passwordET.getText().toString().trim());
+//        param.put(processer.INFO,values);
+
+        processer.excuteCommandOnBackground(param);
+    }
+
+    //进入详情
+    void loginDetial(){
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, DetialActivity.class);
+        startActivity(intent);
+    }
+
+
+    //服务器请求后处理
+    public void loginResultDispose(boolean isSussess){
+        if (cpd_Dialog.isShowing()) {
+            cpd_Dialog.dismiss();
+        }
+        if (isSussess){
+            loginDetial();
+        }else {
+            clearUI();
+            alertMessage("登录失败!");
+        }
+    }
+
+    void alertMessage(String text){
+        Toast.makeText(getApplicationContext(), text,
+                Toast.LENGTH_SHORT).show();
+    }
+
+    void clearUI(){
+
     }
 }
