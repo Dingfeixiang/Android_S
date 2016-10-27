@@ -14,12 +14,14 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.xianfeng.sanyademo.view.*;
+
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = null;
 //    public static final String EXTRAS_NAME = "NAME";
 //    public static final String EXTRAS_PASSWORD = "PASSWORD";
     DataProcesser processer = DataProcesser.getInstance();
+    private static CustomProgressDialog cpd_Dialog = null;
 
     //UI
     Button loginBtn;
@@ -43,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
         passwordET.setText("000000");
         companyString = "008001";
 
+        if (cpd_Dialog == null) {
+            cpd_Dialog = CustomProgressDialog.createDialog(this);
+        }
+
+
         loginBtn = (Button)findViewById(R.id.login);
         loginBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -54,11 +61,14 @@ public class MainActivity extends AppCompatActivity {
                     //需要数据库
                     loginDetial();
                 }else {
-                    //登录已完成
+                    //登录
                     String name = nameET.getText().toString().trim();
                     String pass = passwordET.getText().toString().trim();
                     if (!name.equalsIgnoreCase("")) {
                         if (!pass.equalsIgnoreCase("")){
+                            if (!cpd_Dialog.isShowing()) {
+                                cpd_Dialog.show();
+                            }
                             loginRequest();
                         }else {
                             alertMessage("请输入密码!");
@@ -105,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
 
     //服务器请求后处理
     public void loginResultDispose(boolean isSussess){
+        if (cpd_Dialog.isShowing()) {
+            cpd_Dialog.dismiss();
+        }
         if (isSussess){
             loginDetial();
         }else {

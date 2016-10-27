@@ -2,8 +2,6 @@ package com.xianfeng.sanyademo;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +30,7 @@ import java.util.Map;
 import com.mwreader.bluetooth.SearchActivity;
 import com.xianfeng.sanyademo.model.*;
 import com.xianfeng.sanyademo.util.*;
+import com.xianfeng.sanyademo.view.*;
 
 import org.json.JSONObject;
 
@@ -45,6 +44,7 @@ public class DetialActivity extends AppCompatActivity{
     EditText    usernameET,addressET,numberET,gasAmountET;
     TextView    moneyView,cardView;
     Button      submit,facture;
+    CustomProgressDialog cpd_Dialog = null;
 
     //管理器
     MWManager   mwManger = MWManager.getHelper();
@@ -59,6 +59,7 @@ public class DetialActivity extends AppCompatActivity{
     private String priceinfo = ""; //价格
     private String gastypeinfo = ""; //用气
     private float gasValue = 0; //金额
+
     private String cardNumberString = ""; //卡号
     private String userNumber = ""; //用户号
 
@@ -245,7 +246,7 @@ public class DetialActivity extends AppCompatActivity{
     public void downloadBasedataResult(ArrayList<AreaData> areaDatas,
                                 ArrayList<ChargeData> chargeDatas,
                                 ArrayList<GasData> gasDatas){
-
+        cpd_Dialog.dismiss();
         //设置区域信息
         List<String> alist = new ArrayList<>();
         for (int i=0;i<areaDatas.size();i++){
@@ -388,6 +389,9 @@ public class DetialActivity extends AppCompatActivity{
         facture.setOnClickListener(new ButtonClickListener());
         gasAmountET.addTextChangedListener(textWatcher);
 
+        if (cpd_Dialog == null) {
+            cpd_Dialog = CustomProgressDialog.createDialog(this);
+        }
 //        List list = new ArrayList();
 //        list.add("测试");
 //        list.add("开始");
@@ -428,6 +432,9 @@ public class DetialActivity extends AppCompatActivity{
         switch (item.getItemId()) {
 
             case R.id.download:
+                if (!cpd_Dialog.isShowing()) {
+                    cpd_Dialog.show();
+                }
                 downloadData();
                 break;
 
