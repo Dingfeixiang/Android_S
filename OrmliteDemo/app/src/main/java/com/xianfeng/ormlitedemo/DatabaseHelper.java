@@ -31,17 +31,16 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper{
     private Dao<User, Integer> userDao = null;
 
     private RuntimeExceptionDao<User, Integer> simpleRuntimeDao = null;
-
-    public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
-
     public RuntimeExceptionDao<User, Integer> getSimpleDataDao() {
         if (simpleRuntimeDao == null) {
             simpleRuntimeDao = getRuntimeExceptionDao(User.class);
         }
         Log.i("test", "simpleRuntimeDao ======= "+simpleRuntimeDao);
         return simpleRuntimeDao;
+    }
+
+    public DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public Dao<User, Integer> getUserDao() throws SQLException {

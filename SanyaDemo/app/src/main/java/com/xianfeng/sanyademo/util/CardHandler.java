@@ -1,5 +1,9 @@
 package com.xianfeng.sanyademo.util;
 
+import com.xianfeng.sanyademo.model.RecordData;
+
+import cardInterface.CardInfo;
+
 /**
  * Created by xianfeng on 2016/10/25.
  */
@@ -17,16 +21,36 @@ public class CardHandler {
     private static final String SINGAL_RECEIVEDATA_SUCCESS = "9000";    //请求成功
     private static final String SINGAL_TIMEOUT = "6F06";    //超时
 
+    MWManager   mwManger = MWManager.getHelper();
     public CardHandler(){}
 
-    public boolean writeCard(Byte[] data){
-        return false;
+    public boolean writeCard(String data){
+        boolean writeResult = false;
+        try{
+            mwManger.myReader.write4442(32,data);
+            System.out.println("我要写卡");
+            writeResult = true;
+        }catch (Exception ex){
+            writeResult = false;
+            System.out.println("写卡错误！");
+        }
+        return writeResult;
     }
 
-    public Byte[] readCard(){
-        return null;
+    //获取写卡数据
+    public String[] getWriteData(RecordData recordData){
+        String[] writeData = null;
+        CardInfo cardInfo = new CardInfo();
+        writeData = cardInfo.writeOrders(recordData.getGases(),recordData.getGasfee(),
+                recordData.getPrice1(), recordData.getPrice2(),recordData.getPrice3(),
+                recordData.getLaddgas1(),recordData.getLaddgas2(), recordData.getPricedate(),
+                recordData.getPricetype(),recordData.getPricever(),recordData.getPricecycle(),
+                recordData.getClearflag(),recordData.getCycledate(),recordData.getNewprice1(),
+                recordData.getNewprice2(), recordData.getNewprice3(),recordData.getNewladdgas1(),
+                recordData.getNewladdgas2(),recordData.getNewpricedate(), recordData.getNewpricetype(),
+                recordData.getNewpricever(),recordData.getNewpricecycle(),recordData.getNewclearflag(),
+                recordData.getNewcycledate(),recordData.getMeterno(),recordData.getCompanyno(),
+                recordData.getCardno());
+        return writeData;
     }
-
-
-
 }

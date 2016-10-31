@@ -16,16 +16,17 @@ import java.util.Map;
 
 import com.xianfeng.sanyademo.view.*;
 
+
 public class MainActivity extends AppCompatActivity {
 
 //    public static final String EXTRAS_NAME = "NAME";
 //    public static final String EXTRAS_PASSWORD = "PASSWORD";
     DataProcesser processer = DataProcesser.getInstance();
-    private static CustomProgressDialog cpd_Dialog = null;
 
     //UI
-    Button loginBtn;
-    EditText nameET,passwordET;
+    private Button loginBtn;
+    private EditText nameET,passwordET;
+    private static CustomProgressDialog cpd_Dialog = null;
 
     //data
     String companyString = "";
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //
         processer.mainActivity = this;
 
@@ -96,12 +96,6 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("登录数据组装出错!");
         }
         param.put(processer.INFO,jsonObject);
-
-//        Map<String, String> values = new HashMap();
-//        values.put("name",nameET.getText().toString().trim());
-//        values.put("password",passwordET.getText().toString().trim());
-//        param.put(processer.INFO,values);
-
         processer.excuteCommandOnBackground(param);
     }
 

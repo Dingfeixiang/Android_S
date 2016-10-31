@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -32,7 +33,7 @@
 
         <activity
             android:name=".DetialActivity"
-            android:label="制卡"
+            android:label="点击这里下载数据 ---->"
             android:parentActivityName="com.xianfeng.sanyademo.MainActivity">
         </activity>
 

@@ -10,7 +10,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "tb_areadata")
 
-public class AreaData extends User{
+public class AreaData {
 
     @DatabaseField(generatedId=true)
     private int userId;

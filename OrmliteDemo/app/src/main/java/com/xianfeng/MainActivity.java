@@ -7,9 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.xianfeng.ormlitedemo.DatabaseHelper;
 import com.xianfeng.ormlitedemo.R;
+import com.xianfeng.ormlitedemo.User;
 
 public class MainActivity extends AppCompatActivity {
+
+    DatabaseHelper db = DatabaseHelper.getHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
+
+                try{
+                    User user = new User();
+                    user.setUserName("test");
+//                    db.getDao(User.class).create(user);
+                    db.insert(user);
+                    System.out.println("添加测试");
+                }catch (Exception ex){
+                    System.out.println("添加失败");
+                }
             }
         });
     }

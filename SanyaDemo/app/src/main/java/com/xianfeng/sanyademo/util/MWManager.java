@@ -27,6 +27,8 @@ import com.mwreader.bluetooth.SearchActivity;
 //import com.mwreader.bluetooth.ClsUtils;
 //import com.mwreader.bluetooth.SearchActivity;
 
+//明华读卡器管理
+
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -40,7 +42,7 @@ public class MWManager {
     public static synchronized MWManager getHelper() {
         if (instance == null)
         {
-            synchronized (SQLiteHelperOrm.class)
+            synchronized (MWManager.class)
             {
                 if (instance == null)
                     instance = new MWManager();
