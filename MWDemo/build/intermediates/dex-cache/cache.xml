@@ -3,6 +3,33 @@
 
     <item
         is-multidex="true"
+        jar="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="295d706279fd2247d3bb0d5f89e7838321463964">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_121677d6b2c554cd312ccf6418e10891c8029414/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="cd438e3563339661bcd823ece2d1163937af1e46">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_4eb9865cd622bd368cbf4f82c7226ecacdd88014/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-22.2.1_42f17784b2a67a2ee4c35394c30092a1bb793143/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
         jumboMode="true"
         optimize="true"
@@ -12,30 +39,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="437581df6402a9ad84d7724ccb9e265aed1344d8">
-        <dex dex="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_121677d6b2c554cd312ccf6418e10891c8029414/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/libs/mwcard-5.0.0.8.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="43ababfa8c1db8831e1e54da316c824d0b6367ef">
         <dex dex="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/transforms/dex/debug/folders/1000/2/mwcard-5.0.0.8_65688da6f010a9d77d102a74ad38057fa9a9280c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="09297af5c652e4583dc849c69b0df15c49bda545">
-        <dex dex="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_4eb9865cd622bd368cbf4f82c7226ecacdd88014/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -54,15 +63,6 @@
         revision="25.0.0"
         sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
         <dex dex="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-22.2.1_f2f63bd5b664ba11ecfbf03a591297fd26d4220b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-22.2.1_42f17784b2a67a2ee4c35394c30092a1bb793143/classes.dex" />
     </item>
 
 </items>

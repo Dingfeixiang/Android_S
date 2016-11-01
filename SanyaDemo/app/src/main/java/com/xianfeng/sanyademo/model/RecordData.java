@@ -15,9 +15,6 @@ public class RecordData {
     private int userId;
 
     @DatabaseField
-    private String log;
-
-    @DatabaseField
     private double gases;
     @DatabaseField
     private double gasfee;
@@ -79,12 +76,6 @@ public class RecordData {
     }
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-    public String getLog() {
-        return log;
-    }
-    public void setLog(String log) {
-        this.log = log;
     }
 
     public String getCardno() {

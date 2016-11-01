@@ -24,9 +24,49 @@ public class CardHandler {
     MWManager   mwManger = MWManager.getHelper();
     public CardHandler(){}
 
+    public int beep(int beepTimes, int interval, int time){
+        int result = 0;
+        try{
+            result = mwManger.myReader.beep(beepTimes,interval,time);
+        }catch (Exception ex){
+            result = 0;
+        }
+        return result;
+    }
+
+    public String readCard(){
+        String data = "";
+        try{
+            data = mwManger.myReader.reader4442(32,224);
+        }catch (Exception ex){
+            data = "";
+        }
+        return data;
+    }
+
+    public boolean checkVerify(String verify){
+        boolean checkRecult = false;
+        try{
+            mwManger.myReader.verifyPassword4442(verify);
+            checkRecult = true;
+        }catch (Exception ex){
+            checkRecult = false;
+        }
+        return checkRecult;
+    }
+
+    public void changeVerify(String verifynew){
+        try{
+            mwManger.myReader.changePassword4442(verifynew);
+        }catch (Exception ex){
+
+        }
+    }
+
     public boolean writeCard(String data){
         boolean writeResult = false;
         try{
+            mwManger.myReader.beep(1,1,1);
             mwManger.myReader.write4442(32,data);
             System.out.println("我要写卡");
             writeResult = true;
@@ -39,8 +79,13 @@ public class CardHandler {
 
     //获取写卡数据
     public String[] getWriteData(RecordData recordData){
+        if (recordData.getCardno().length() < 10){
+            return null;
+        }
         String[] writeData = null;
         CardInfo cardInfo = new CardInfo();
+        String cardno = recordData.getCardno();
+        String reviseCardno = cardno.substring(cardno.length()-10,cardno.length());
         writeData = cardInfo.writeOrders(recordData.getGases(),recordData.getGasfee(),
                 recordData.getPrice1(), recordData.getPrice2(),recordData.getPrice3(),
                 recordData.getLaddgas1(),recordData.getLaddgas2(), recordData.getPricedate(),
@@ -50,7 +95,7 @@ public class CardHandler {
                 recordData.getNewladdgas2(),recordData.getNewpricedate(), recordData.getNewpricetype(),
                 recordData.getNewpricever(),recordData.getNewpricecycle(),recordData.getNewclearflag(),
                 recordData.getNewcycledate(),recordData.getMeterno(),recordData.getCompanyno(),
-                recordData.getCardno());
+                reviseCardno);
         return writeData;
     }
 }

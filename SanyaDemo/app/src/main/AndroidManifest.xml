@@ -33,9 +33,13 @@
 
         <activity
             android:name=".DetialActivity"
-            android:label="点击这里下载数据 ---->"
-            android:parentActivityName="com.xianfeng.sanyademo.MainActivity">
+            android:label="点击这里下载数据 ---->">
+            <!--android:parentActivityName="com.xianfeng.sanyademo.MainActivity">-->
+            <!--<meta-data-->
+            <!--android:name="android.support.PARENT_ACTIVITY"-->
+            <!--android:value="com.xianfeng.sanyademo.MainActivity" />-->
         </activity>
+
 
         <activity
             android:name="com.mwreader.bluetooth.SearchActivity"

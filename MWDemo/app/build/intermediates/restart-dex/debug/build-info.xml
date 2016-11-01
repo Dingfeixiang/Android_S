@@ -5,40 +5,33 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.2"
-    timestamp="137234714253874"
+    timestamp="193674465689620"
     token="-797665468180951455"
-    verifier="COLD_SWAP_REQUESTED" >
+    verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="778" />
+        duration="2743" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="108" />
+        duration="798" />
     <task
         name="verifier"
-        duration="1" />
+        duration="55" />
 
     <artifact
-        location="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
-        type="DEX" />
+        location="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/outputs/apk/app-debug.apk"
+        type="MAIN" />
 
     <build
-        timestamp="137120957053792"
+        timestamp="193674465689620"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
-    </build>
-    <build
-        timestamp="137234714253874"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex"
-            type="DEX" />
     </build>
 
 </instant-run>

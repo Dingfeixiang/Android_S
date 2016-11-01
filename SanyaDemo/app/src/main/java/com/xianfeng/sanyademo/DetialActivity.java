@@ -1,7 +1,9 @@
 package com.xianfeng.sanyademo;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,28 +39,29 @@ import com.xianfeng.sanyademo.view.*;
 import org.json.JSONObject;
 
 
-public class DetialActivity extends AppCompatActivity{
+public class DetialActivity extends AppCompatActivity {
 
     private static final String TAG = "DetialActivity";
-
     //布局
-    Spinner     aspinner,pspinner,gspinner;
-    EditText    usernameET,addressET,numberET,gasAmountET;
-    TextView    moneyView,cardView;
-    Button      submit,facture;
+    Spinner aspinner, pspinner, gspinner;
+    EditText usernameET, addressET, numberET, gasAmountET;
+    TextView moneyView, cardView;
+    Button submit, facture;
     CustomProgressDialog cpd_Dialog = null;
 
     //管理器
-    MWManager   mwManger = MWManager.getHelper();
-    DataProcesser   processer = DataProcesser.getInstance();
+    MWManager mwManger = MWManager.getHelper();
+    CardHandler cardHandler = new CardHandler();
+    DataProcesser processer = DataProcesser.getInstance();
 
     //数据
     private List<AreaData> spinnerlist_area = new ArrayList<>();
-    private List<ChargeData> spinnerlist_charge = new ArrayList();;
+    private List<ChargeData> spinnerlist_charge = new ArrayList();
+    ;
     private List<GasData> spinnerlist_gas = new ArrayList();
 
     //开户数据
-    private DataResult  dataResult = new DataResult();
+    private DataResult dataResult = new DataResult();
     private boolean setupAccountEnableFlag = false;
 
     @Override
@@ -66,41 +69,42 @@ public class DetialActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detial);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         //初始化布局
         initView();
         //初始化数据等
         initModule();
     }
 
-    /********      交互       **********/
+    /********
+     * 交互
+     **********/
     //左边按钮
-    void submitButtonAction(){
+    void submitButtonAction() {
         if (usernameET.getText().toString().trim().equals("")) {
             alertMessage("用户不能为空!");
             return;
         }
-        if (addressET.getText().toString().trim().equals("")){
+        if (addressET.getText().toString().trim().equals("")) {
             alertMessage("地址不能为空!");
             return;
         }
-        if (numberET.getText().toString().trim().equals("")){
+        if (numberET.getText().toString().trim().equals("")) {
             alertMessage("表具编号不能为空!");
             return;
         }
-        if (numberET.getText().length() > 10){
-            alertMessage("表具编号长度不能超过10!");
+        if (numberET.getText().length() != 10) {
+            alertMessage("表具编号长度为10，请检查编号！");
             return;
         }
-        if (dataResult.areaData.getAreaname().equals("")){
+        if (dataResult.areaData.getAreaname().equals("")) {
             alertMessage("请选择区域信息!");
             return;
         }
-        if (dataResult.chargeData.getPricename().equals("")){
+        if (dataResult.chargeData.getPricename().equals("")) {
             alertMessage("请选择价格信息!");
             return;
         }
-        if (dataResult.gasData.getUsergastypename().equals("")){
+        if (dataResult.gasData.getUsergastypename().equals("")) {
             alertMessage("请选择用气类型!");
             return;
         }
@@ -119,9 +123,8 @@ public class DetialActivity extends AppCompatActivity{
         dataResult.gasAmount = gasnumber.toString();
 
         //换算成表金额
-        String moneyViewStr = moneyView.getText().toString().trim();
-        String valueStr = moneyViewStr.substring(0,moneyViewStr.length()-1);
-        dataResult.setGasValue(Float.valueOf(valueStr).floatValue()); //换算后的
+        String moneyStr = String.valueOf(dataResult.getGasValue());
+        dataResult.setGasValue(Float.valueOf(moneyStr).floatValue()); //换算后的
 
         //请求开户
         if (!cpd_Dialog.isShowing()) {
@@ -131,11 +134,12 @@ public class DetialActivity extends AppCompatActivity{
         setupAccountEnableFlag = false;
         establishAccount(dataResult);
     }
+
     //请求开户
-    void establishAccount(DataResult dataResult){
+    void establishAccount(DataResult dataResult) {
 
         Map<String, Object> param = new HashMap();
-        param.put(processer.TYPE,processer.MESSAGE_ACCOUNT);
+        param.put(processer.TYPE, processer.MESSAGE_ACCOUNT);
 
         String username = dataResult.username;
         String address = dataResult.useraddress;
@@ -146,131 +150,227 @@ public class DetialActivity extends AppCompatActivity{
         String priceno = dataResult.chargeData.getPriceno();
         String usergastype = dataResult.gasData.getUsergastype();
         JSONObject jsonObject = new JSONObject();
-        try{
+        try {
             //拼接请求json
-            jsonObject.put("username",username);
-            jsonObject.put("areaid",areaid);
-            jsonObject.put("address",address);
-            jsonObject.put("priceno",priceno);
-            jsonObject.put("usergastype",usergastype);
-            jsonObject.put("money",money);
-            jsonObject.put("metercode",metercode);
+            jsonObject.put("username", username);
+            jsonObject.put("areaid", areaid);
+            jsonObject.put("address", address);
+            jsonObject.put("priceno", priceno);
+            jsonObject.put("usergastype", usergastype);
+            jsonObject.put("money", money);
+            jsonObject.put("metercode", metercode);
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("开户数据组装出错!");
         }
-        param.put(processer.INFO,jsonObject);
+        param.put(processer.INFO, jsonObject);
         processer.excuteCommandOnBackground(param);
     }
+
     //开户结果
-    public void establishAccountResult(String resultcode,String cardNum,String userNum){
+    public void establishAccountResult(String resultcode, String cardNum, String userNum) {
         cpd_Dialog.dismiss();
-        if (resultcode.equals("000")){
+        if (resultcode.equals("000")) {
             //成功
             alertMessage("开户成功");
-            setupAccountEnableFlag = true;
             dataResult.cardNumberString = cardNum;
             dataResult.userNumber = userNum;
+            setupAccountEnableFlag = true;
             //保存开户信息
-            storeAccountInfoToSQL(dataResult);
-        }else if (resultcode.equals("999")){
+            try{
+                storeAccountInfoToSQL(dataResult);
+            }catch (Exception ex){
+                System.out.println("保存错误");
+            }
+            //修改状态
+            edittextEnable(false);
+            submit.setClickable(false);
+        } else if (resultcode.equals("999")) {
             alertMessage("开户重复！");
-        }else if (resultcode.equals("555")){
+            setupAccountEnableFlag = true;
+            edittextEnable(true);
+            submit.setClickable(true);
+        } else if (resultcode.equals("555")) {
             alertMessage("开户发生错误！");
             dataResult.cardNumberString = "";
             dataResult.userNumber = "";
-        }else {
+            setupAccountEnableFlag = false;
+            edittextEnable(true);
+            submit.setClickable(true);
+        } else {
             alertMessage("开户失败！");
             dataResult.cardNumberString = "";
             dataResult.userNumber = "";
+            setupAccountEnableFlag = false;
+            edittextEnable(true);
+            submit.setClickable(true);
         }
         //UI
         cardView.setText(dataResult.cardNumberString);
     }
+
     //保存开户信息到数据库
-    void storeAccountInfoToSQL(DataResult dataResult){
+    void storeAccountInfoToSQL(DataResult dataResult) {
         RecordData recordData = transferDataResult(dataResult);
         DataDao dao = new DataDao(this);
-        try{
+        try {
             dao.getRecordDao().create(recordData);
             System.out.println("保存开户信息");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("开户信息保存失败！");
         }
     }
+
     //将界面提交的用户信息转换为数据库信息
-    RecordData transferDataResult(DataResult dataResult){
+    RecordData transferDataResult(DataResult dataResult) {
+
         RecordData recordData = new RecordData();
-        double gases = Double.valueOf(dataResult.gasAmount); recordData.setGases(gases);
-        double gasfee = Double.valueOf(String.valueOf(dataResult.getGasValue())); recordData.setGasfee(gasfee);
-        double price1 = Double.valueOf(dataResult.chargeData.getLaddprice1()); recordData.setPrice1(price1);
-        double price2 = Double.valueOf(dataResult.chargeData.getLaddprice2()); recordData.setPrice2(price2);
-        double price3 = Double.valueOf(dataResult.chargeData.getLaddprice3()); recordData.setPrice3(price3);
-        int laddgas1 = Integer.valueOf(dataResult.chargeData.getLaddvalue1()); recordData.setLaddgas1(laddgas1);
-        int laddgas2 = Integer.valueOf(dataResult.chargeData.getLaddvalue2()); recordData.setLaddgas2(laddgas2);
-        String pricedate = dataResult.chargeData.getPricestartdate(); recordData.setPricedate(pricedate);//1
-        int pricetype = Integer.valueOf(dataResult.gasData.getUsergastype()); recordData.setPricetype(pricetype);
-        int pricever = Integer.valueOf(dataResult.chargeData.getPricever()) ; recordData.setPricever(pricever); //1
-        int pricecycle = Integer.valueOf(dataResult.chargeData.getPricecycle()); recordData.setPricecycle(pricecycle); //1
-        int clearflag = Integer.valueOf(dataResult.chargeData.getClearflag()); recordData.setClearflag(clearflag); //1
-        String cycledate = dataResult.chargeData.getCyclestartdate(); recordData.setCycledate(cycledate);//1
+        double gases = Double.valueOf(dataResult.gasAmount);
+        recordData.setGases(gases);
+        double gasfee = Double.valueOf(String.valueOf(dataResult.getGasValue()));
+        recordData.setGasfee(gasfee);
+        double price1 = Double.valueOf(dataResult.chargeData.getLaddprice1());
+        recordData.setPrice1(price1);
+        double price2 = Double.valueOf(dataResult.chargeData.getLaddprice2());
+        recordData.setPrice2(price2);
+        double price3 = Double.valueOf(dataResult.chargeData.getLaddprice3());
+        recordData.setPrice3(price3);
+        int laddgas1 = Integer.valueOf(dataResult.chargeData.getLaddvalue1());
+        recordData.setLaddgas1(laddgas1);
+        int laddgas2 = Integer.valueOf(dataResult.chargeData.getLaddvalue2());
+        recordData.setLaddgas2(laddgas2);
+        String pricedate = dataResult.chargeData.getPricestartdate();
+        recordData.setPricedate(pricedate);//1
+        int pricetype = Integer.valueOf(dataResult.gasData.getUsergastype());
+        recordData.setPricetype(pricetype);
+        int pricever = Integer.valueOf(dataResult.chargeData.getPricever());
+        recordData.setPricever(pricever); //1
+        int pricecycle = Integer.valueOf(dataResult.chargeData.getPricecycle());
+        recordData.setPricecycle(pricecycle); //1
+        int clearflag = Integer.valueOf(dataResult.chargeData.getClearflag());
+        recordData.setClearflag(clearflag); //1
+        String cycledate = dataResult.chargeData.getCyclestartdate();
+        recordData.setCycledate(cycledate);//1
 
-        double newprice1 = price1; recordData.setNewprice1(newprice1);
-        double newprice2 = price2; recordData.setNewprice2(newprice2);
-        double newprice3 = price3; recordData.setNewprice3(newprice3);
-        int newladdgas1 = laddgas1; recordData.setLaddgas1(newladdgas1);
-        int newladdgas2 = laddgas2; recordData.setNewladdgas2(newladdgas2);
-        String newpricedate = pricedate; recordData.setNewpricedate(newpricedate);
-        int newpricetype = pricetype; recordData.setNewpricetype(newpricetype);
-        int newpricever = pricever; recordData.setNewpricever(newpricever);
-        int newpricecycle = pricecycle; recordData.setNewpricecycle(newpricecycle);
-        int newclearflag = clearflag; recordData.setNewclearflag(newclearflag);
-        String newcycledate = cycledate; recordData.setNewcycledate(newcycledate);
+        double newprice1 = price1;
+        recordData.setNewprice1(newprice1);
+        double newprice2 = price2;
+        recordData.setNewprice2(newprice2);
+        double newprice3 = price3;
+        recordData.setNewprice3(newprice3);
+        int newladdgas1 = laddgas1;
+        recordData.setLaddgas1(newladdgas1);
+        int newladdgas2 = laddgas2;
+        recordData.setNewladdgas2(newladdgas2);
+        String newpricedate = pricedate;
+        recordData.setNewpricedate(newpricedate);
+        int newpricetype = pricetype;
+        recordData.setNewpricetype(newpricetype);
+        int newpricever = pricever;
+        recordData.setNewpricever(newpricever);
+        int newpricecycle = pricecycle;
+        recordData.setNewpricecycle(newpricecycle);
+        int newclearflag = clearflag;
+        recordData.setNewclearflag(newclearflag);
+        String newcycledate = cycledate;
+        recordData.setNewcycledate(newcycledate);
 
-        String meterno = dataResult.tablenumber; recordData.setMeterno(meterno); //表具编号
-        String cardno = dataResult.cardNumberString; recordData.setCardno(cardno);
-        String companyno = dataResult.companyno; recordData.setCompanyno(companyno);
+        String meterno = dataResult.tablenumber;
+        recordData.setMeterno(meterno); //表具编号
+        String cardno = dataResult.cardNumberString;
+        recordData.setCardno(cardno);
+        String companyno = dataResult.companyno;
+        recordData.setCompanyno(companyno);
         //中中
         return recordData;
     }
 
-
     /****************************************************/
     //右边按钮
-    void writeButtonAction(){
-        if (setupAccountEnableFlag){
-            //写卡
-        }else {
-            alertMessage("开户成功才可以制卡！");
-        }
-    }
-    //保存单个数据到数据库
-    //数据库操作结果回传
-    public void dbOperationCallback(boolean isSuccess,int dbtype){
-        if (dbtype == processer.TYPE_DB_RECORD){
-            if (isSuccess){
-                System.out.println("写卡记录存储成功！");
-            }else {
-                System.out.println("写卡记录存储失败！");
-            }
-        }
+    void writeButtonAction() {
 
+        new AlertDialog.Builder(this).setTitle("提示")//设置对话框标题
+                .setMessage("请保证读卡器已经正确连接了手机，并且卡片已正确插入...")//设置显示的内容
+                .setPositiveButton("确定",new DialogInterface.OnClickListener() {//添加确定按钮
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
+                        // TODO Auto-generated method stub
+                        if (!setupAccountEnableFlag) {
+                            String string = "";
+                            try{
+                                mwManger.myReader.verifyPassword4442("fc1aff");
+                            }catch (Exception ex){
+                                System.out.println("");
+                            }
+                            System.out.println(string);
+
+//                            //写卡
+//                            try{
+//                                RecordData recordData = transferDataResult(dataResult);
+//                                String[] strings = cardHandler.getWriteData(recordData);
+//                                String data = strings[1];
+//                                String verify = strings[2];
+//                                String verifynew = strings[3];
+//                                writeCard(data,verify,verifynew);
+//                            }catch (Exception ex){
+//                                System.out.println("写卡出现错误");
+//                            }
+                        } else {
+                            alertMessage("开户成功才可以制卡！");
+                        }
+                    }
+                })
+                .setNegativeButton("返回",new DialogInterface.OnClickListener() {//添加返回按钮
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {//响应事件
+                        // TODO Auto-generated method stub
+                        Log.i("alertdialog"," 请保存数据！");
+                    }
+        }).show();//在按键响应事件中显示此对话框
     }
+    //写卡
+    void writeCard(String data,String verify,String verifynew){
+        boolean writeResult = false;
+        if (cardHandler.checkVerify(verify)){
+            writeResult = cardHandler.writeCard(data);
+        }
+        if (writeResult){
+            if (verify != verifynew){
+                cardHandler.changeVerify(verifynew);
+            }
+            alertMessage("制卡成功！");
+        }else {
+            alertMessage("制卡失败！");
+        }
+    }
+
+//    //数据库操作结果回传
+//    public void dbOperationCallback(boolean isSuccess, int dbtype) {
+//        if (dbtype == processer.TYPE_DB_RECORD) {
+//            if (isSuccess) {
+//                System.out.println("写卡记录存储成功！");
+//            } else {
+//                System.out.println("写卡记录存储失败！");
+//            }
+//        }
+//
+//    }
 
 
     /****************************************************/
 
     //下载基础数据
-    void downloadData(){
+    void downloadData() {
         Map<String, Object> param = new HashMap<String, Object>();
-        param.put(processer.INFO,null);
-        param.put(processer.TYPE,processer.MESSAGE_BASEDATA);
+        param.put(processer.INFO, null);
+        param.put(processer.TYPE, processer.MESSAGE_BASEDATA);
         processer.excuteCommandOnBackground(param);
     }
+
     //基础数据返回
-    public void downloadBasedataResult(ArrayList<AreaData> areaDatas,
-                                ArrayList<ChargeData> chargeDatas,
-                                ArrayList<GasData> gasDatas){
+    public void downloadBasedataResult(List<AreaData> areaDatas,
+                                       List<ChargeData> chargeDatas,
+                                       List<GasData> gasDatas) {
         //保存列表
         spinnerlist_area = areaDatas;
         spinnerlist_charge = chargeDatas;
@@ -282,21 +382,21 @@ public class DetialActivity extends AppCompatActivity{
 
         //设置区域信息
         List<String> alist = new ArrayList<>();
-        for (int i=0;i<areaDatas.size();i++){
+        for (int i = 0; i < areaDatas.size(); i++) {
             AreaData dataIwant = areaDatas.get(i);
             String value = dataIwant.getAreaname();
             alist.add(value);
         }
         //设置价格信息
         List<String> clist = new ArrayList<>();
-        for (int i=0;i<chargeDatas.size();i++){
+        for (int i = 0; i < chargeDatas.size(); i++) {
             ChargeData dataIwant = chargeDatas.get(i);
             String value = dataIwant.getPricename() + dataIwant.getPriceno();
             clist.add(value);
         }
         //设置用气类型
         List<String> glist = new ArrayList<>();
-        for (int i=0;i<gasDatas.size();i++) {
+        for (int i = 0; i < gasDatas.size(); i++) {
             GasData dataIwant = gasDatas.get(i);
             String value = dataIwant.getUsergastypename();
             glist.add(value);
@@ -304,25 +404,26 @@ public class DetialActivity extends AppCompatActivity{
 
         //更新UI
         updateUI(dataResult);
-        setupSpinnerValues(aspinner,alist);
-        setupSpinnerValues(pspinner,clist);
-        setupSpinnerValues(gspinner,glist);
+        setupSpinnerValues(aspinner, alist);
+        setupSpinnerValues(pspinner, clist);
+        setupSpinnerValues(gspinner, glist);
         cpd_Dialog.dismiss();
         cardView.setText("---");
+        moneyView.setText("---");
 
         //存储到数据库
         File dbfile = new File(DatabaseHelper.DATABASE_PATH);
-        if (!dbfile.exists()){
-            storeBaseData(areaDatas,chargeDatas,gasDatas);
+        if (!dbfile.exists()) {
+            storeBaseData(areaDatas, chargeDatas, gasDatas);
         }
     }
 
 
-    void storeBaseData(ArrayList<AreaData> areaDatas,
-                       ArrayList<ChargeData> chargeDatas,
-                       ArrayList<GasData> gasDatas){
+    void storeBaseData(List<AreaData> areaDatas,
+                       List<ChargeData> chargeDatas,
+                       List<GasData> gasDatas) {
         DataDao dataDao = new DataDao(this);
-        try{
+        try {
             dataDao.getAreaDao().callBatchTasks(new Callable<Void>() {
                 @Override
                 public Void call() throws Exception {
@@ -351,41 +452,50 @@ public class DetialActivity extends AppCompatActivity{
                 }
             });
             System.out.println("存储基础信息");
-        }catch (Exception sqlex){
+        } catch (Exception sqlex) {
             System.out.println("存储基础信息错误!");
         }
     }
 
 
     //连接读卡设备
-    void connectDevice(){
+    void connectDevice() {
         try {
             mwManger.closeDevice();
             //浏览蓝牙设备
             Intent intent = new Intent(DetialActivity.this,
                     SearchActivity.class);
             startActivityForResult(intent, 1);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.print("浏览蓝牙设备有问题!");
         }
     }
 
     //清除数据
-    public void clearData(){
-        List<String> none = new ArrayList<>();
-        none.add("");
-        setupSpinnerValues(aspinner,none);
-        setupSpinnerValues(pspinner,none);
-        setupSpinnerValues(gspinner,none);
-
+    public void clearData() {
         usernameET.setText("");
         addressET.setText("");
         numberET.setText("");
         gasAmountET.setText("");
-        moneyView.setText("" + "元");
-        cardView.setText("");
+        moneyView.setText("---");
+        cardView.setText("---");
+
+        edittextEnable(true);
+        submit.setClickable(true);
+        facture.setClickable(true);
     }
-    /********      交互       **********/
+
+    //文本框状态改变
+    public void edittextEnable(boolean editable){
+        usernameET.setFocusable(editable);
+        addressET.setFocusable(editable);
+        numberET.setFocusable(editable);
+        gasAmountET.setFocusable(editable);
+    }
+
+    /********
+     * 交互
+     **********/
 
 
     //交互逻辑 button
@@ -404,7 +514,7 @@ public class DetialActivity extends AppCompatActivity{
     }
 
     //交互逻辑 spinner
-    class SpinnerSelectedListener implements OnItemSelectedListener{
+    class SpinnerSelectedListener implements OnItemSelectedListener {
 
 
         @Override
@@ -412,13 +522,13 @@ public class DetialActivity extends AppCompatActivity{
                                    long arg3) {
             TextView tv = (TextView) arg1;
             tv.setTextColor(Color.BLACK);
-            if (arg1 == aspinner){
+            if (arg1 == aspinner) {
                 AreaData areaData = spinnerlist_area.get(arg2);
                 dataResult.areaData = areaData;
-            }else if(arg1 == pspinner){
+            } else if (arg1 == pspinner) {
                 ChargeData chargeData = spinnerlist_charge.get(arg2);
                 dataResult.chargeData = chargeData;
-            }else if(arg1 == gspinner){
+            } else if (arg1 == gspinner) {
                 GasData gasData = spinnerlist_gas.get(arg2);
                 dataResult.gasData = gasData;
             }
@@ -437,28 +547,31 @@ public class DetialActivity extends AppCompatActivity{
         @Override
         public void onTextChanged(CharSequence s, int start, int before,
                                   int count) {
-            Log.d("TAG","onTextChanged--------------->");
+            Log.d("TAG", "onTextChanged--------------->");
         }
 
         @Override
         public void afterTextChanged(Editable s) {
             // TODO Auto-generated method stub
-            Log.d("TAG","afterTextChanged--------------->");
+            Log.d("TAG", "afterTextChanged--------------->");
 
             String gasnumber = gasAmountET.getText().toString().trim();
             dataResult.gasAmount = gasnumber.toString();
+            float unitprice = 1;
 
             //设置换算金额
-            moneyView.setText(dataResult.getGasValue() + "元");
+            moneyView.setText(dataResult.getGasValue() + "*" + unitprice + " = "
+                    + dataResult.getGasValue()*unitprice + "元");
         }
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count,
                                       int after) {
             // TODO Auto-generated method stub
-            Log.d("TAG","beforeTextChanged--------------->");
+            Log.d("TAG", "beforeTextChanged--------------->");
         }
     };
+
 
 
     /********      UI与初始化相关       **********/
@@ -478,6 +591,25 @@ public class DetialActivity extends AppCompatActivity{
     void initModule(){
         //
         processer.detialActivity = this;
+
+        //取数据
+        //存储到数据库
+        File dbfile = new File(DatabaseHelper.DATABASE_PATH);
+        if (dbfile.exists()) {
+            if (!cpd_Dialog.isShowing()) {
+                cpd_Dialog.show();
+            }
+            DataDao dataDao = new DataDao(DetialActivity.this);
+            try{
+                List<AreaData> areaDatas = dataDao.getAreaDao().queryForAll();
+                List<ChargeData> chargeDatas = dataDao.getChargeDao().queryForAll();
+                List<GasData> gasDatas = dataDao.getGasDao().queryForAll();
+                downloadBasedataResult(areaDatas,chargeDatas,gasDatas);
+            }catch (Exception ex){
+                System.out.println("数据库取数据错误");
+            }
+            cpd_Dialog.dismiss();
+        }
 
         //这个是什么作用?
 //        SerialPortFinder mSerialPortFinder = new SerialPortFinder();
@@ -506,6 +638,9 @@ public class DetialActivity extends AppCompatActivity{
 
         //设置换表气量动作
         gasAmountET.addTextChangedListener(textWatcher);
+
+        //可输入
+        edittextEnable(true);
 
         if (cpd_Dialog == null) {
             cpd_Dialog = CustomProgressDialog.createDialog(this);

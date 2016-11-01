@@ -204,15 +204,15 @@ public class DataProcesser{
                         JSONObject jsonObject = (JSONObject) msg.obj;
                         String stringIwant = jsonObject.getString("result");
                         JSONObject valueIwant = new JSONObject(stringIwant);
-                        boolean establishResult = valueIwant.getBoolean("result");
+//                        boolean establishResult = valueIwant.getBoolean("result");
                         String cardNumber = valueIwant.getString("cardno");
                         String userNumber = valueIwant.getString("systemno");
                         String resultcode = valueIwant.getString("resultcode");
                         //开户结果回调
-                        detialActivity.establishAccountResult(establishResult,cardNumber,userNumber);
+                        detialActivity.establishAccountResult(resultcode,cardNumber,userNumber);
                     }catch (Exception ex){
                         System.out.println("登录回传解析错误!");
-                        detialActivity.establishAccountResult(false,"","");
+                        detialActivity.establishAccountResult("555","","");
                     }
                     break;
 

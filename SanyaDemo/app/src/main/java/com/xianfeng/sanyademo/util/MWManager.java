@@ -150,7 +150,7 @@ public class MWManager {
             ClsUtils.removeBond(SearchActivity.remoteDevice);
             myReader.closeReader();
         }catch (Exception ex){
-            System.out.print("断开设备错误");
+            System.out.println("断开设备错误");
         }
     }
 

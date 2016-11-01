@@ -8,11 +8,15 @@ import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.xianfeng.sanyademo.model.User;
+import com.xianfeng.sanyademo.sql.DataDao;
 import com.xianfeng.sanyademo.util.DataProcesser;
 
 import org.json.JSONObject;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.jar.Manifest;
 
 import com.xianfeng.sanyademo.view.*;
 
@@ -29,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private static CustomProgressDialog cpd_Dialog = null;
 
     //data
-    String companyString = "";
+    String username = "";
+    String password = "";
+    String companyString = "008001";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +44,33 @@ public class MainActivity extends AppCompatActivity {
         //
         processer.mainActivity = this;
 
-        //
         nameET = (EditText)findViewById(R.id.accountEdittext);
-        nameET.setText("admins");
         passwordET = (EditText)findViewById(R.id.pwdEdittext);
-        passwordET.setText("000000");
+
+        DataDao dao = new DataDao(MainActivity.this);
+        try{
+            List userList = dao.getUserDao().queryForAll();
+            if (userList.size() > 0){
+                User user = (User)userList.get(userList.size()-1);
+                if (user != null){
+                    username = user.getUserName();
+                    password = user.getPassword();
+                }else {
+                    username = "";
+                    password = "";
+                }
+            }
+        }catch (Exception ex){
+            System.out.println("之前没有用户？");
+        }
+
+        nameET.setText(username);
+        passwordET.setText(password);
         companyString = "008001";
 
         if (cpd_Dialog == null) {
             cpd_Dialog = CustomProgressDialog.createDialog(this);
         }
-
 
         loginBtn = (Button)findViewById(R.id.login);
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,19 +78,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                if (true)
+                if (!true)
                 {
-                    //需要数据库
-                    loginDetial();
+                     loginDetial();
                 }else {
                     //登录
                     String name = nameET.getText().toString().trim();
+                    username = name;
                     String pass = passwordET.getText().toString().trim();
+                    password = pass;
                     if (!name.equalsIgnoreCase("")) {
                         if (!pass.equalsIgnoreCase("")){
-                            if (!cpd_Dialog.isShowing()) {
-                                cpd_Dialog.show();
-                            }
                             loginRequest();
                         }else {
                             alertMessage("请输入密码!");
@@ -84,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
 
     //下载数据
     void loginRequest(){
+        if (!cpd_Dialog.isShowing()) {
+            cpd_Dialog.show();
+        }
         Map<String, Object> param = new HashMap();
         param.put(processer.TYPE,processer.MESSAGE_LOGIN);
 
@@ -101,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
 
     //进入详情
     void loginDetial(){
+        if (cpd_Dialog.isShowing()) {
+            cpd_Dialog.dismiss();
+        }
         Intent intent = new Intent();
         intent.setClass(MainActivity.this, DetialActivity.class);
         startActivity(intent);
@@ -113,10 +139,29 @@ public class MainActivity extends AppCompatActivity {
             cpd_Dialog.dismiss();
         }
         if (isSussess){
+            //保存数据
+            storeUserData(username,password);
+            //进入详情
             loginDetial();
         }else {
             clearUI();
             alertMessage("登录失败!");
+        }
+    }
+    void storeUserData(String username,String password){
+        DataDao dao = new DataDao(MainActivity.this);
+        try{
+            Map map = new HashMap();
+            map.put("userName",username);
+            List list = dao.getUserDao().queryForFieldValues(map);
+            if (list.size() == 0){
+                User usernew = new User();
+                usernew.setUserName(username);
+                usernew.setPassword(password);
+                dao.getUserDao().create(usernew);
+            }
+        }catch (Exception ex){
+            System.out.println("保存出现错误");
         }
     }
 

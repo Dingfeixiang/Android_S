@@ -1,4 +1,4 @@
-#Mon Oct 31 09:03:40 CST 2016
+#Tue Nov 01 14:36:10 CST 2016
 base.0=/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_4eb9865cd622bd368cbf4f82c7226ecacdd88014
 renamed.1=classes.dex
 renamed.0=classes2.dex
