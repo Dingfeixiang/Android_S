@@ -4,14 +4,16 @@ import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 
-import com.j256.ormlite.dao.Dao;
 import com.xianfeng.sanyademo.model.AreaData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import com.xianfeng.sanyademo.*;
 import com.xianfeng.sanyademo.model.ChargeData;
 import com.xianfeng.sanyademo.model.GasData;
+import com.xianfeng.sanyademo.model.RecordData;
+import com.xianfeng.sanyademo.sql.DataDao;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -36,6 +38,13 @@ public class DataProcesser{
     public static final int MESSAGE_LOGIN = 3; //登录
     public static final int MESSAGE_BASEDATA = 4; //基础数据
     public static final int MESSAGE_ACCOUNT = 5; //开户
+
+    public static final int TYPE_DB_RECORD = 10;
+    public static final int TYPE_DB_AREA = 11;
+    public static final int TYPE_DB_CHARGE = 12;
+    public static final int TYPE_DB_GAS = 13;
+    public static final int TYPE_DB_ACCOUNT = 14;
+
 //    public static final int MESSAGE_ERROR_SOAP = 6;//SOAP请求错误
 
     //数据类型
@@ -66,6 +75,7 @@ public class DataProcesser{
     }
 
     private Downloader downloader = Downloader.getHelper();
+
     public MainActivity mainActivity = null;
     public DetialActivity detialActivity = null;
 
@@ -78,9 +88,8 @@ public class DataProcesser{
     public class sendCommand implements Runnable {
 
         private Map<String, Object> param_ = null;
-
         private Message msg = null;
-        private Dao<AreaData,Integer> areaDao;
+//        private Dao<AreaData,Integer> areaDao;
 
         public sendCommand(Map<String, Object> param) {
             sendCommand.this.param_ = param;
@@ -91,18 +100,19 @@ public class DataProcesser{
         public void run() {
             //获取参数
             int type = (int) param_.get(TYPE);
+            Object object = param_.get(INFO);
             msg = new Message();
 
             if(type == MESSAGE_DB){//数据库操作
+                msg.what = MESSAGE_DB;
                 try{
-                    msg.what = MESSAGE_DB;
-                    AreaData area = new AreaData();
-                    area.setUserId(100);
-                    area.setAreaname("这是测试");
-                    area.setAreaid("123");
-                    areaDao = detialActivity.db.getAreaDao();
-                    areaDao.create(area);
-                    System.out.println("添加测试");
+                    if(object instanceof RecordData){
+                        RecordData recordData = (RecordData)object;
+                        DataDao dao = new DataDao(detialActivity);
+                        int result = dao.getRecordDao().create(recordData);
+                        System.out.println("添加制卡记录" + (result == 1?"成功":"失败") + "!");
+                    }
+
                 }catch (Exception ex){
                     System.out.println("添加错误");
                     msg.what = MESSAGE_ERROR_DB;
@@ -163,7 +173,11 @@ public class DataProcesser{
             switch (msg.what) {
 
                 case MESSAGE_DB:
+                    try{
 
+                    }catch (Exception e){
+
+                    }
                     break;
                 case MESSAGE_ERROR_DB:
 
@@ -188,14 +202,17 @@ public class DataProcesser{
                 case MESSAGE_ACCOUNT:
                     try{
                         JSONObject jsonObject = (JSONObject) msg.obj;
-                        boolean establishResult = jsonObject.getBoolean("result");
-                        String cardNumber = jsonObject.getString("cardno");
-                        String userNumber = jsonObject.getString("systemno");
-                        detialActivity.establishAccountResult(establishResult,cardNumber,userNumber);
-
+                        String stringIwant = jsonObject.getString("result");
+                        JSONObject valueIwant = new JSONObject(stringIwant);
+//                        boolean establishResult = valueIwant.getBoolean("result");
+                        String cardNumber = valueIwant.getString("cardno");
+                        String userNumber = valueIwant.getString("systemno");
+                        String resultcode = valueIwant.getString("resultcode");
+                        //开户结果回调
+                        detialActivity.establishAccountResult(resultcode,cardNumber,userNumber);
                     }catch (Exception ex){
                         System.out.println("登录回传解析错误!");
-                        detialActivity.establishAccountResult(false,"","");
+                        detialActivity.establishAccountResult("555","","");
                     }
                     break;
 
@@ -249,6 +266,7 @@ public class DataProcesser{
                     String areaname = objectIwant.getString("areaname");
 
                     AreaData areaData = new AreaData();
+                    areaData.setUserId(i);
                     areaData.setAreaid(areaid);
                     areaData.setAreaname(areaname);
                     datalist.add(areaData);
@@ -270,6 +288,7 @@ public class DataProcesser{
                     String pricever = objectIwant.getString("pricever");
 
                     ChargeData chargeData = new ChargeData();
+                    chargeData.setUserId(i);
                     chargeData.setPricename(pricename);
                     chargeData.setPricever(pricever);
                     chargeData.setPriceno(priceno);
@@ -291,6 +310,7 @@ public class DataProcesser{
                     String usergastypename = objectIwant.getString("usergastypename");
 
                     GasData gasData = new GasData();
+                    gasData.setUserId(i);
                     gasData.setUsergastype(usergastype);
                     gasData.setUsergastypename(usergastypename);
                     datalist.add(gasData);

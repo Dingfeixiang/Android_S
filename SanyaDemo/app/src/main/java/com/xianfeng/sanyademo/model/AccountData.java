@@ -7,7 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
  * Created by xianfeng on 2016/10/19.
  */
 @DatabaseTable(tableName = "tb_accountinfo")
-public class AccountData extends User {
+public class AccountData {
 
     @DatabaseField(generatedId=true)
     private int userId;

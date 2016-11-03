@@ -187,10 +187,12 @@
             android:layout_width="fill_parent"
             android:layout_height="35sp"
             android:layout_centerVertical="true"
+            android:inputType="number"
             android:layout_marginLeft="20dip"
             android:layout_toRightOf="@+id/nview"
             android:background="@drawable/edit_bg"
             android:hint=""
+            android:maxLength="10"
             android:textSize="18sp" />
         </RelativeLayout>
 
@@ -215,6 +217,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="35sp"
                 android:layout_centerVertical="true"
+                android:inputType="numberDecimal"
                 android:layout_marginLeft="20dip"
                 android:layout_toRightOf="@+id/aview"
                 android:background="@drawable/edit_bg"

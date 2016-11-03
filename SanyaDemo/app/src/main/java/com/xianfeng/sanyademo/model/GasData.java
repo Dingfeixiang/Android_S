@@ -9,7 +9,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "tb_gasdata")
 
-public class GasData extends User {
+public class GasData  {
 
     @DatabaseField(generatedId=true)
     private int userId;

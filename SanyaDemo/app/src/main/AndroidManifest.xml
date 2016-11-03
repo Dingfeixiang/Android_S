@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -25,16 +26,19 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity
             android:name=".DetialActivity"
-            android:label="制卡"
-            android:parentActivityName="com.xianfeng.sanyademo.MainActivity">
+            android:label="点击这里下载数据 ---->">
+            <!--android:parentActivityName="com.xianfeng.sanyademo.MainActivity">-->
+            <!--<meta-data-->
+            <!--android:name="android.support.PARENT_ACTIVITY"-->
+            <!--android:value="com.xianfeng.sanyademo.MainActivity" />-->
         </activity>
+
 
         <activity
             android:name="com.mwreader.bluetooth.SearchActivity"
