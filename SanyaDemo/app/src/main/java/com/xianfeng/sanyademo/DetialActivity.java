@@ -142,7 +142,8 @@ public class DetialActivity extends AppCompatActivity {
     //金额换算公式
     private float priceFormula(String gasAmount){
         float amount = Float.valueOf(gasAmount).floatValue();
-        float unitprice = Float.valueOf(dataResult.chargeData.getLaddprice1());
+//        Float.valueOf(dataResult.chargeData.getLaddprice1());
+        float unitprice = 2.6f;
         float gasMoney = amount * unitprice;
         return gasMoney;
     }
@@ -528,7 +529,6 @@ public class DetialActivity extends AppCompatActivity {
         if (editable){
             editText.setFocusableInTouchMode(true);
             editText.setFocusable(true);
-            editText.requestFocus();
             editText.setEnabled(true);
         }else {
             editText.setEnabled(false);
@@ -621,7 +621,8 @@ public class DetialActivity extends AppCompatActivity {
 
         if(dataResult.chargeData == null) return;
         if (dataResult.chargeData.getLaddprice1().equals("")) return;
-        float unitprice = Float.valueOf(dataResult.chargeData.getLaddprice1());
+        //Float.valueOf(dataResult.chargeData.getLaddprice1())
+        float unitprice = 2.6f;
 
         //设置换算金额
         if (gasnumber.equals("")) return;

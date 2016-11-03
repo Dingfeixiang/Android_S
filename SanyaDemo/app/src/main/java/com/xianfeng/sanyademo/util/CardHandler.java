@@ -71,14 +71,15 @@ public class CardHandler {
     public boolean writeCard(String data){
         boolean writeResult = false;
         try{
-            mwManger.myReader.beep(1,1,1);
-
+            System.out.println("写卡操作");
+            
             String subString = data.substring(64,512);
             mwManger.myReader.write4442(32,subString);
 
             mwManger.myReader.write4442(18,"01");
+            mwManger.myReader.beep(1,1,1);
             writeResult = true;
-            System.out.println("写卡操作");
+
         }catch (Exception ex){
             writeResult = false;
             System.out.println("写卡错误！");
