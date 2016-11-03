@@ -27,21 +27,29 @@ public class DataResult {
 
     public String companyno = "008001"; //公司号
 
-    public String gasAmount = "0";   //换气表量
-    private float gasValue = 0;    //换算成金额
-    public float getGasValue(){
-        if (gasAmount.length() > 0){
-            try{
-                gasValue = Float.valueOf(gasAmount).floatValue(); //换算成金额
-            }catch (Exception ex){
-                gasValue = 0;
-            }
-            return gasValue;
-        }else {
-            return 0;
-        }
+    private String gasAmount = "0";   //换气表量
+    public String getGasAmount(){
+        return gasAmount;
     }
-    public void setGasValue(Float value){
+    public void setGasAmount(String amount){
+        gasAmount = amount;
+    }
+
+    private float gasValue = 0;    //换算成金额
+    public float getGasMoney(){
+        return gasValue;
+//        if (gasAmount.length() > 0){
+//            try{
+//                gasValue = Float.valueOf(gasAmount).floatValue(); //换算成金额
+//            }catch (Exception ex){
+//                gasValue = 0;
+//            }
+//            return gasValue;
+//        }else {
+//            return 0;
+//        }
+    }
+    public void setGasMoney(Float value){
         gasValue = value;
     }
 }

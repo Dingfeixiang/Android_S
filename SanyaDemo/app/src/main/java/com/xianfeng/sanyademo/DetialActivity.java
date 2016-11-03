@@ -23,6 +23,7 @@ import android.widget.Toast;
 import android.util.Log;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -96,15 +97,18 @@ public class DetialActivity extends AppCompatActivity {
             alertMessage("表具编号长度为10，请检查编号！");
             return;
         }
-        if (dataResult.areaData.getAreaname().equals("")) {
+        if (dataResult.areaData == null ||
+                dataResult.areaData.getAreaname().equals("")) {
             alertMessage("请选择区域信息!");
             return;
         }
-        if (dataResult.chargeData.getPricename().equals("")) {
+        if (dataResult.chargeData == null ||
+                dataResult.chargeData.getPricename().equals("")) {
             alertMessage("请选择价格信息!");
             return;
         }
-        if (dataResult.gasData.getUsergastypename().equals("")) {
+        if (dataResult.gasData == null ||
+                dataResult.gasData.getUsergastypename().equals("")) {
             alertMessage("请选择用气类型!");
             return;
         }
@@ -120,11 +124,11 @@ public class DetialActivity extends AppCompatActivity {
         dataResult.tablenumber = tablenumber;
         //换表气量
         String gasnumber = gasAmountET.getText().toString().trim();
-        dataResult.gasAmount = gasnumber.toString();
+        dataResult.setGasAmount(gasnumber.toString());
 
         //换算成表金额
-        String moneyStr = String.valueOf(dataResult.getGasValue());
-        dataResult.setGasValue(Float.valueOf(moneyStr).floatValue()); //换算后的
+        String gasamountStr = String.valueOf(dataResult.getGasAmount());
+        dataResult.setGasMoney(priceFormula(gasamountStr)); //换算
 
         //请求开户
         if (!cpd_Dialog.isShowing()) {
@@ -135,6 +139,13 @@ public class DetialActivity extends AppCompatActivity {
         establishAccount(dataResult);
     }
 
+    //金额换算公式
+    private float priceFormula(String gasAmount){
+        float amount = Float.valueOf(gasAmount).floatValue();
+        float unitprice = Float.valueOf(dataResult.chargeData.getLaddprice1());
+        float gasMoney = amount * unitprice;
+        return gasMoney;
+    }
     //请求开户
     void establishAccount(DataResult dataResult) {
 
@@ -143,7 +154,7 @@ public class DetialActivity extends AppCompatActivity {
 
         String username = dataResult.username;
         String address = dataResult.useraddress;
-        String money = String.valueOf(dataResult.getGasValue());
+        String money = String.valueOf(dataResult.getGasMoney());
         String metercode = dataResult.tablenumber;
 
         String areaid = dataResult.areaData.getAreaid();
@@ -166,7 +177,6 @@ public class DetialActivity extends AppCompatActivity {
         param.put(processer.INFO, jsonObject);
         processer.excuteCommandOnBackground(param);
     }
-
     //开户结果
     public void establishAccountResult(String resultcode, String cardNum, String userNum) {
         cpd_Dialog.dismiss();
@@ -216,6 +226,7 @@ public class DetialActivity extends AppCompatActivity {
         try {
             dao.getRecordDao().create(recordData);
             System.out.println("保存开户信息");
+
         } catch (Exception ex) {
             System.out.println("开户信息保存失败！");
         }
@@ -225,9 +236,9 @@ public class DetialActivity extends AppCompatActivity {
     RecordData transferDataResult(DataResult dataResult) {
 
         RecordData recordData = new RecordData();
-        double gases = Double.valueOf(dataResult.gasAmount);
+        double gases = Double.valueOf(dataResult.getGasAmount());
         recordData.setGases(gases);
-        double gasfee = Double.valueOf(String.valueOf(dataResult.getGasValue()));
+        double gasfee = Double.valueOf(String.valueOf(dataResult.getGasMoney()));
         recordData.setGasfee(gasfee);
         double price1 = Double.valueOf(dataResult.chargeData.getLaddprice1());
         recordData.setPrice1(price1);
@@ -259,7 +270,7 @@ public class DetialActivity extends AppCompatActivity {
         double newprice3 = price3;
         recordData.setNewprice3(newprice3);
         int newladdgas1 = laddgas1;
-        recordData.setLaddgas1(newladdgas1);
+        recordData.setNewladdgas1(newladdgas1);
         int newladdgas2 = laddgas2;
         recordData.setNewladdgas2(newladdgas2);
         String newpricedate = pricedate;
@@ -295,26 +306,23 @@ public class DetialActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
                         // TODO Auto-generated method stub
-                        if (!setupAccountEnableFlag) {
-                            String string = "";
+                        if (!cardHandler.isConnected()){
+                            alertMessage("请先连接读卡器！");
+                            return;
+                        }
+                        if (setupAccountEnableFlag) {
+                            //写卡
                             try{
-                                mwManger.myReader.verifyPassword4442("fc1aff");
-                            }catch (Exception ex){
-                                System.out.println("");
-                            }
-                            System.out.println(string);
+                                RecordData recordData = transferDataResult(dataResult);
+                                String[] strings = cardHandler.getWriteData(recordData);
+                                String data = strings[1];
+                                String verify = strings[2];
+                                String verifynew = strings[3];
 
-//                            //写卡
-//                            try{
-//                                RecordData recordData = transferDataResult(dataResult);
-//                                String[] strings = cardHandler.getWriteData(recordData);
-//                                String data = strings[1];
-//                                String verify = strings[2];
-//                                String verifynew = strings[3];
-//                                writeCard(data,verify,verifynew);
-//                            }catch (Exception ex){
-//                                System.out.println("写卡出现错误");
-//                            }
+                                writeCard(data,verify,verifynew);
+                            }catch (Exception ex){
+                                System.out.println("写卡出现错误");
+                            }
                         } else {
                             alertMessage("开户成功才可以制卡！");
                         }
@@ -339,10 +347,13 @@ public class DetialActivity extends AppCompatActivity {
                 cardHandler.changeVerify(verifynew);
             }
             alertMessage("制卡成功！");
+            clearData();
         }else {
             alertMessage("制卡失败！");
         }
     }
+    //保存写卡信息
+
 
 //    //数据库操作结果回传
 //    public void dbOperationCallback(boolean isSuccess, int dbtype) {
@@ -375,6 +386,7 @@ public class DetialActivity extends AppCompatActivity {
         spinnerlist_area = areaDatas;
         spinnerlist_charge = chargeDatas;
         spinnerlist_gas = gasDatas;
+
         //保存列表第一个数据
         dataResult.areaData = areaDatas.get(0);
         dataResult.chargeData = chargeDatas.get(0);
@@ -412,13 +424,31 @@ public class DetialActivity extends AppCompatActivity {
         moneyView.setText("---");
 
         //存储到数据库
-        File dbfile = new File(DatabaseHelper.DATABASE_PATH);
-        if (!dbfile.exists()) {
+        if (!isExistBaseData()) {
             storeBaseData(areaDatas, chargeDatas, gasDatas);
         }
     }
+    //判断是否有数据
+    boolean isExistBaseData(){
+        boolean isExist = false;
+        File dbfile = new File(DatabaseHelper.DATABASE_PATH);
+        if (dbfile.exists()){
+            DataDao dao = new DataDao(DetialActivity.this);
+            try{
+                List list = dao.getAreaDao().queryForAll();
+                if (list.size() > 0){
+                    isExist = true;
+                }
+            }catch (Exception ex){
+                isExist = false;
+            }
+        }else {
+            isExist = false;
+        }
+        return isExist;
+    }
 
-
+    //保存到数据库
     void storeBaseData(List<AreaData> areaDatas,
                        List<ChargeData> chargeDatas,
                        List<GasData> gasDatas) {
@@ -480,17 +510,32 @@ public class DetialActivity extends AppCompatActivity {
         moneyView.setText("---");
         cardView.setText("---");
 
+        //设置可编辑
         edittextEnable(true);
+
         submit.setClickable(true);
         facture.setClickable(true);
     }
 
     //文本框状态改变
     public void edittextEnable(boolean editable){
-        usernameET.setFocusable(editable);
-        addressET.setFocusable(editable);
-        numberET.setFocusable(editable);
-        gasAmountET.setFocusable(editable);
+        edittextEnable(usernameET,editable);
+        edittextEnable(addressET,editable);
+        edittextEnable(numberET,editable);
+        edittextEnable(gasAmountET,editable);
+    }
+    void edittextEnable(EditText editText,boolean editable){
+        if (editable){
+            editText.setFocusableInTouchMode(true);
+            editText.setFocusable(true);
+            editText.requestFocus();
+            editText.setEnabled(true);
+        }else {
+            editText.setEnabled(false);
+            editText.setFocusable(false);
+            editText.setFocusableInTouchMode(false);
+        }
+
     }
 
     /********
@@ -534,6 +579,9 @@ public class DetialActivity extends AppCompatActivity {
             }
             //设置显示当前选择的项
             arg0.setVisibility(View.VISIBLE);
+
+            //选择后要修改显示
+            motifyGasView();
         }
 
         @Override
@@ -554,14 +602,7 @@ public class DetialActivity extends AppCompatActivity {
         public void afterTextChanged(Editable s) {
             // TODO Auto-generated method stub
             Log.d("TAG", "afterTextChanged--------------->");
-
-            String gasnumber = gasAmountET.getText().toString().trim();
-            dataResult.gasAmount = gasnumber.toString();
-            float unitprice = 1;
-
-            //设置换算金额
-            moneyView.setText(dataResult.getGasValue() + "*" + unitprice + " = "
-                    + dataResult.getGasValue()*unitprice + "元");
+            motifyGasView();
         }
 
         @Override
@@ -571,6 +612,26 @@ public class DetialActivity extends AppCompatActivity {
             Log.d("TAG", "beforeTextChanged--------------->");
         }
     };
+
+    //修改表金额显示
+    void motifyGasView(){
+        //保存气量
+        String gasnumber = gasAmountET.getText().toString().trim();
+        dataResult.setGasAmount(gasnumber.toString());
+
+        if(dataResult.chargeData == null) return;
+        if (dataResult.chargeData.getLaddprice1().equals("")) return;
+        float unitprice = Float.valueOf(dataResult.chargeData.getLaddprice1());
+
+        //设置换算金额
+        if (gasnumber.equals("")) return;
+        DecimalFormat decimalFormat = new DecimalFormat(".00");
+        moneyView.setText(dataResult.getGasAmount() + "*" + unitprice + " = "
+                + decimalFormat.format(priceFormula(dataResult.getGasAmount())) + "元");
+
+        //保存金额
+        dataResult.setGasMoney(priceFormula(gasnumber));
+    }
 
 
 

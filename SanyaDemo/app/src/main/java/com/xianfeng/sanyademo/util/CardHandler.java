@@ -21,8 +21,12 @@ public class CardHandler {
     private static final String SINGAL_RECEIVEDATA_SUCCESS = "9000";    //请求成功
     private static final String SINGAL_TIMEOUT = "6F06";    //超时
 
-    MWManager   mwManger = MWManager.getHelper();
+    MWManager  mwManger = MWManager.getHelper();
     public CardHandler(){}
+
+    public boolean isConnected(){
+        return (mwManger.myReader == null)?false:true;
+    }
 
     public int beep(int beepTimes, int interval, int time){
         int result = 0;
@@ -63,13 +67,18 @@ public class CardHandler {
         }
     }
 
+    //向卡中写数据
     public boolean writeCard(String data){
         boolean writeResult = false;
         try{
             mwManger.myReader.beep(1,1,1);
-            mwManger.myReader.write4442(32,data);
-            System.out.println("我要写卡");
+
+            String subString = data.substring(64,512);
+            mwManger.myReader.write4442(32,subString);
+
+            mwManger.myReader.write4442(18,"01");
             writeResult = true;
+            System.out.println("写卡操作");
         }catch (Exception ex){
             writeResult = false;
             System.out.println("写卡错误！");
