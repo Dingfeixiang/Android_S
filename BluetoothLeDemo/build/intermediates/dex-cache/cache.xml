@@ -1,2 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="7feb787ac9825656771166e10b9f7d0797460788">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_18ebe83b7caaa8cb758e04eedc5bcd84492093f0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="fea9cae14cb17a12bc5b4697f80fa82ec7b71e82">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_34cd0d007a4a80b6cce539a4cdf5c669f4c26859/classes.dex" />
+    </item>
+    <item
+        jar="/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/libs/android-support-v4.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="4a6be13368bb64c5a0b0460632d228a1a915f58f">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/transforms/dex/debug/folders/1000/2/android-support-v4_7d2d12f079786f4340c7911e2c95cde09cc12627/classes.dex" />
+    </item>
+
+</items>

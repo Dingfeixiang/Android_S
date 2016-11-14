@@ -1,23 +1,11 @@
 [
     {
-        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_4.png",
-        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/drawable-hdpi/progress_4.png"
-    },
-    {
-        "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_6.png",
-        "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/drawable-hdpi/progress_6.png"
-    },
-    {
         "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_8.png",
         "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/drawable-hdpi/progress_8.png"
     },
     {
-        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_3.png",
-        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/drawable-hdpi/progress_3.png"
-    },
-    {
-        "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_2.png",
-        "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/drawable-hdpi/progress_2.png"
+        "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_6.png",
+        "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/drawable-hdpi/progress_6.png"
     },
     {
         "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_5.png",
@@ -28,8 +16,8 @@
         "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/drawable-hdpi/progress_1.png"
     },
     {
-        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_1.png",
-        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/drawable-hdpi/progress_1.png"
+        "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_2.png",
+        "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/drawable-hdpi/progress_2.png"
     },
     {
         "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_7.png",
@@ -40,27 +28,7 @@
         "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/drawable-hdpi/progress_4.png"
     },
     {
-        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_7.png",
-        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/drawable-hdpi/progress_7.png"
-    },
-    {
         "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_3.png",
         "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/drawable-hdpi/progress_3.png"
-    },
-    {
-        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_8.png",
-        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/drawable-hdpi/progress_8.png"
-    },
-    {
-        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_5.png",
-        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/drawable-hdpi/progress_5.png"
-    },
-    {
-        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_6.png",
-        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/drawable-hdpi/progress_6.png"
-    },
-    {
-        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/drawable-hdpi-v4/progress_2.png",
-        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/drawable-hdpi/progress_2.png"
     }
 ]
