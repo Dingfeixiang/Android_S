@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cornsilk"
+    android:gravity="top"
+    android:orientation="horizontal" >
+
+    <FrameLayout
+        android:id="@+id/frameLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+    </FrameLayout>
+    
+	<Button
+        android:id="@+id/btnopenport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/frameLayout1"
+        android:text="连接设备" />
+	
+	<Button
+        android:id="@+id/btncloseport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/TVversion"
+        android:layout_toRightOf="@+id/btnopenport"
+        android:text="断开连接" />
+	<RadioGroup
+        android:id="@+id/radiogroup1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/btncloseport"
+        android:layout_x="3px"
+        android:orientation="horizontal" >
+  
+    <RadioButton
+        android:id="@+id/radioButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:checked="true"
+        android:text="蓝牙" />
+
+    <RadioButton
+        android:id="@+id/radioButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/radioButton1"
+        android:text="USB" />
+    <RadioButton
+        android:id="@+id/radioButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/radioButton2"
+        android:text="COM" />
+	</RadioGroup> 
+	
+	<TextView
+        android:id="@+id/TVversion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnopenport"
+        android:layout_marginTop="14dp"
+        android:text="版本信息:"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/blue" />
+	
+	<EditText
+        android:id="@+id/ETversion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btncloseport"
+        android:layout_toRightOf="@+id/TVversion"
+        android:ems="10"
+        android:enabled="false" />
+	
+    <TextView
+        android:id="@+id/TVsnr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/TVversion"
+        android:layout_below="@+id/ETversion"
+        android:layout_marginTop="16dp"
+        android:text="序列号:"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/blue" /> 
+
+    <EditText
+        android:id="@+id/ETsnr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ETversion"
+        android:layout_alignLeft="@+id/ETversion"
+        android:layout_toRightOf="@+id/TVsnr"     
+        android:ems="10"
+        android:enabled="false" />
+    
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/TVsnr"
+        android:layout_marginTop="14dp"
+        android:text="串口名称:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:visibility="invisible" />
+        
+    
+    <EditText
+        android:id="@+id/ETwritedata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/ETsnr"
+        android:layout_alignTop="@+id/TextView01"
+        android:layout_toRightOf="@+id/TextView01"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:visibility="invisible" />
+
+     
+	<Button
+        android:id="@+id/btnbeep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ETwritedata"
+        android:text="  蜂鸣   " />
+
+    <Button
+        android:id="@+id/btncardop"
+        style="@color/chartreuse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ETwritedata"
+        android:layout_alignBottom="@+id/btnbeep"
+        android:layout_toRightOf="@+id/btnbeep"
+        android:text="进入卡片操作"
+        android:textColor="#FF0000" />
+
+    <EditText
+        android:id="@+id/layout1_Tip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@+id/ETwritedata"
+        android:layout_below="@+id/textView3"
+        android:ems="10"
+        android:enabled="false"
+        android:inputType="textMultiLine"
+        android:textColorHint="@color/red" />
+    
+	<TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/btnbeep"
+        android:text="提示信息:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/red" />
+
+
+    
+	
+    
+
+</RelativeLayout>
