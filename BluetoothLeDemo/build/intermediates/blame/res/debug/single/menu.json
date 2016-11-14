@@ -4,14 +4,6 @@
         "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/menu/main.xml"
     },
     {
-        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/menu/main.xml",
-        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/menu/main.xml"
-    },
-    {
-        "merged": "/Users/xianfeng/Desktop/BluetoothLeDemo/build/intermediates/res/merged/debug/menu/gatt_services.xml",
-        "source": "/Users/xianfeng/Desktop/BluetoothLeDemo/res/menu/gatt_services.xml"
-    },
-    {
         "merged": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/build/intermediates/res/merged/debug/menu/gatt_services.xml",
         "source": "/Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/res/menu/gatt_services.xml"
     }
