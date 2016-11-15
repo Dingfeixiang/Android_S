@@ -106,6 +106,7 @@ public class NfcManager{
     public void reconvertStatus(){
         lastIntentData_ = "";
     }
+
     //从Intent中读卡
     public void readData(Intent intent){
 
@@ -114,6 +115,7 @@ public class NfcManager{
         }
 
         System.out.println ("从intent中获取标签信息！");
+
         //从intent中获取标签信息
         Parcelable p = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
         if (p != null) {

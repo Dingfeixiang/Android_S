@@ -32,10 +32,6 @@
         "source": "/Users/xianfeng/Desktop/Android_Study/SanyaDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/notification_template_media.xml"
     },
     {
-        "merged": "/Users/xianfeng/Desktop/Android_Study/SanyaDemo/app/build/intermediates/res/merged/debug/layout/simple_spinner_dropdown_item.xml",
-        "source": "/Users/xianfeng/Desktop/Android_Study/SanyaDemo/app/src/main/res/layout/simple_spinner_dropdown_item.xml"
-    },
-    {
         "merged": "/Users/xianfeng/Desktop/Android_Study/SanyaDemo/app/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
         "source": "/Users/xianfeng/Desktop/Android_Study/SanyaDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.2.1/res/layout/notification_template_big_media.xml"
     },
