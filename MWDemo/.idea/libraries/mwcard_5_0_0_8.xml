@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="mwcard-5.0.0.8">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/mwcard-5.0.0.8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

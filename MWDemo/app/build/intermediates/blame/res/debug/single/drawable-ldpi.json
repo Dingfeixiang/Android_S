@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_launcher.png",
+        "source": "/Users/xianfeng/Desktop/Android_Study/MWDemo/app/src/main/res/drawable-ldpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/xianfeng/Desktop/Android_Study/MWDemo/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_launcher1.png",
+        "source": "/Users/xianfeng/Desktop/Android_Study/MWDemo/app/src/main/res/drawable-ldpi/ic_launcher1.png"
+    }
+]
