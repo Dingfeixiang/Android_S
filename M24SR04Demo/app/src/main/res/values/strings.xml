@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">M24SR04Demo</string>
+
+    <string name="mnf_frag_NDEF_rec_type_empty"></string>
+    <string name="mnf_frag_NDEF_rec_type_txt">Text</string>
+    <!-- Tags specific strings -->
+    <string name="st_tags_add_description">Dynamic NFC/RFID tags</string>
+    <string name="m24lr_tags_footnote">* M24LRxx products only</string>
+    <string name="m24sr_tags_footnote">* M24SRxx products only</string>
+    <string name="rx95hf_tags_footnote">* RX95HF products only</string>
+    <string name="ST25TA_tags_footnote">* ST25TAxx products only</string>
+
 </resources>

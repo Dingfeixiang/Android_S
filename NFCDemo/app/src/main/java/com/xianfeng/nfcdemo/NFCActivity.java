@@ -212,12 +212,11 @@ public class NFCActivity extends AppCompatActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         //读取数据
-<<<<<<< HEAD
-        nfcManager_.readDataFromIntent(intent);
-
-=======
+//<<<<<<< HEAD
+//        nfcManager_.readDataFromIntent(intent);
+//
+//=======
         nfcManager_.readData(intent);
->>>>>>> NFC-dev
     }
 
     //程序恢复

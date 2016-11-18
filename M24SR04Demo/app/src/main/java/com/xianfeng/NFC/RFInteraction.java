@@ -1,4 +1,4 @@
-package com.xianfeng.Util;
+package com.xianfeng.NFC;
 
 
 /**
@@ -32,11 +32,6 @@ public class RFInteraction {
     //SendInterrupt command
     static final String INTERRUPT_COMMAND = "A2D6001E00";
 
-    //
-
-
-
-
 
     //访问命令
     String readCommondAttach(String data){
@@ -53,13 +48,18 @@ public class RFInteraction {
 
 
     //读写
-    String readBlock(int start,int length){
+//    String readBlock(int start,int length){
+//        return "";
+//    }
 
-        return "";
+    void writeBlock(int start,int length,byte[] data){
+
     }
 
-    void writeBlock(int start,int length,String data){
+    byte[] readBlock(int start,int length){
+        byte[] var = new byte[4];
 
+        return var;
     }
 }
 
