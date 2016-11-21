@@ -15,15 +15,14 @@ import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.nfc.tech.NfcA;
 import android.os.Parcelable;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 
 import com.st.NFC.NFCApplication;
 import com.st.NFC.NFCTag;
+
 import com.xianfeng.Util.*;
-import com.xianfeng.m24sr04demo.MainActivity;
 
 public class NFCManager {
 
@@ -121,24 +120,14 @@ public class NFCManager {
 
     //////////////////////////////////////////////////////////////////////////////////
 
-    //从Intent中读卡
-    public void readData(Intent intent){
-
-        if (!NfcAdapter.ACTION_TECH_DISCOVERED.equals(intent.getAction())){
-            return;
-        }
-
-        System.out.println ("从intent中获取标签信息！");
-
-        //从这里获取intent 并组装成ST NFCTag
+    public NFCTag getNFCTag(Intent intent){
+        NFCTag tmpTag = null;
         String action = intent.getAction();
         if ((NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action))
                 || (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action))
-                || (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action)))
-        {
+                || (NfcAdapter.ACTION_TAG_DISCOVERED.equals(action))){
             Tag rawTag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             Parcelable[] rawMsgs = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
-            NFCTag tmpTag = null;
 
             if (rawMsgs != null) {
                 NdefMessage[] msgs = new NdefMessage[rawMsgs.length];
@@ -149,10 +138,40 @@ public class NFCManager {
             } else {
                 tmpTag = new NFCTag(rawTag);
             }
-
             NFCApplication.getApplication().setCurrentTag(tmpTag);
         }
+        return tmpTag;
     }
+
+    //从Intent中读卡
+    public void readData(Intent intent,NFCCallback.ReadCallBack callback){
+        System.out.println ("从intent中获取标签信息！");
+
+        //从这里获取intent 并组装成ST NFCTag
+        NFCTag nfcTag = getNFCTag(intent);
+        NFCMiddleware middleware = new NFCMiddleware(nfcTag);
+//        NFCApplication currentApp = NFCApplication.getApplication();
+//        currentApp.setCurrentTag(nfcTag);
+        if (callback != null)
+            callback.readFinish(middleware.readTag(nfcTag));
+    }
+
+    //写卡操作
+    public void writeData(String data,NFCCallback.TagCallBack tagCallBack){
+        NFCApplication currentApp = NFCApplication.getApplication();
+        NFCTag currentTag = currentApp.getCurrentTag();
+        if ((currentTag == null) || (!currentTag.pingTag())) {
+            if(tagCallBack != null)
+                tagCallBack.currentTagStatus(NFCCallback.TagStatus.TAG_EMPTY);
+            return;
+        }
+        NFCMiddleware middleware = new NFCMiddleware(currentApp.getCurrentTag());
+        middleware.writeTag(data);
+
+        if(tagCallBack != null)
+            tagCallBack.currentTagStatus(NFCCallback.TagStatus.TAG_USED);
+    }
+
 
 
 

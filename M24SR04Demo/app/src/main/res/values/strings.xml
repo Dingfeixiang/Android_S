@@ -1,13 +1,34 @@
 <resources>
-    <string name="app_name">M24SR04Demo</string>
 
-    <string name="mnf_frag_NDEF_rec_type_empty"></string>
-    <string name="mnf_frag_NDEF_rec_type_txt">Text</string>
+    <string name="app_name">M24SR04Demo</string>
+    <string name="wc_act_nfc_waves_anim_descr">NFC waves animation container</string>
+
     <!-- Tags specific strings -->
     <string name="st_tags_add_description">Dynamic NFC/RFID tags</string>
     <string name="m24lr_tags_footnote">* M24LRxx products only</string>
     <string name="m24sr_tags_footnote">* M24SRxx products only</string>
     <string name="rx95hf_tags_footnote">* RX95HF products only</string>
     <string name="ST25TA_tags_footnote">* ST25TAxx products only</string>
+
+    <!-- NDEF messages -->
+    <string name="ndef_simple_msg_write_ok">Write successful !</string>
+    <string name="ndef_simple_msg_write_ongoing">Write ongoing&#8230;</string>
+    <string name="ndef_simple_msg_write_locked">Need to unlock tag before writting in&#8230;</string>
+    <string name="ndef_simple_msg_write_err_tag_lost">Tag is out of range</string>
+
+    <string name="ndef_simple_msg_write_err_io">IO error</string>
+    <string name="ndef_simple_msg_write_err_bad_msg">Message not well formatted</string>
+    <string name="ndef_simple_msg_write_err_ro_tag">Read-only tag</string>
+    <string name="ndef_simple_msg_write_err_not_supported">Write not possible on this tag</string>
+    <string name="ndef_simple_msg_write_no_fragment">No NDEF message to write</string>
+    <string name="ndef_simple_msg_write_cancel">NDEF write cancelled</string>
+    <string name="err_tag_not_unlocked"> Wrong Key !</string>
+    <string name="ndef_write_success">Write tag</string>
+    <string name="ndef_write_LockReq">Need write password</string>
+    <string name="ndef_write_error">Write tag ERROR</string>
+    <string name="ndef_write_new_tag">New tag detected since last display.\nOverwrite new tag ?\nRefresh info with new tag ?\nor Cancel</string>
+
+    <string name="nfc_app_header_str">ST NFC application</string>
+    <string name="nfc_app_header_img_descr">NFC app header image</string>
 
 </resources>

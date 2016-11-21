@@ -1,28 +1,95 @@
 package com.xianfeng.NFC;
 
 import android.content.Intent;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
 import android.util.Log;
 
 import com.st.NDEF.NDEFSimplifiedMessage;
 import com.st.NDEF.NDEFSimplifiedMessageHandler;
 import com.st.NDEF.NDEFSimplifiedMessageType;
+import com.st.NDEF.NDEFVCardMessage;
+import com.st.NDEF.stndefwritestatus;
 import com.st.NDEF.stnfcndefhandler;
 import com.st.NFC.NFCApplication;
 import com.st.NFC.NFCTag;
+import com.xianfeng.Util.TextRecord;
+
 
 /**
  * Created by xianfeng on 2016/11/15.
+ * 中间件用于连接ST公司的库与本项目数据
  */
 
-//中间件
+
 public class NFCMiddleware {
 
-    private Intent intent_;
+    private NFCTag tag_;
     private stnfcndefhandler _mndefMessageHandler;
 
-    NFCMiddleware(Intent intent){
-        intent_ = intent;
+    NFCMiddleware(NFCTag tag){
+        tag_ = tag;
     }
+
+    //获取tag数据
+    public String readTag(NFCTag tag){
+        String dataString = "";
+
+        NdefMessage[] tagMsgs = tag.getNdefMessages();
+        NdefMessage msgIwant;
+        if (tagMsgs.length > 0){
+            msgIwant = tagMsgs[tagMsgs.length -1];
+            System.out.println(msgIwant.toString());
+
+            if (msgIwant != null){
+                NdefRecord[] records = msgIwant.getRecords();
+                if (records.length > 0){
+                    dataString = TextRecord.parse(records[records.length-1]).getText();
+                    System.out.println(dataString);
+                }else {
+                    System.out.println("ndefrecord count is zero");
+                }
+            }else {
+                System.out.println("get ndefmessage error");
+            }
+
+        }else {
+            System.out.println("ndefmessage count is zero");
+        }
+        //            NDEFSimplifiedMessage tagSimpleMsg =
+//            tmpTag.getNDEFSimplifiedHandler(tmpTag.getCurrentValideTLVBlokID()).getNDEFSimplifiedMessage();
+//            NdefRecord[] records = tagSimpleMsg.getNDEFMessage().getRecords();
+//            System.out.println(tagSimpleMsg.getNDEFMessage().toString());
+
+        return dataString;
+    }
+
+    //组装数据
+    private NDEFSimplifiedMessage msgToWrite(String msgData){
+        NDEFSimplifiedMessage simplifiedMessage = new NDEFVCardMessage();
+        stnfcndefhandler stnfcndefhandler = new stnfcndefhandler();
+        stnfcndefhandler.setNdefVCard(msgData);
+        simplifiedMessage.setNDEFMessage(stnfcndefhandler.gettnf(0),
+                stnfcndefhandler.gettype(0),
+                stnfcndefhandler);
+        return simplifiedMessage;
+    }
+
+    //写入tag
+    public stndefwritestatus writeTag(String data){
+        stndefwritestatus status;
+        NDEFSimplifiedMessage msgToWrite = msgToWrite(data);
+
+        NFCApplication currentApp = NFCApplication.getApplication();
+        NFCTag currentTag = currentApp.getCurrentTag();
+        if (currentTag == null || (!currentTag.pingTag())){
+            System.out.println("There is wrong with current tag when writing Tag!");
+            return stndefwritestatus.WRITE_STATUS_FAILED;
+        }
+        status = currentTag.writeNDEFMessage(msgToWrite);
+        return status;
+    }
+
 
     private void manageSmartNdefArrayData(Intent intent) {
         byte[] barray = intent.getByteArrayExtra("ndefbyteArray");
@@ -34,9 +101,7 @@ public class NFCMiddleware {
             _mndefMessageHandler = new stnfcndefhandler(barray,(short)0);
         }
     }
-
     NFCTag newTag = NFCApplication.getApplication().getCurrentTag();
-
     public NDEFSimplifiedMessage resolvTag(NFCTag newTag){
 
         NDEFSimplifiedMessage newMsg = null;
@@ -66,9 +131,6 @@ public class NFCMiddleware {
 
         return newMsg;
     }
-
-
-
     void resolveMessage(NDEFSimplifiedMessage newMsg){
         NDEFSimplifiedMessageType newMsgType = NDEFSimplifiedMessageType.NDEF_SIMPLE_MSG_TYPE_EMPTY;
         if (newMsg != null) {
@@ -85,14 +147,6 @@ public class NFCMiddleware {
                 // Nothing to do... for the moment
                 // Just hide current fragment, if not already hidden
         }
-    }
-
-    public byte[] readTag(){
-        return new byte[0];
-    }
-
-    public void writeTag(){
-        NDEFSimplifiedMessage msgToWrite;
     }
 
 }
