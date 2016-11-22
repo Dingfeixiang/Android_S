@@ -632,7 +632,8 @@ public class NFCTag {
 		}
 		// Update Tab information after write
 		// FBE
-		if (writeStatus == stndefwritestatus.WRITE_STATUS_OK) decodeTag();
+		if (writeStatus == stndefwritestatus.WRITE_STATUS_OK)
+		    decodeTag();
 
 		return writeStatus;
 	}

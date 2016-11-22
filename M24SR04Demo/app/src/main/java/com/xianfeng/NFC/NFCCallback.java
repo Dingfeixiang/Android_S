@@ -6,13 +6,14 @@ package com.xianfeng.NFC;
 
 public class NFCCallback {
 
-    public enum TagStatus{
+    public enum Status{
         TAG_EMPTY,
-        TAG_USED,
+        TAG_WRITE_SUCCESS,
+        TAG_WRITE_FAILED,
     }
 
     public interface TagCallBack{
-        void currentTagStatus(TagStatus status);
+        void currentTagStatus(Status status);
     }
 
     public interface ReadCallBack{

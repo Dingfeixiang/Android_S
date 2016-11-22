@@ -146,7 +146,7 @@ public class NFCManager {
     //从Intent中读卡
     public void readData(Intent intent,NFCCallback.ReadCallBack callback){
         System.out.println ("从intent中获取标签信息！");
-
+        if (intent == null) return;
         //从这里获取intent 并组装成ST NFCTag
         NFCTag nfcTag = getNFCTag(intent);
         NFCMiddleware middleware = new NFCMiddleware(nfcTag);
@@ -157,19 +157,26 @@ public class NFCManager {
     }
 
     //写卡操作
-    public void writeData(String data,NFCCallback.TagCallBack tagCallBack){
+    public void writeData(Intent intent,String data,NFCCallback.TagCallBack tagCallBack){
         NFCApplication currentApp = NFCApplication.getApplication();
         NFCTag currentTag = currentApp.getCurrentTag();
+
         if ((currentTag == null) || (!currentTag.pingTag())) {
             if(tagCallBack != null)
-                tagCallBack.currentTagStatus(NFCCallback.TagStatus.TAG_EMPTY);
+                tagCallBack.currentTagStatus(NFCCallback.Status.TAG_EMPTY);
             return;
         }
-        NFCMiddleware middleware = new NFCMiddleware(currentApp.getCurrentTag());
-        middleware.writeTag(data);
 
-        if(tagCallBack != null)
-            tagCallBack.currentTagStatus(NFCCallback.TagStatus.TAG_USED);
+        NFCMiddleware middleware = new NFCMiddleware(currentApp.getCurrentTag());
+        if (middleware.writeTag(currentTag,data)){
+            if(tagCallBack != null)
+                tagCallBack.currentTagStatus(NFCCallback.Status.TAG_WRITE_SUCCESS);
+        }else {
+            if(tagCallBack != null)
+                tagCallBack.currentTagStatus(NFCCallback.Status.TAG_WRITE_FAILED);
+        }
+
+
     }
 
 

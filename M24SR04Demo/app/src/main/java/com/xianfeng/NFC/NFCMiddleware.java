@@ -1,6 +1,5 @@
 package com.xianfeng.NFC;
 
-import android.content.Intent;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.util.Log;
@@ -8,7 +7,7 @@ import android.util.Log;
 import com.st.NDEF.NDEFSimplifiedMessage;
 import com.st.NDEF.NDEFSimplifiedMessageHandler;
 import com.st.NDEF.NDEFSimplifiedMessageType;
-import com.st.NDEF.NDEFVCardMessage;
+import com.st.NDEF.NDEFTextMessage;
 import com.st.NDEF.stndefwritestatus;
 import com.st.NDEF.stnfcndefhandler;
 import com.st.NFC.NFCApplication;
@@ -66,41 +65,23 @@ public class NFCMiddleware {
 
     //组装数据
     private NDEFSimplifiedMessage msgToWrite(String msgData){
-        NDEFSimplifiedMessage simplifiedMessage = new NDEFVCardMessage();
-        stnfcndefhandler stnfcndefhandler = new stnfcndefhandler();
-        stnfcndefhandler.setNdefVCard(msgData);
-        simplifiedMessage.setNDEFMessage(stnfcndefhandler.gettnf(0),
-                stnfcndefhandler.gettype(0),
-                stnfcndefhandler);
-        return simplifiedMessage;
+        NDEFTextMessage textMessage = new NDEFTextMessage();
+        textMessage.setText(msgData);
+        return textMessage;
     }
 
     //写入tag
-    public stndefwritestatus writeTag(String data){
-        stndefwritestatus status;
+    public boolean writeTag(NFCTag nfcTag,String data){
+        //获取msg
         NDEFSimplifiedMessage msgToWrite = msgToWrite(data);
-
-        NFCApplication currentApp = NFCApplication.getApplication();
-        NFCTag currentTag = currentApp.getCurrentTag();
-        if (currentTag == null || (!currentTag.pingTag())){
-            System.out.println("There is wrong with current tag when writing Tag!");
-            return stndefwritestatus.WRITE_STATUS_FAILED;
-        }
-        status = currentTag.writeNDEFMessage(msgToWrite);
-        return status;
-    }
-
-
-    private void manageSmartNdefArrayData(Intent intent) {
-        byte[] barray = intent.getByteArrayExtra("ndefbyteArray");
-        String ndefclassfactory = intent.getStringExtra("ndefclass");
-        if (barray ==null || ndefclassfactory == null) {
-            _mndefMessageHandler = null;
-            // issue with data to write
-        } else {
-            _mndefMessageHandler = new stnfcndefhandler(barray,(short)0);
+        stndefwritestatus status = nfcTag.writeNDEFMessage(msgToWrite);
+        if (status == stndefwritestatus.WRITE_STATUS_OK){
+            return true;
+        }else {
+            return false;
         }
     }
+
     NFCTag newTag = NFCApplication.getApplication().getCurrentTag();
     public NDEFSimplifiedMessage resolvTag(NFCTag newTag){
 

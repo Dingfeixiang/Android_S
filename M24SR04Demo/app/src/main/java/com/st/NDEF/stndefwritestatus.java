@@ -30,7 +30,6 @@ package com.st.NDEF;
 
 public enum stndefwritestatus  {
 	WRITE_STATUS_OK,
-	WRITE_STATUS_FAILED,
 	WRITE_STATUS_ONGOING,
 	WRITE_STATUS_ERR_TAG_LOST,
 	WRITE_STATUS_ERR_IO,
