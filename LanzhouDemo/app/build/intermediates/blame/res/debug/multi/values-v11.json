@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/xianfeng/Desktop/android_app/LanzhouDemo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml",
+        "outputFile": "/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 187
                 },
                 "from": {
-                    "file": "/Users/xianfeng/Desktop/android_app/LanzhouDemo/app/src/main/res/values-v11/styles.xml",
+                    "file": "/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/src/main/res/values-v11/styles.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,

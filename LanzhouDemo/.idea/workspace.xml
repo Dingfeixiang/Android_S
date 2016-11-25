@@ -4,8 +4,8 @@
     <option name="SYNC_PROJECT_BEFORE_BUILD" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="765f7cd5-60b7-4f19-8dc1-c2943b34c6a6" name="Default" comment="" />
-    <ignored path="Android-Crt288bru.iws" />
+    <list default="true" id="1965f11d-1c05-4461-a280-8d55dc8d1829" name="Default" comment="" />
+    <ignored path="LanzhouDemo.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,41 +28,330 @@
     </projectState>
   </component>
   <component name="FavoritesManager">
-    <favorites_list name="Android-Crt288bru" />
+    <favorites_list name="LanzhouDemo" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="import-summary.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/import-summary.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Crt288br.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/Crt288brDrv/Crt288br.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android_crt288br/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-280">
-              <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+            <state relative-caret-position="-60">
+              <caret line="87" column="42" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
+              <folding>
+                <element signature="method#onCreate#0;class#MainActivity#0" expanded="true" />
+                <element signature="method#onStart#0;class#MainActivity#0" expanded="true" />
+                <element signature="e#3829#3830#0" expanded="true" />
+                <element signature="e#3934#3935#0" expanded="true" />
+                <element signature="e#4829#4859#0" expanded="true" />
+                <element signature="e#8174#8175#0" expanded="true" />
+                <element signature="method#TestContactCard#0;class#MainActivity#0" expanded="true" />
+                <element signature="e#8680#8687#0" expanded="true" />
+                <element signature="e#9212#9219#0" expanded="true" />
+                <element signature="method#TestNonContactCard#0;class#MainActivity#0" expanded="true" />
+                <element signature="e#9845#9852#0" expanded="true" />
+                <element signature="e#10324#10331#0" expanded="true" />
+                <element signature="e#10473#10474#0" expanded="true" />
+                <element signature="method#Test24ICxCard#0;class#MainActivity#0" expanded="true" />
+                <element signature="e#11664#11671#0" expanded="true" />
+                <element signature="method#TestSimCard#0;class#MainActivity#0" expanded="true" />
+                <element signature="e#12389#12396#0" expanded="true" />
+                <element signature="e#12623#12624#0" expanded="true" />
+                <element signature="e#12863#12870#0" expanded="true" />
+                <element signature="method#TestSLE4442#0;class#MainActivity#0" expanded="true" />
+                <element signature="e#13404#13411#0" expanded="true" />
+                <element signature="e#14774#14781#0" expanded="true" />
+                <element signature="method#TestSLE4428#0;class#MainActivity#0" expanded="true" />
+                <element signature="e#15344#15351#0" expanded="true" />
+                <element signature="e#16648#16655#0" expanded="true" />
+                <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="true" />
+                <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="true" />
+                <element signature="e#17089#17147#0" expanded="true" />
+                <element signature="docComment;class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
+                <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
+                <element signature="method#onCreateView#0;class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
+                <element signature="e#17763#17768#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XfBankRwCard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/XfBankRwCard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding>
+                <element signature="docComment;class#XfBankRwCard#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RW_Card.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/RW_Card.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+              <folding>
+                <element signature="docComment;class#RW_Card#0" expanded="true" />
+                <element signature="method#writeOrders#0;class#RW_Card#0" expanded="true" />
+                <element signature="e#744#745#0" expanded="true" />
+                <element signature="e#799#800#0" expanded="true" />
+                <element signature="e#855#856#0" expanded="true" />
+                <element signature="e#912#913#0" expanded="true" />
+                <element signature="e#1081#1085#0" expanded="true" />
+                <element signature="e#1156#1160#0" expanded="true" />
+                <element signature="e#2009#2013#0" expanded="true" />
+                <element signature="e#2334#2338#0" expanded="true" />
+                <element signature="e#3088#3092#0" expanded="true" />
+                <element signature="method#byteToInt#0;class#RW_Card#0" expanded="true" />
+                <element signature="method#innoverCard#0;class#RW_Card#0" expanded="true" />
+                <element signature="e#4250#4251#0" expanded="true" />
+                <element signature="e#4368#4372#0" expanded="true" />
+                <element signature="e#4760#4761#0" expanded="true" />
+                <element signature="e#4791#4792#0" expanded="true" />
+                <element signature="method#purchaseDate#0;class#RW_Card#0" expanded="true" />
+                <element signature="e#5253#5254#0" expanded="true" />
+                <element signature="e#5356#5358#0" expanded="true" />
+                <element signature="e#5406#5407#0" expanded="true" />
+                <element signature="method#cardNumber#0;class#RW_Card#0" expanded="true" />
+                <element signature="e#5898#5899#0" expanded="true" />
+                <element signature="e#5963#5977#0" expanded="true" />
+                <element signature="method#corporationID#0;class#RW_Card#0" expanded="true" />
+                <element signature="e#6552#6553#0" expanded="true" />
+                <element signature="e#6617#6635#0" expanded="true" />
+                <element signature="method#memcpy#0;class#RW_Card#0" expanded="true" />
+                <element signature="method#zeroFill#0;class#RW_Card#0" expanded="true" />
+                <element signature="method#itoa#0;class#RW_Card#0" expanded="true" />
+                <element signature="method#strstr#0;class#RW_Card#0" expanded="true" />
+                <marker date="1480056787000" expanded="true" signature="1004:1926" ph="..." />
+                <marker date="1480056787000" expanded="true" signature="2257:2831" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReadData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/ReadData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;class#ReadData#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Double.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-19/android.jar!/java/lang/Double.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="80">
+              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WriteData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/WriteData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+              <folding>
+                <element signature="docComment;class#WriteData#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CodeFormat.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/CodeFormat.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="278" column="25" selection-start-line="278" selection-start-column="25" selection-end-line="278" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;method#byteArr2HexStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#byteArr2HexStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="e#715#717#0" expanded="true" />
+                <element signature="docComment;method#hexStr2ByteArr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#hexStr2ByteArr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="e#1196#1197#0" expanded="true" />
+                <element signature="e#1251#1253#0" expanded="true" />
+                <element signature="docComment;method#str2ByteArr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#str2ByteArr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="e#1721#1722#0" expanded="true" />
+                <element signature="e#1776#1778#0" expanded="true" />
+                <element signature="docComment;method#hexStr2BinaryStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#hexStr2BinaryStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="e#2170#2172#0" expanded="true" />
+                <element signature="docComment;method#binaryStr2hexStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#binaryStr2hexStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#hexHigh2Low#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#hexHigh2Low#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#binaryHigh2Low#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#binaryHigh2Low#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#dateStr2HexStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#dateStr2HexStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#Integer2HexStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#Integer2HexStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#hexStr2DateStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#hexStr2DateStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#byte2Hex#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#byte2Hex#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#hexStr2Int#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#hexStr2Int#0;class#CodeFormat#0" expanded="true" />
+                <element signature="e#4949#4951#0" expanded="true" />
+                <element signature="docComment;method#hexStr2IntStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#hexStr2IntStr#0;class#CodeFormat#0" expanded="true" />
+                <element signature="e#5113#5115#0" expanded="true" />
+                <element signature="docComment;method#getFString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#getFString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#getZeroString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#getZeroString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#addZeroString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#addZeroString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#formatString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#formatString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#formatZeroString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#formatZeroString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#getBytes#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#getBytes#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#convertStringToHex#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#convertStringToHex#0;class#CodeFormat#0" expanded="true" />
+                <element signature="docComment;method#convertHexToString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#convertHexToString#0;class#CodeFormat#0" expanded="true" />
+                <element signature="e#7786#7788#0" expanded="true" />
+                <element signature="docComment;method#hexToStringGBK#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#hexToStringGBK#0;class#CodeFormat#0" expanded="true" />
+                <element signature="e#8179#8181#0" expanded="true" />
+                <element signature="e#8298#8303#0" expanded="true" />
+                <element signature="docComment;method#gbkToStringHex#0;class#CodeFormat#0" expanded="true" />
+                <element signature="method#gbkToStringHex#0;class#CodeFormat#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hex.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/Hex.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="827">
+              <caret line="82" column="7" selection-start-line="82" selection-start-column="7" selection-end-line="82" selection-end-column="7" />
+              <folding>
+                <element signature="docComment;class#Hex#0" expanded="true" />
+                <element signature="docComment;field#DIGITS_LOWER#0;class#Hex#0" expanded="true" />
+                <element signature="docComment;field#DIGITS_UPPER#0;class#Hex#0" expanded="true" />
+                <element signature="docComment;method#encodeHex#0;class#Hex#0" expanded="true" />
+                <element signature="e#771#772#0" expanded="true" />
+                <element signature="e#815#816#0" expanded="true" />
+                <element signature="docComment;method#encodeHex#1;class#Hex#0" expanded="true" />
+                <element signature="method#encodeHex#1;class#Hex#0" expanded="true" />
+                <element signature="docComment;method#encodeHex#2;class#Hex#0" expanded="true" />
+                <element signature="method#encodeHex#2;class#Hex#0" expanded="true" />
+                <element signature="docComment;method#encodeHexStr#0;class#Hex#0" expanded="true" />
+                <element signature="e#1898#1899#0" expanded="true" />
+                <element signature="e#1945#1946#0" expanded="true" />
+                <element signature="method#encodeHexStr#1;class#Hex#0" expanded="true" />
+                <element signature="docComment;method#encodeHexStr#2;class#Hex#0" expanded="true" />
+                <element signature="method#encodeHexStr#2;class#Hex#0" expanded="true" />
+                <element signature="docComment;method#decodeHex#0;class#Hex#0" expanded="true" />
+                <element signature="method#decodeHex#0;class#Hex#0" expanded="true" />
+                <element signature="docComment;method#toDigit#0;class#Hex#0" expanded="true" />
+                <element signature="method#toDigit#0;class#Hex#0" expanded="true" />
+                <element signature="method#main#0;class#Hex#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Arrays.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-19/android.jar!/java/util/Arrays.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="122">
+              <caret line="428" column="26" selection-start-line="428" selection-start-column="26" selection-end-line="428" selection-end-column="26" />
+              <folding>
+                <element signature="method#binarySearch#0;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#1;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#2;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#3;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#4;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#5;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#6;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#7;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#9;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#10;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#11;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#12;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#13;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#14;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#15;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#16;class#Arrays#0" expanded="true" />
+                <element signature="method#binarySearch#17;class#Arrays#0" expanded="true" />
+                <element signature="method#fill#1;class#Arrays#0" expanded="true" />
+                <element signature="method#fill#3;class#Arrays#0" expanded="true" />
+                <element signature="method#fill#5;class#Arrays#0" expanded="true" />
+                <element signature="method#fill#7;class#Arrays#0" expanded="true" />
+                <element signature="method#fill#9;class#Arrays#0" expanded="true" />
+                <element signature="method#fill#11;class#Arrays#0" expanded="true" />
+                <element signature="method#fill#13;class#Arrays#0" expanded="true" />
+                <element signature="method#fill#15;class#Arrays#0" expanded="true" />
+                <element signature="method#fill#17;class#Arrays#0" expanded="true" />
+                <element signature="method#equals#0;class#Arrays#0" expanded="true" />
+                <element signature="method#equals#1;class#Arrays#0" expanded="true" />
+                <element signature="method#equals#2;class#Arrays#0" expanded="true" />
+                <element signature="method#equals#3;class#Arrays#0" expanded="true" />
+                <element signature="method#equals#4;class#Arrays#0" expanded="true" />
+                <element signature="method#equals#5;class#Arrays#0" expanded="true" />
+                <element signature="method#equals#6;class#Arrays#0" expanded="true" />
+                <element signature="method#equals#7;class#Arrays#0" expanded="true" />
+                <element signature="method#equals#8;class#Arrays#0" expanded="true" />
+                <element signature="method#deepEquals#0;class#Arrays#0" expanded="true" />
+                <element signature="method#sort#1;class#Arrays#0" expanded="true" />
+                <element signature="method#sort#3;class#Arrays#0" expanded="true" />
+                <element signature="method#sort#5;class#Arrays#0" expanded="true" />
+                <element signature="method#sort#7;class#Arrays#0" expanded="true" />
+                <element signature="method#sort#9;class#Arrays#0" expanded="true" />
+                <element signature="method#sort#11;class#Arrays#0" expanded="true" />
+                <element signature="method#sort#13;class#Arrays#0" expanded="true" />
+                <element signature="method#sort#15;class#Arrays#0" expanded="true" />
+                <element signature="method#sort#16;class#Arrays#0" expanded="true" />
+                <element signature="method#sort#17;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOf#0;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOf#1;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOf#2;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOf#3;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOf#4;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOf#5;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOf#6;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOf#7;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOf#8;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOf#9;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOfRange#0;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOfRange#1;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOfRange#2;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOfRange#3;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOfRange#4;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOfRange#5;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOfRange#6;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOfRange#7;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOfRange#8;class#Arrays#0" expanded="true" />
+                <element signature="method#copyOfRange#9;class#Arrays#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="ASClass" />
+      </list>
+    </option>
   </component>
   <component name="GradleLocalSettings">
     <option name="availableProjects">
@@ -1653,14 +1942,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android_crt288br/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xianfeng/XfBankRwCard.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xianfeng/Hex.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xianfeng/CodeFormat.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xianfeng/ReadData.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xianfeng/RW_Card.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="773" />
+    <option name="width" value="1277" />
+    <option name="height" value="767" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1688,12 +1981,28 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="LanzhouDemo" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LanzhouDemo" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1720,8 +2029,34 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="android_crt288br" />
+              <option name="myItemId" value="com" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="xianfeng" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LanzhouDemo" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android_crt288br" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1744,17 +2079,17 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
-    <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.folding" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BluetoothLeDemo" />
+    <property name="device.picker.selection" value="FA3C3W904914" />
   </component>
   <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
@@ -1802,6 +2137,50 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+      </Native>
+      <Profilers>
+        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
+        <option name="GAPID_ENABLED" value="false" />
+        <option name="GAPID_DISABLE_PCS" value="false" />
+        <option name="SUPPORT_LIB_ENABLED" value="true" />
+        <option name="INSTRUMENTATION_ENABLED" value="true" />
+      </Profilers>
+      <method />
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" />
@@ -1815,6 +2194,22 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -1840,6 +2235,27 @@
         <option name="Make" enabled="false" />
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
@@ -1877,7 +2293,35 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration default="true" type="TestNGTestDiscovery" factoryName="TestNG Test Discovery" changeList="All">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="false" name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="app" />
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
@@ -1891,7 +2335,7 @@
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
       <option name="DEBUGGER_TYPE" value="Auto" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="true" />
       <option name="PREFERRED_AVD" value="" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
@@ -1946,16 +2390,16 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="765f7cd5-60b7-4f19-8dc1-c2943b34c6a6" name="Default" comment="" />
-      <created>1479956978597</created>
+      <changelist id="1965f11d-1c05-4461-a280-8d55dc8d1829" name="Default" comment="" />
+      <created>1479957162921</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1479956978597</updated>
+      <updated>1479957162921</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="773" extended-state="0" />
+    <frame x="0" y="23" width="1277" height="767" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1965,8 +2409,8 @@
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39878234" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -1978,8 +2422,9 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2536349" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25020242" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
@@ -1988,44 +2433,365 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$USER_HOME$" />
-    </ignored-roots>
-  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="5" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/import-summary.txt">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/XfBankRwCard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        <state relative-caret-position="140">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="docComment;class#XfBankRwCard#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-19/android.jar!/java/util/Arrays.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="428" column="26" selection-start-line="428" selection-start-column="26" selection-end-line="428" selection-end-column="26" />
+          <folding>
+            <element signature="method#binarySearch#0;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#1;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#2;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#3;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#4;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#5;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#6;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#7;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#9;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#10;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#11;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#12;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#13;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#14;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#15;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#16;class#Arrays#0" expanded="true" />
+            <element signature="method#binarySearch#17;class#Arrays#0" expanded="true" />
+            <element signature="method#fill#1;class#Arrays#0" expanded="true" />
+            <element signature="method#fill#3;class#Arrays#0" expanded="true" />
+            <element signature="method#fill#5;class#Arrays#0" expanded="true" />
+            <element signature="method#fill#7;class#Arrays#0" expanded="true" />
+            <element signature="method#fill#9;class#Arrays#0" expanded="true" />
+            <element signature="method#fill#11;class#Arrays#0" expanded="true" />
+            <element signature="method#fill#13;class#Arrays#0" expanded="true" />
+            <element signature="method#fill#15;class#Arrays#0" expanded="true" />
+            <element signature="method#fill#17;class#Arrays#0" expanded="true" />
+            <element signature="method#equals#0;class#Arrays#0" expanded="true" />
+            <element signature="method#equals#1;class#Arrays#0" expanded="true" />
+            <element signature="method#equals#2;class#Arrays#0" expanded="true" />
+            <element signature="method#equals#3;class#Arrays#0" expanded="true" />
+            <element signature="method#equals#4;class#Arrays#0" expanded="true" />
+            <element signature="method#equals#5;class#Arrays#0" expanded="true" />
+            <element signature="method#equals#6;class#Arrays#0" expanded="true" />
+            <element signature="method#equals#7;class#Arrays#0" expanded="true" />
+            <element signature="method#equals#8;class#Arrays#0" expanded="true" />
+            <element signature="method#deepEquals#0;class#Arrays#0" expanded="true" />
+            <element signature="method#sort#1;class#Arrays#0" expanded="true" />
+            <element signature="method#sort#3;class#Arrays#0" expanded="true" />
+            <element signature="method#sort#5;class#Arrays#0" expanded="true" />
+            <element signature="method#sort#7;class#Arrays#0" expanded="true" />
+            <element signature="method#sort#9;class#Arrays#0" expanded="true" />
+            <element signature="method#sort#11;class#Arrays#0" expanded="true" />
+            <element signature="method#sort#13;class#Arrays#0" expanded="true" />
+            <element signature="method#sort#15;class#Arrays#0" expanded="true" />
+            <element signature="method#sort#16;class#Arrays#0" expanded="true" />
+            <element signature="method#sort#17;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOf#0;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOf#1;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOf#2;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOf#3;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOf#4;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOf#5;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOf#6;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOf#7;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOf#8;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOf#9;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOfRange#0;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOfRange#1;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOfRange#2;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOfRange#3;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOfRange#4;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOfRange#5;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOfRange#6;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOfRange#7;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOfRange#8;class#Arrays#0" expanded="true" />
+            <element signature="method#copyOfRange#9;class#Arrays#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/Hex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="827">
+          <caret line="82" column="7" selection-start-line="82" selection-start-column="7" selection-end-line="82" selection-end-column="7" />
+          <folding>
+            <element signature="docComment;class#Hex#0" expanded="true" />
+            <element signature="docComment;field#DIGITS_LOWER#0;class#Hex#0" expanded="true" />
+            <element signature="docComment;field#DIGITS_UPPER#0;class#Hex#0" expanded="true" />
+            <element signature="docComment;method#encodeHex#0;class#Hex#0" expanded="true" />
+            <element signature="e#771#772#0" expanded="true" />
+            <element signature="e#815#816#0" expanded="true" />
+            <element signature="docComment;method#encodeHex#1;class#Hex#0" expanded="true" />
+            <element signature="method#encodeHex#1;class#Hex#0" expanded="true" />
+            <element signature="docComment;method#encodeHex#2;class#Hex#0" expanded="true" />
+            <element signature="method#encodeHex#2;class#Hex#0" expanded="true" />
+            <element signature="docComment;method#encodeHexStr#0;class#Hex#0" expanded="true" />
+            <element signature="e#1898#1899#0" expanded="true" />
+            <element signature="e#1945#1946#0" expanded="true" />
+            <element signature="method#encodeHexStr#1;class#Hex#0" expanded="true" />
+            <element signature="docComment;method#encodeHexStr#2;class#Hex#0" expanded="true" />
+            <element signature="method#encodeHexStr#2;class#Hex#0" expanded="true" />
+            <element signature="docComment;method#decodeHex#0;class#Hex#0" expanded="true" />
+            <element signature="method#decodeHex#0;class#Hex#0" expanded="true" />
+            <element signature="docComment;method#toDigit#0;class#Hex#0" expanded="true" />
+            <element signature="method#toDigit#0;class#Hex#0" expanded="true" />
+            <element signature="method#main#0;class#Hex#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-19/android.jar!/java/lang/Byte.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Crt288brDrv/Crt288br.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/WriteData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="120">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding>
+            <element signature="docComment;class#WriteData#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-19/android.jar!/java/lang/Double.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-19/android.jar!/java/lang/StringBuffer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding>
+            <element signature="method#append#8;class#StringBuffer#0" expanded="true" />
+            <element signature="method#append#10;class#StringBuffer#0" expanded="true" />
+            <element signature="method#append#12;class#StringBuffer#0" expanded="true" />
+            <element signature="method#codePointCount#0;class#StringBuffer#0" expanded="true" />
+            <element signature="method#delete#0;class#StringBuffer#0" expanded="true" />
+            <element signature="method#deleteCharAt#0;class#StringBuffer#0" expanded="true" />
+            <element signature="method#getChars#0;class#StringBuffer#0" expanded="true" />
+            <element signature="method#indexOf#0;class#StringBuffer#0" expanded="true" />
+            <element signature="method#insert#0;class#StringBuffer#0" expanded="true" />
+            <element signature="method#insert#7;class#StringBuffer#0" expanded="true" />
+            <element signature="method#insert#8;class#StringBuffer#0" expanded="true" />
+            <element signature="method#insert#9;class#StringBuffer#0" expanded="true" />
+            <element signature="method#insert#10;class#StringBuffer#0" expanded="true" />
+            <element signature="method#insert#11;class#StringBuffer#0" expanded="true" />
+            <element signature="method#lastIndexOf#0;class#StringBuffer#0" expanded="true" />
+            <element signature="method#offsetByCodePoints#0;class#StringBuffer#0" expanded="true" />
+            <element signature="method#replace#0;class#StringBuffer#0" expanded="true" />
+            <element signature="method#subSequence#0;class#StringBuffer#0" expanded="true" />
+            <element signature="method#substring#1;class#StringBuffer#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/CodeFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="278" column="25" selection-start-line="278" selection-start-column="25" selection-end-line="278" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#byteArr2HexStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#byteArr2HexStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="e#715#717#0" expanded="true" />
+            <element signature="docComment;method#hexStr2ByteArr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#hexStr2ByteArr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="e#1196#1197#0" expanded="true" />
+            <element signature="e#1251#1253#0" expanded="true" />
+            <element signature="docComment;method#str2ByteArr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#str2ByteArr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="e#1721#1722#0" expanded="true" />
+            <element signature="e#1776#1778#0" expanded="true" />
+            <element signature="docComment;method#hexStr2BinaryStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#hexStr2BinaryStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="e#2170#2172#0" expanded="true" />
+            <element signature="docComment;method#binaryStr2hexStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#binaryStr2hexStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#hexHigh2Low#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#hexHigh2Low#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#binaryHigh2Low#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#binaryHigh2Low#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#dateStr2HexStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#dateStr2HexStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#Integer2HexStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#Integer2HexStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#hexStr2DateStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#hexStr2DateStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#byte2Hex#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#byte2Hex#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#hexStr2Int#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#hexStr2Int#0;class#CodeFormat#0" expanded="true" />
+            <element signature="e#4949#4951#0" expanded="true" />
+            <element signature="docComment;method#hexStr2IntStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#hexStr2IntStr#0;class#CodeFormat#0" expanded="true" />
+            <element signature="e#5113#5115#0" expanded="true" />
+            <element signature="docComment;method#getFString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#getFString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#getZeroString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#getZeroString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#addZeroString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#addZeroString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#formatString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#formatString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#formatZeroString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#formatZeroString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#getBytes#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#getBytes#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#convertStringToHex#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#convertStringToHex#0;class#CodeFormat#0" expanded="true" />
+            <element signature="docComment;method#convertHexToString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#convertHexToString#0;class#CodeFormat#0" expanded="true" />
+            <element signature="e#7786#7788#0" expanded="true" />
+            <element signature="docComment;method#hexToStringGBK#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#hexToStringGBK#0;class#CodeFormat#0" expanded="true" />
+            <element signature="e#8179#8181#0" expanded="true" />
+            <element signature="e#8298#8303#0" expanded="true" />
+            <element signature="docComment;method#gbkToStringHex#0;class#CodeFormat#0" expanded="true" />
+            <element signature="method#gbkToStringHex#0;class#CodeFormat#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-19/android.jar!/java/lang/Throwable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+          <folding>
+            <element signature="e#938#939#0" expanded="true" />
+            <element signature="e#989#990#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/ReadData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#ReadData#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/RW_Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="15" column="44" selection-start-line="15" selection-start-column="44" selection-end-line="15" selection-end-column="44" />
+          <folding>
+            <element signature="docComment;class#RW_Card#0" expanded="true" />
+            <element signature="method#writeOrders#0;class#RW_Card#0" expanded="true" />
+            <element signature="e#744#745#0" expanded="true" />
+            <element signature="e#799#800#0" expanded="true" />
+            <element signature="e#855#856#0" expanded="true" />
+            <element signature="e#912#913#0" expanded="true" />
+            <element signature="e#1081#1085#0" expanded="true" />
+            <element signature="e#1156#1160#0" expanded="true" />
+            <element signature="e#2009#2013#0" expanded="true" />
+            <element signature="e#2334#2338#0" expanded="true" />
+            <element signature="e#3088#3092#0" expanded="true" />
+            <element signature="method#byteToInt#0;class#RW_Card#0" expanded="true" />
+            <element signature="method#innoverCard#0;class#RW_Card#0" expanded="true" />
+            <element signature="e#4250#4251#0" expanded="true" />
+            <element signature="e#4368#4372#0" expanded="true" />
+            <element signature="e#4760#4761#0" expanded="true" />
+            <element signature="e#4791#4792#0" expanded="true" />
+            <element signature="method#purchaseDate#0;class#RW_Card#0" expanded="true" />
+            <element signature="e#5253#5254#0" expanded="true" />
+            <element signature="e#5356#5358#0" expanded="true" />
+            <element signature="e#5406#5407#0" expanded="true" />
+            <element signature="method#cardNumber#0;class#RW_Card#0" expanded="true" />
+            <element signature="e#5898#5899#0" expanded="true" />
+            <element signature="e#5963#5977#0" expanded="true" />
+            <element signature="method#corporationID#0;class#RW_Card#0" expanded="true" />
+            <element signature="e#6552#6553#0" expanded="true" />
+            <element signature="e#6617#6635#0" expanded="true" />
+            <element signature="method#memcpy#0;class#RW_Card#0" expanded="true" />
+            <element signature="method#zeroFill#0;class#RW_Card#0" expanded="true" />
+            <element signature="method#itoa#0;class#RW_Card#0" expanded="true" />
+            <element signature="method#strstr#0;class#RW_Card#0" expanded="true" />
+            <marker date="1480056787000" expanded="true" signature="1004:1926" ph="..." />
+            <marker date="1480056787000" expanded="true" signature="2257:2831" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android_crt288br/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-280">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="-60">
+          <caret line="87" column="42" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
+          <folding>
+            <element signature="method#onCreate#0;class#MainActivity#0" expanded="true" />
+            <element signature="method#onStart#0;class#MainActivity#0" expanded="true" />
+            <element signature="e#3829#3830#0" expanded="true" />
+            <element signature="e#3934#3935#0" expanded="true" />
+            <element signature="e#4829#4859#0" expanded="true" />
+            <element signature="e#8174#8175#0" expanded="true" />
+            <element signature="method#TestContactCard#0;class#MainActivity#0" expanded="true" />
+            <element signature="e#8680#8687#0" expanded="true" />
+            <element signature="e#9212#9219#0" expanded="true" />
+            <element signature="method#TestNonContactCard#0;class#MainActivity#0" expanded="true" />
+            <element signature="e#9845#9852#0" expanded="true" />
+            <element signature="e#10324#10331#0" expanded="true" />
+            <element signature="e#10473#10474#0" expanded="true" />
+            <element signature="method#Test24ICxCard#0;class#MainActivity#0" expanded="true" />
+            <element signature="e#11664#11671#0" expanded="true" />
+            <element signature="method#TestSimCard#0;class#MainActivity#0" expanded="true" />
+            <element signature="e#12389#12396#0" expanded="true" />
+            <element signature="e#12623#12624#0" expanded="true" />
+            <element signature="e#12863#12870#0" expanded="true" />
+            <element signature="method#TestSLE4442#0;class#MainActivity#0" expanded="true" />
+            <element signature="e#13404#13411#0" expanded="true" />
+            <element signature="e#14774#14781#0" expanded="true" />
+            <element signature="method#TestSLE4428#0;class#MainActivity#0" expanded="true" />
+            <element signature="e#15344#15351#0" expanded="true" />
+            <element signature="e#16648#16655#0" expanded="true" />
+            <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="true" />
+            <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="true" />
+            <element signature="e#17089#17147#0" expanded="true" />
+            <element signature="docComment;class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
+            <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
+            <element signature="method#onCreateView#0;class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
+            <element signature="e#17763#17768#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

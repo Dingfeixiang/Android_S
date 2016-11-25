@@ -1,0 +1,36 @@
+#Internal package file, do not edit.
+#Thu Nov 24 11:18:56 CST 2016
+2.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main
+5.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main/lib/x86/libcrt288bru_drv.so
+5.set=NATIVE_RESOURCE
+3.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+6.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_/resources.arsc
+2.set=NATIVE_RESOURCE
+10.set=ANDROID_RESOURCE
+10.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_/res/layout/activity_main.xml
+4.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_
+7.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main/lib/armeabi-v7a/libcrt288bru_drv.so
+7.set=NATIVE_RESOURCE
+count=11
+0.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/ic_launcher.png
+5.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main
+8.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_/res/menu/main.xml
+4.set=ANDROID_RESOURCE
+6.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_
+1.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main/lib/armeabi/libcrt288bru_drv.so
+9.set=ANDROID_RESOURCE
+9.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_/AndroidManifest.xml
+10.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_
+1.set=NATIVE_RESOURCE
+7.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main
+2.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main/lib/mips/libcrt288bru_drv.so
+6.set=ANDROID_RESOURCE
+0.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_
+8.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_
+3.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
+3.set=DEX
+1.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main
+9.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_
+4.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_/res/layout/fragment_main.xml
+8.set=ANDROID_RESOURCE
+0.set=ANDROID_RESOURCE

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3fcd5130d8e87c29d0860b7612081b70644c7db4">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_990150f6a1059cf742313508f63d15c4d0a1e5ea.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6939cb6d17aed5bf9be7e43c530e2a4b56ad2c9a">
+        <dex dex="/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/pre-dexed/debug/instant-run_8780b3fd634121c75c834a7a0e71887210189b38.jar" />
+    </item>
+
+</items>
