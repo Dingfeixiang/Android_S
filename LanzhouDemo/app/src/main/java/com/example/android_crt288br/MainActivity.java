@@ -40,6 +40,11 @@ public class MainActivity extends Activity {
 	Button btnOpen, btnOpenUsb, btnClose, btnInit,btnGetCardStatus;
 	Button btnCardProcess, btnSimProcess;	
 	EditText editsPort, editBaudRate;
+	//先锋
+	Button readBtn,writeBtn;
+	EditText editWriten;
+
+
 	String g_log = "";
 	protected BroadcastReceiver mUsbReceiver;
 	private final static String TAG = "CRT288bru";
@@ -69,7 +74,12 @@ public class MainActivity extends Activity {
 		btnCardProcess  = (Button)this.findViewById(R.id.button1);
 		btnSimProcess  = (Button)this.findViewById(R.id.button2);
 
-		
+		readBtn = (Button)this.findViewById(R.id.buttonread);
+		writeBtn = (Button)this.findViewById(R.id.buttonwrite);
+		editWriten = (EditText)this.findViewById(R.id.editText3);
+
+		readBtn.setOnClickListener(xfOnClickListener);
+		writeBtn.setOnClickListener(xfOnClickListener);
 		
 		btnOpen.setOnClickListener(myOnClickListener); 
 		btnOpenUsb.setOnClickListener(myOnClickListener); 
@@ -84,8 +94,17 @@ public class MainActivity extends Activity {
 
 				
 	}
+
+	private  OnClickListener xfOnClickListener = new OnClickListener() {
+		@Override
+		public void onClick(View view) {
+
+		}
+	};
 	
-	private OnClickListener myOnClickListener = new OnClickListener() { 
+	private OnClickListener myOnClickListener = new OnClickListener() {
+		String ddd = "";
+
 		 public void onClick(View v) {
 			 String strlog = "";
 			 int iRet = 0;

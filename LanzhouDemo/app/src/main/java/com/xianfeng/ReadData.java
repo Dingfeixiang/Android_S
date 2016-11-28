@@ -12,7 +12,7 @@ public class ReadData {
     String corpno;
     String meterno;
     Integer buycount;
-    Double cardgases;
+    Integer cardgases;
     Double gasfee;
     String buygasdate;
     Integer errorcode;
