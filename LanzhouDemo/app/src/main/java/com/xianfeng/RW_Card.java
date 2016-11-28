@@ -263,12 +263,57 @@ public class RW_Card {
     }
 
     public String calcCardPwd_New(byte[] card_no){
-        return "";
+        String pwd = "";
+        byte[] ret = new byte[4];
+        byte[] customID = new byte[7];
+        byte[] coveredID;
+
+        customID = memcpy(customID,0,card_no,0,7);
+        ret[0] = (byte) (customID[0] + customID[3] ^ 0x76);
+        ret[1] = (byte) (customID[1] + customID[4] ^ 0x77);
+        ret[2] = (byte) (customID[2] + customID[5] ^ 0x80);
+
+//        coveredID = hexToChar(customID,3);
+        try{
+            pwd = CodeFormat.byteArr2HexStr(customID).substring(0,6);
+        }catch (Exception ex){
+            pwd = "";
+            System.out.println("计算密码时出现错误");
+        }
+        return pwd;
     }
 
     public String calcCardPwd(byte[] card_no){
-        return "";
+        String pwd = "";
+        byte[] ret = new byte[4];
+        byte[] customID = new byte[5];
+        byte[] coveredID;
+
+        customID = memcpy(customID,0,card_no,0,4);
+        for (int i=0;i <= 3; i++){
+            ret[0] = (byte) (customID[0] + customID[i]);
+        }
+        ret[1] = (byte)(customID[2] + 0x1B);
+        ret[2] = customID[3];
+
+//        coveredID = hexToChar(customID,3);
+        try{
+            pwd = CodeFormat.byteArr2HexStr(customID).substring(0,6);
+        }catch (Exception ex){
+            pwd = "";
+            System.out.println("计算密码时出现错误");
+        }
+        return pwd;
     }
+
+    //把一个十六进制数拼成两个字符, len 转换后数字BYTE
+    byte[] hexToChar(byte[] from,int len){
+        byte[] btout = new byte[0];
+
+
+        return btout;
+    }
+
 
     public ReadData readCard(String dataStr){
         ReadData data = new ReadData();
@@ -392,14 +437,14 @@ public class RW_Card {
             if (dataStr.length() > 512) return -1;
             hbuf = CodeFormat.hexStr2ByteArr(dataStr);
 
-//            logicCard = memcpy(logicCard,0,hbuf,0x21,1);
             //逻辑加密卡表用户卡标识
             if (hbuf[0x21] != 0x50) return -1;
 
             //公司代码
             String corpID = corporationID(hbuf,0x27);
 
-            if (CodeFormat.byteArr2HexStr(companyStr).contains(corpID)){
+            if (CodeFormat.byteArr2HexStr(companyStr)
+                    .substring(0,6).contains(corpID)){
                 errorcode = 0;
             }else {
                 errorcode = -1;
@@ -412,10 +457,6 @@ public class RW_Card {
         return errorcode;
     }
 
-    //byte 与 int 的相互转换
-    public static byte intToByte(int x) {
-        return (byte) x;
-    }
 
     //时间
     public String purchaseDate(byte[] hbuf,String dataStr){
@@ -426,13 +467,12 @@ public class RW_Card {
             }else {
                 //日期格式为 6 + 2
                 buygasdate.append(dataStr.substring(0x96*2,6));
-                byte[] tempdate = new byte[2];
-                tempdate = memcpy(tempdate,0,hbuf,0x99,1);
-                int sfdate = tempdate[0] ^ 0xC0;
-                tempdate = itoa(intToByte(sfdate),16);
-                tempdate = zeroFill(tempdate,2);
+
                 //加两位不知道是什么的码
-                buygasdate.append(CodeFormat.byteArr2HexStr(tempdate));
+                byte[] tempdate = new byte[2];
+                byte add = (byte) (hbuf[0x99] ^ 0xC0);
+                tempdate[0] = add;
+                buygasdate.append(CodeFormat.byteArr2HexStr(tempdate).substring(0,2));
             }
         }catch (Exception ex){
             System.out.println(ex.getMessage());
@@ -449,14 +489,6 @@ public class RW_Card {
             cardno += temp;
         }
         return cardno;
-//        //卡号
-//        for (int i = 0;i <= 4;i++){
-//            byte tmp = hbuf[i + 0x22];
-//            byte[] tempCardnppart = itoa(tmp,10);
-//            tempCardnppart = zeroFill(tempCardnppart,2);
-//            cardno = memcpy(cardno,i*2,tempCardnppart,0,2);
-//        }
-//        data.userno = CodeFormat.byteArr2HexStr(cardno);
     }
 
     //提取公司代码
@@ -468,16 +500,6 @@ public class RW_Card {
             corpID += temp;
         }
         return corpID;
-//        //赋值公司代码
-//        for (int i = 0;i <= 2;i++){
-//            byte tmp = hbuf[i + 0x27];
-//            //转换为十进制数
-//            byte[] tempCorpID = itoa(tmp,10);
-//            //数组补0
-//            tempCorpID = zeroFill(tempCorpID,2);
-//            corpID = memcpy(corpID,i*2,tempCorpID,0,2);
-//        }
-//        data.corpno = CodeFormat.byteArr2HexStr(corpID);
     }
 
     //System提供了一个静态方法arraycopy(),我们可以使用它来实现数组之间的复制
@@ -487,24 +509,8 @@ public class RW_Card {
     }
 
     //数字不足两位补0（公司代码和编号需要）
-    public byte[] zeroFill(byte[] cropID,int length){
-        //按Number数组长度把Ptr数组前面补零
-        byte[] cropIDIwant = new byte[512];
 
-
-
-        return cropIDIwant;
-    }
-
-    //十六进制转换为 ? 进制数
-    public byte[] itoa(byte bdata,int radix){
-        if (radix == 10){
-
-        }else if(radix == 16){
-
-        }
-        return new byte[0];
-    }
+    //十六进制转换为 ? 进制数\
 
     public static int byteToInt(byte b) {
         //Java 总是把 byte 当做有符处理；我们可以通过将其和 0xFF 进行二进制与得到它的无符值

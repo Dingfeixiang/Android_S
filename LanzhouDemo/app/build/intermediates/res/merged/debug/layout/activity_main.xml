@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="202dp" >
+        android:layout_height="386dp" >
 
         <TextView
             android:id="@+id/textView1"
@@ -109,6 +109,33 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/buttonGetCardStatus"
             android:text="关闭设备" />
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:layout_below="@+id/buttonCloseDev"
+            android:ems="10"
+            android:text="输入写卡数据" />
+
+        <Button
+            android:id="@+id/buttonwrite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="写卡"
+            android:layout_below="@+id/editText3"
+            android:layout_toRightOf="@+id/button1"
+            android:layout_toEndOf="@+id/button1" />
+
+        <Button
+            android:id="@+id/buttonread"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="读卡"
+            android:layout_below="@+id/editText3"
+            android:layout_toLeftOf="@+id/button1"
+            android:layout_toStartOf="@+id/button1" />
 
     </RelativeLayout>
 

@@ -37,10 +37,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android_crt288br/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1496">
+            <state relative-caret-position="296">
               <caret line="585" column="5" selection-start-line="585" selection-start-column="5" selection-end-line="585" selection-end-column="5" />
               <folding>
                 <element signature="method#onCreate#0;class#MainActivity#0" expanded="true" />
@@ -104,14 +104,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RW_Card.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RW_Card.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/RW_Card.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="101" column="47" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="47" />
+            <state relative-caret-position="2316">
+              <caret line="426" column="0" selection-start-line="426" selection-start-column="0" selection-end-line="426" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;class#RW_Card#0" expanded="true" />
+                <element signature="method#writeOrders#0;class#RW_Card#0" expanded="true" />
                 <element signature="e#677#683#0" expanded="true" />
                 <element signature="e#1408#1409#0" expanded="true" />
                 <element signature="e#2031#2032#0" expanded="true" />
@@ -128,48 +129,39 @@
                 <element signature="e#7275#7286#0" expanded="true" />
                 <element signature="e#8585#8638#0" expanded="true" />
                 <element signature="e#8819#8820#0" expanded="true" />
-                <element signature="e#9489#9490#0" expanded="true" />
-                <element signature="e#9514#9515#0" expanded="true" />
-                <element signature="e#9562#9563#0" expanded="true" />
-                <element signature="e#9587#9588#0" expanded="true" />
-                <element signature="method#readCard#0;class#RW_Card#0" expanded="true" />
-                <element signature="e#10118#10119#0" expanded="true" />
-                <element signature="e#10173#10174#0" expanded="true" />
-                <element signature="e#10229#10230#0" expanded="true" />
-                <element signature="e#10286#10287#0" expanded="true" />
-                <element signature="e#10455#10459#0" expanded="true" />
-                <element signature="e#10530#10534#0" expanded="true" />
-                <element signature="e#11384#11388#0" expanded="true" />
-                <element signature="e#11473#11484#0" expanded="true" />
-                <element signature="e#11715#11719#0" expanded="true" />
-                <element signature="e#12476#12480#0" expanded="true" />
+                <element signature="method#calcCardPwd_New#0;class#RW_Card#0" expanded="true" />
+                <element signature="e#9663#9664#0" expanded="true" />
+                <element signature="method#calcCardPwd#0;class#RW_Card#0" expanded="true" />
+                <element signature="e#10330#10331#0" expanded="true" />
+                <element signature="method#hexToChar#0;class#RW_Card#0" expanded="true" />
+                <element signature="e#11450#11451#0" expanded="true" />
+                <element signature="e#11505#11506#0" expanded="true" />
+                <element signature="e#11561#11562#0" expanded="true" />
+                <element signature="e#11618#11619#0" expanded="true" />
+                <element signature="e#11787#11791#0" expanded="true" />
+                <element signature="e#11862#11866#0" expanded="true" />
+                <element signature="e#12716#12720#0" expanded="true" />
+                <element signature="e#12805#12816#0" expanded="true" />
+                <element signature="e#13047#13051#0" expanded="true" />
+                <element signature="e#13808#13812#0" expanded="true" />
                 <element signature="method#innoverCard#0;class#RW_Card#0" expanded="true" />
-                <element signature="e#13372#13430#0" expanded="true" />
-                <element signature="e#13571#13575#0" expanded="true" />
-                <element signature="e#13963#13964#0" expanded="true" />
-                <element signature="e#13994#13995#0" expanded="true" />
+                <element signature="e#14844#14848#0" expanded="true" />
                 <element signature="method#purchaseDate#0;class#RW_Card#0" expanded="true" />
-                <element signature="e#14456#14457#0" expanded="true" />
-                <element signature="e#14559#14561#0" expanded="true" />
-                <element signature="e#14609#14610#0" expanded="true" />
                 <element signature="method#cardNumber#0;class#RW_Card#0" expanded="true" />
-                <element signature="e#15101#15102#0" expanded="true" />
-                <element signature="e#15166#15180#0" expanded="true" />
+                <element signature="e#16208#16209#0" expanded="true" />
                 <element signature="method#corporationID#0;class#RW_Card#0" expanded="true" />
-                <element signature="e#15755#15756#0" expanded="true" />
-                <element signature="e#15820#15838#0" expanded="true" />
+                <element signature="e#16524#16525#0" expanded="true" />
                 <element signature="method#memcpy#0;class#RW_Card#0" expanded="true" />
-                <element signature="method#zeroFill#0;class#RW_Card#0" expanded="true" />
-                <element signature="method#itoa#0;class#RW_Card#0" expanded="true" />
+                <element signature="e#16806#16827#0" expanded="true" />
                 <element signature="method#byteToInt#0;class#RW_Card#0" expanded="true" />
                 <element signature="method#strstr#0;class#RW_Card#0" expanded="true" />
-                <marker date="1480315269000" expanded="true" signature="1218:3586" ph="..." />
-                <marker date="1480315269000" expanded="false" signature="4048:4307" ph="..." />
-                <marker date="1480315269000" expanded="false" signature="4447:4613" ph="..." />
-                <marker date="1480315269000" expanded="false" signature="4752:4902" ph="..." />
-                <marker date="1480315269000" expanded="false" signature="4924:5017" ph="..." />
-                <marker date="1480315269000" expanded="false" signature="10378:11301" ph="..." />
-                <marker date="1480315269000" expanded="true" signature="11638:12213" ph="..." />
+                <marker date="1480318963000" expanded="true" signature="1218:3586" ph="..." />
+                <marker date="1480318963000" expanded="false" signature="4048:4307" ph="..." />
+                <marker date="1480318963000" expanded="false" signature="4447:4613" ph="..." />
+                <marker date="1480318963000" expanded="false" signature="4752:4902" ph="..." />
+                <marker date="1480318963000" expanded="false" signature="4924:5017" ph="..." />
+                <marker date="1480318963000" expanded="false" signature="11710:12633" ph="..." />
+                <marker date="1480318963000" expanded="true" signature="12970:13545" ph="..." />
               </folding>
             </state>
           </provider>
@@ -203,8 +195,8 @@
       <file leaf-file-name="CodeFormat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/CodeFormat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+            <state relative-caret-position="116">
+              <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="docComment;method#byteArr2HexStr#0;class#CodeFormat#0" expanded="true" />
@@ -1988,10 +1980,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-343" />
+    <option name="x" value="9" />
     <option name="y" value="23" />
-    <option name="width" value="1019" />
-    <option name="height" value="761" />
+    <option name="width" value="1256" />
+    <option name="height" value="751" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -2456,7 +2448,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-343" y="23" width="1019" height="761" extended-state="0" />
+    <frame x="9" y="23" width="1256" height="751" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -2467,7 +2459,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39878234" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3984252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -2480,7 +2472,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31627432" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23805602" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -2507,7 +2499,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2707,44 +2699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android_crt288br/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="585" column="5" selection-start-line="585" selection-start-column="5" selection-end-line="585" selection-end-column="5" />
-          <folding>
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="true" />
-            <element signature="method#onStart#0;class#MainActivity#0" expanded="true" />
-            <element signature="class#3000:3074" expanded="true" />
-            <element signature="method#onClick#0;class#3000:3074" expanded="true" />
-            <element signature="method#onClick#0;class#3127:8671" expanded="true" />
-            <element signature="e#4302#4303#0" expanded="true" />
-            <element signature="e#4407#4408#0" expanded="true" />
-            <element signature="e#5302#5332#0" expanded="true" />
-            <element signature="e#8647#8648#0" expanded="true" />
-            <element signature="e#9153#9160#0" expanded="true" />
-            <element signature="e#9685#9692#0" expanded="true" />
-            <element signature="e#10318#10325#0" expanded="true" />
-            <element signature="e#10797#10804#0" expanded="true" />
-            <element signature="e#10946#10947#0" expanded="true" />
-            <element signature="e#12137#12144#0" expanded="true" />
-            <element signature="e#12862#12869#0" expanded="true" />
-            <element signature="e#13096#13097#0" expanded="true" />
-            <element signature="e#13336#13343#0" expanded="true" />
-            <element signature="e#13877#13884#0" expanded="true" />
-            <element signature="e#15247#15254#0" expanded="true" />
-            <element signature="e#15817#15824#0" expanded="true" />
-            <element signature="e#17121#17128#0" expanded="true" />
-            <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="true" />
-            <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="true" />
-            <element signature="e#17562#17620#0" expanded="true" />
-            <element signature="docComment;class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
-            <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
-            <element signature="method#onCreateView#0;class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
-            <element signature="e#18236#18241#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/Library/Android/sdk/platforms/android-19/android.jar!/java/lang/String.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -2783,10 +2737,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/WriteData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="docComment;class#WriteData#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/CodeFormat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+        <state relative-caret-position="116">
+          <caret line="17" column="25" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;method#byteArr2HexStr#0;class#CodeFormat#0" expanded="true" />
@@ -2850,23 +2814,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/WriteData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="docComment;class#WriteData#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xianfeng/RW_Card.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="101" column="47" selection-start-line="101" selection-start-column="47" selection-end-line="101" selection-end-column="47" />
+        <state relative-caret-position="2316">
+          <caret line="426" column="0" selection-start-line="426" selection-start-column="0" selection-end-line="426" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;class#RW_Card#0" expanded="true" />
+            <element signature="method#writeOrders#0;class#RW_Card#0" expanded="true" />
             <element signature="e#677#683#0" expanded="true" />
             <element signature="e#1408#1409#0" expanded="true" />
             <element signature="e#2031#2032#0" expanded="true" />
@@ -2883,48 +2838,77 @@
             <element signature="e#7275#7286#0" expanded="true" />
             <element signature="e#8585#8638#0" expanded="true" />
             <element signature="e#8819#8820#0" expanded="true" />
-            <element signature="e#9489#9490#0" expanded="true" />
-            <element signature="e#9514#9515#0" expanded="true" />
-            <element signature="e#9562#9563#0" expanded="true" />
-            <element signature="e#9587#9588#0" expanded="true" />
-            <element signature="method#readCard#0;class#RW_Card#0" expanded="true" />
-            <element signature="e#10118#10119#0" expanded="true" />
-            <element signature="e#10173#10174#0" expanded="true" />
-            <element signature="e#10229#10230#0" expanded="true" />
-            <element signature="e#10286#10287#0" expanded="true" />
-            <element signature="e#10455#10459#0" expanded="true" />
-            <element signature="e#10530#10534#0" expanded="true" />
-            <element signature="e#11384#11388#0" expanded="true" />
-            <element signature="e#11473#11484#0" expanded="true" />
-            <element signature="e#11715#11719#0" expanded="true" />
-            <element signature="e#12476#12480#0" expanded="true" />
+            <element signature="method#calcCardPwd_New#0;class#RW_Card#0" expanded="true" />
+            <element signature="e#9663#9664#0" expanded="true" />
+            <element signature="method#calcCardPwd#0;class#RW_Card#0" expanded="true" />
+            <element signature="e#10330#10331#0" expanded="true" />
+            <element signature="method#hexToChar#0;class#RW_Card#0" expanded="true" />
+            <element signature="e#11450#11451#0" expanded="true" />
+            <element signature="e#11505#11506#0" expanded="true" />
+            <element signature="e#11561#11562#0" expanded="true" />
+            <element signature="e#11618#11619#0" expanded="true" />
+            <element signature="e#11787#11791#0" expanded="true" />
+            <element signature="e#11862#11866#0" expanded="true" />
+            <element signature="e#12716#12720#0" expanded="true" />
+            <element signature="e#12805#12816#0" expanded="true" />
+            <element signature="e#13047#13051#0" expanded="true" />
+            <element signature="e#13808#13812#0" expanded="true" />
             <element signature="method#innoverCard#0;class#RW_Card#0" expanded="true" />
-            <element signature="e#13372#13430#0" expanded="true" />
-            <element signature="e#13571#13575#0" expanded="true" />
-            <element signature="e#13963#13964#0" expanded="true" />
-            <element signature="e#13994#13995#0" expanded="true" />
+            <element signature="e#14844#14848#0" expanded="true" />
             <element signature="method#purchaseDate#0;class#RW_Card#0" expanded="true" />
-            <element signature="e#14456#14457#0" expanded="true" />
-            <element signature="e#14559#14561#0" expanded="true" />
-            <element signature="e#14609#14610#0" expanded="true" />
             <element signature="method#cardNumber#0;class#RW_Card#0" expanded="true" />
-            <element signature="e#15101#15102#0" expanded="true" />
-            <element signature="e#15166#15180#0" expanded="true" />
+            <element signature="e#16208#16209#0" expanded="true" />
             <element signature="method#corporationID#0;class#RW_Card#0" expanded="true" />
-            <element signature="e#15755#15756#0" expanded="true" />
-            <element signature="e#15820#15838#0" expanded="true" />
+            <element signature="e#16524#16525#0" expanded="true" />
             <element signature="method#memcpy#0;class#RW_Card#0" expanded="true" />
-            <element signature="method#zeroFill#0;class#RW_Card#0" expanded="true" />
-            <element signature="method#itoa#0;class#RW_Card#0" expanded="true" />
+            <element signature="e#16806#16827#0" expanded="true" />
             <element signature="method#byteToInt#0;class#RW_Card#0" expanded="true" />
             <element signature="method#strstr#0;class#RW_Card#0" expanded="true" />
-            <marker date="1480315269000" expanded="true" signature="1218:3586" ph="..." />
-            <marker date="1480315269000" expanded="false" signature="4048:4307" ph="..." />
-            <marker date="1480315269000" expanded="false" signature="4447:4613" ph="..." />
-            <marker date="1480315269000" expanded="false" signature="4752:4902" ph="..." />
-            <marker date="1480315269000" expanded="false" signature="4924:5017" ph="..." />
-            <marker date="1480315269000" expanded="false" signature="10378:11301" ph="..." />
-            <marker date="1480315269000" expanded="true" signature="11638:12213" ph="..." />
+            <marker date="1480318963000" expanded="true" signature="1218:3586" ph="..." />
+            <marker date="1480318963000" expanded="false" signature="4048:4307" ph="..." />
+            <marker date="1480318963000" expanded="false" signature="4447:4613" ph="..." />
+            <marker date="1480318963000" expanded="false" signature="4752:4902" ph="..." />
+            <marker date="1480318963000" expanded="false" signature="4924:5017" ph="..." />
+            <marker date="1480318963000" expanded="false" signature="11710:12633" ph="..." />
+            <marker date="1480318963000" expanded="true" signature="12970:13545" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android_crt288br/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="585" column="5" selection-start-line="585" selection-start-column="5" selection-end-line="585" selection-end-column="5" />
+          <folding>
+            <element signature="method#onCreate#0;class#MainActivity#0" expanded="true" />
+            <element signature="method#onStart#0;class#MainActivity#0" expanded="true" />
+            <element signature="class#3000:3074" expanded="true" />
+            <element signature="method#onClick#0;class#3000:3074" expanded="true" />
+            <element signature="method#onClick#0;class#3127:8671" expanded="true" />
+            <element signature="e#4302#4303#0" expanded="true" />
+            <element signature="e#4407#4408#0" expanded="true" />
+            <element signature="e#5302#5332#0" expanded="true" />
+            <element signature="e#8647#8648#0" expanded="true" />
+            <element signature="e#9153#9160#0" expanded="true" />
+            <element signature="e#9685#9692#0" expanded="true" />
+            <element signature="e#10318#10325#0" expanded="true" />
+            <element signature="e#10797#10804#0" expanded="true" />
+            <element signature="e#10946#10947#0" expanded="true" />
+            <element signature="e#12137#12144#0" expanded="true" />
+            <element signature="e#12862#12869#0" expanded="true" />
+            <element signature="e#13096#13097#0" expanded="true" />
+            <element signature="e#13336#13343#0" expanded="true" />
+            <element signature="e#13877#13884#0" expanded="true" />
+            <element signature="e#15247#15254#0" expanded="true" />
+            <element signature="e#15817#15824#0" expanded="true" />
+            <element signature="e#17121#17128#0" expanded="true" />
+            <element signature="method#onCreateOptionsMenu#0;class#MainActivity#0" expanded="true" />
+            <element signature="method#onOptionsItemSelected#0;class#MainActivity#0" expanded="true" />
+            <element signature="e#17562#17620#0" expanded="true" />
+            <element signature="docComment;class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
+            <element signature="class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
+            <element signature="method#onCreateView#0;class#PlaceholderFragment#0;class#MainActivity#0" expanded="true" />
+            <element signature="e#18236#18241#0" expanded="true" />
           </folding>
         </state>
       </provider>
