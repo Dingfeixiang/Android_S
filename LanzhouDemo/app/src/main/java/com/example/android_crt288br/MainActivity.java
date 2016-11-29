@@ -1,12 +1,13 @@
 package com.example.android_crt288br;
 
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import android.R.string;
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -27,11 +28,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.os.Build;
 
 import Crt288brDrv.Crt288br;
 
-
+import com.xianfeng.InnoverCard;
+import com.xianfeng.ReadData;
+import com.xianfeng.WriteData;
 
 
 public class MainActivity extends Activity {
@@ -43,6 +45,9 @@ public class MainActivity extends Activity {
 	//先锋
 	Button readBtn,writeBtn;
 	EditText editWriten;
+	//数据
+	String dataString_;
+	String companyStr_;
 
 
 	String g_log = "";
@@ -92,13 +97,53 @@ public class MainActivity extends Activity {
 		editBaudRate = (EditText)this.findViewById(R.id.editText2);
 		editsPort = (EditText)this.findViewById(R.id.editText1);
 
+		dataString_ = getResources().getString(R.string.carddata);
+		companyStr_ = getResources().getString(R.string.company);
 				
 	}
 
 	private  OnClickListener xfOnClickListener = new OnClickListener() {
 		@Override
 		public void onClick(View view) {
+			InnoverCard innoverCard = new InnoverCard(dataString_);
 
+			if (view == readBtn){
+				if (innoverCard.myCard(companyStr_)){
+
+					ReadData readData = innoverCard.readCard();
+
+					String userno = readData.getUserno(); //用户号
+					String corpo = readData.getCorpno(); //公司号
+					String meterno = readData.getMeterno(); //表具编号
+					Integer buycount = readData.getBuycount(); //购气次数
+					Integer cardgases = readData.getCardgases(); //用户气量
+					String buygasdate = readData.getBuygasdate(); //购气时间
+					Integer errorcode = readData.getErrorcode();//错误代码
+
+					System.out.println(userno + "--" + corpo + "--" + meterno + "--"
+							+ String.valueOf(buycount) + "--" + String.valueOf(cardgases)
+							+ "--" + buygasdate + "--" + String.valueOf(errorcode));
+				}
+			}else if(view == writeBtn){
+
+
+				Calendar c = Calendar.getInstance();
+				//参数分别为，购气时间，购气次数，购气量
+				WriteData writeData = new WriteData(c.getTime(),5,123);
+				writeData.setDate(c.getTime());
+				writeData.setBuycount(1);
+				writeData.setGases(122);
+
+				//处理数据，结果为处理后的数据，可直接写入卡片
+				String res = innoverCard.writeCard(writeData);
+				System.out.println(res);
+
+				InnoverCard card = new InnoverCard(res);
+				ReadData readData = card.readCard();
+				System.out.print(readData.getUserno());
+
+
+			}
 		}
 	};
 	

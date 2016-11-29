@@ -10,18 +10,17 @@ import java.util.Date;
 
 public class RW_Card {
 
-
     public int writeOrders(String dataStr,WriteData data){
         int errorcode = -1;
         byte[] hbuf = new byte[257];
         String data512 = dataStr.substring(0,512);
 
         //取卡片标识
-        String cardtype = data512.substring(0x21*2,2);//一代表卡片类型
-        String cardflag = data512.substring(0x60*2,2);//卡片标识
-        String meterflag = data512.substring(0x50*2,2);//更新标识
-        String safeflag = data512.substring(0x12*2,2);//Y300D标识 扩频表标识
-        String isflag = data512.substring(0x13*2,2);//扩频表表具返写标识
+        String cardtype = data512.substring(0x21*2,0x21*2+2);//一代表卡片类型
+        String cardflag = data512.substring(0x32*2,0x32*2+2);//卡片标识
+        String meterflag = data512.substring(0x50*2,0x50*2+2);//更新标识
+        String safeflag = data512.substring(0x12*2,0x12*2+2);//Y300D标识 扩频表标识
+        String isflag = data512.substring(0x13*2,0x13*2+2);//扩频表表具返写标识
 
         //写卡数据
 
@@ -46,7 +45,7 @@ public class RW_Card {
                 String cardBuyCount = "";
                 cardBuyCount = CodeFormat.addZeroString
                         (CodeFormat.Integer2HexStr(data.buycount),2);
-                byte[] btCardBuyCount = cardBuyCount.getBytes();
+                byte[] btCardBuyCount = CodeFormat.hexStr2ByteArr(cardBuyCount);
 
                 //设置时间
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -65,7 +64,8 @@ public class RW_Card {
 
                 //设置检验码
                 int Sum = 0;
-                Sum = (Sum ^ btCardGas[0] ^ btCardGas[1] ^ btCardGas[2] ^ btCardGas[3] ^ hbuf[0x35]);
+                Sum = (Sum ^ btCardGas[0] ^ btCardGas[1] ^ btCardGas[2] ^ btCardGas[3]
+                        ^ hbuf[0x35] ^ btCardBuyCount[0] ^ btCardBuyCount[1]) % 0xFF;
 
                 //组合卡面数据
                 hbuf[0x21] = 0x50;								//卡类别代码
@@ -100,6 +100,7 @@ public class RW_Card {
 
                 data.password = calcCardPwd(cardNo);
                 data.pwstr = calcCardPwd(cardNo);
+                data.outbuf = hbuf;
 
                 errorcode = 0;
                 return errorcode;
@@ -145,7 +146,7 @@ public class RW_Card {
                 }
 
                 //Y300区卡上气量
-                String tmpBuyGasNum = data512.substring(0x9A*2,6);
+                String tmpBuyGasNum = data512.substring(0x9A*2,0x9A*2+6);
                 cardgas = Integer.valueOf(tmpBuyGasNum);
 
                 //优化区气量
@@ -182,7 +183,7 @@ public class RW_Card {
                     data.pwstr = calcCardPwd(tmpcardno);
 
                 }else if(((btMeterflag[0] == (byte)0x21) || (btMeterflag[0] == (byte)0x94)) &&
-                        ((btCardFlag[0] == 0x50) || (btCardFlag[0] == 0x51))){
+                        ((btCardFlag[0] == 0x52) || (btCardFlag[0] == 0x53))){
                     w_meterflag = 0x21;
 
                     tmpcardno_new = memcpy(tmpcardno_new,0,hbuf,0x22,6);
@@ -237,7 +238,7 @@ public class RW_Card {
                 //////////////////////////////////////////////y300区数据
                 //计算气量 cardgas
                 String gasesStr = String.valueOf(data.gases);
-                byte[] buf1 = CodeFormat.str2ByteArr(CodeFormat.addZeroString(gasesStr,3));
+                byte[] buf1 = CodeFormat.hexStr2ByteArr(CodeFormat.addZeroString(gasesStr,3));
                 //赋值日期
                 for (i=0;i<4;i++){
                     hbuf[0x96+i] = sdate[i];
@@ -266,16 +267,15 @@ public class RW_Card {
         String pwd = "";
         byte[] ret = new byte[4];
         byte[] customID = new byte[7];
-        byte[] coveredID;
 
-        customID = memcpy(customID,0,card_no,0,7);
+        customID = memcpy(customID,0,card_no,0,6);
         ret[0] = (byte) (customID[0] + customID[3] ^ 0x76);
         ret[1] = (byte) (customID[1] + customID[4] ^ 0x77);
         ret[2] = (byte) (customID[2] + customID[5] ^ 0x80);
 
 //        coveredID = hexToChar(customID,3);
         try{
-            pwd = CodeFormat.byteArr2HexStr(customID).substring(0,6);
+            pwd = CodeFormat.byteArr2HexStr(ret).substring(0,6);
         }catch (Exception ex){
             pwd = "";
             System.out.println("计算密码时出现错误");
@@ -291,14 +291,14 @@ public class RW_Card {
 
         customID = memcpy(customID,0,card_no,0,4);
         for (int i=0;i <= 3; i++){
-            ret[0] = (byte) (customID[0] + customID[i]);
+            ret[0] = (byte) (ret[0] + customID[i]);
         }
         ret[1] = (byte)(customID[2] + 0x1B);
         ret[2] = customID[3];
 
 //        coveredID = hexToChar(customID,3);
         try{
-            pwd = CodeFormat.byteArr2HexStr(customID).substring(0,6);
+            pwd = CodeFormat.byteArr2HexStr(ret).substring(0,6);
         }catch (Exception ex){
             pwd = "";
             System.out.println("计算密码时出现错误");
@@ -351,8 +351,8 @@ public class RW_Card {
 
                 //表号
                 StringBuffer meterno = new StringBuffer();
-                meterno.append(dataStr.substring(0xC1*2,2));
-                meterno.append(dataStr.substring(0xC3*2,8));
+                meterno.append(dataStr.substring(0xC1*2,0xC1*2+2));
+                meterno.append(dataStr.substring(0xC3*2,0xC3*2+8));
                 data.meterno = meterno.toString();
 
                 //购气次数
@@ -360,14 +360,15 @@ public class RW_Card {
 
                 //气量
                 StringBuffer cardgases = new StringBuffer();
-                cardgases.append(dataStr.substring(0x33*2,2));
-                cardgases.append(dataStr.substring(0x9A*2,6));
+                cardgases.append(dataStr.substring(0x33*2,0x33*2+2));
+                cardgases.append(dataStr.substring(0x9A*2,0x9A*2+6));
                 data.cardgases = Integer.valueOf(cardgases.toString());
 
                 //购气时间
                 data.buygasdate = purchaseDate(hbuf,dataStr);
                 data.errorcode = 0;
-            } else {
+            }
+            else {
 
                 //赋值公司代码
                 data.corpno = corporationID(hbuf,0x27);
@@ -383,7 +384,7 @@ public class RW_Card {
 
                     //气量
                     StringBuffer cardgases = new StringBuffer();
-                    cardgases.append(dataStr.substring(0x9A*2,6));
+                    cardgases.append(dataStr.substring(0x9A*2,0x9A*2+6));
                     data.cardgases = Integer.valueOf(cardgases.toString());
 
                     data.gasfee = 0.0;
@@ -421,7 +422,7 @@ public class RW_Card {
 
         }catch (Exception ex){
             data.errorcode = -1;
-            System.out.println("读卡发生错误！");
+            System.out.println("读卡发生错误:"+ex.getMessage());
         }
         return data;
     }
@@ -463,10 +464,10 @@ public class RW_Card {
         StringBuffer buygasdate = new StringBuffer();
         try{
             if ((hbuf[0x99] & 0x40) == 0){
-                buygasdate.append(dataStr.substring(0x96*2,8));
+                buygasdate.append(dataStr.substring(0x96*2,0x96*2+8));
             }else {
                 //日期格式为 6 + 2
-                buygasdate.append(dataStr.substring(0x96*2,6));
+                buygasdate.append(dataStr.substring(0x96*2,0x96*2+6));
 
                 //加两位不知道是什么的码
                 byte[] tempdate = new byte[2];
@@ -504,7 +505,10 @@ public class RW_Card {
 
     //System提供了一个静态方法arraycopy(),我们可以使用它来实现数组之间的复制
     public byte[] memcpy(byte[] des,int i,byte[] original,int j,int length){
-        System.arraycopy(des,i,original,j,length);
+        for (int k=0;k < length;k++){
+            des[k+i] = original[k+j];
+        }
+//        System.arraycopy(des,i,original,j,length);
         return des;
     }
 

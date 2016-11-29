@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Nov 28 15:47:16 CST 2016
+#Mon Nov 28 16:28:36 CST 2016
 8.set=NATIVE_RESOURCE
 1.base=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_
 1.file=/Users/xianfeng/Desktop/Android_Study/LanzhouDemo/app/build/intermediates/res/resources-debug.ap_/res/layout-v17/activity_main.xml
