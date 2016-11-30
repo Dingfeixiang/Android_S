@@ -1,8 +1,6 @@
 -- Merging decision tree log ---
 manifest
 ADDED from /Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/AndroidManifest.xml:2:1-43:12
-	xmlns:android
-		ADDED from /Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/AndroidManifest.xml:2:11-69
 	package
 		ADDED from /Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/AndroidManifest.xml:3:5-30
 	android:versionName
@@ -13,6 +11,8 @@ ADDED from /Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/AndroidManifest
 		ADDED from /Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/AndroidManifest.xml:4:5-28
 		INJECTED from /Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/AndroidManifest.xml
 		INJECTED from /Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from /Users/xianfeng/Desktop/Android_Study/BluetoothLeDemo/AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion

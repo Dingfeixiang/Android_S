@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">Android-Crt288br</string>
+    <string name="carddata">A2131091FFFF8115FFFFFFFFFFFFFFFFFFFF0101FFD27600000400FFFFFFFFFF9E500C1E04384E070001000001100B1D050051000000000527000000000000000000000000000000000000000001040094000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000FFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFF0120161129000000002108FFFFFFFFFFFFFFFFFFFFFFFF000000001F9A000000000000000000000000000001000000000000011234567800FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF</string>
+    <string name="company">070001</string>
+    <string name="hello_world">Hello world!</string>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        
+    </style>
+</resources>
