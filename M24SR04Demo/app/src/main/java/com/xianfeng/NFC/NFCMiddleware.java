@@ -36,6 +36,8 @@ public class NFCMiddleware {
 
         NdefMessage[] tagMsgs = tag.getNdefMessages();
         NdefMessage msgIwant;
+
+        if (tagMsgs == null) return "";
         if (tagMsgs.length > 0){
             msgIwant = tagMsgs[tagMsgs.length -1];
             System.out.println(msgIwant.toString());
@@ -82,53 +84,54 @@ public class NFCMiddleware {
         }
     }
 
-    NFCTag newTag = NFCApplication.getApplication().getCurrentTag();
-    public NDEFSimplifiedMessage resolvTag(NFCTag newTag){
 
-        NDEFSimplifiedMessage newMsg = null;
-
-        final int SUCCESS_RES = 1;
-        int retRes = SUCCESS_RES;
-
-        Log.v(this.getClass().getName(), "updateSmartFragment entry ..");
-        //if (newTag.getM_ModelChanged() == 1) return;
-        // return new instance according to current tag - if not null
-        // - Check if NDEF data are present for current tag
-        int currentValideTLVBlockID = newTag.getCurrentValideTLVBlokID();
-        if (currentValideTLVBlockID == -1) {
-            // FBE newTag.decodeTag();
-            retRes = newTag.decodeTag();
-        }
-
-        if ( retRes!= SUCCESS_RES) {
-            Log.v(this.getClass().getName(), "updateSmartFragment decodeTag failled ..");
-        } else{
-            NDEFSimplifiedMessageHandler ndefSimpleMsgHandler
-                    = newTag.getNDEFSimplifiedHandler(currentValideTLVBlockID);
-            if (ndefSimpleMsgHandler != null) {
-                newMsg = newTag.getNDEFSimplifiedHandler(currentValideTLVBlockID).getNDEFSimplifiedMessage();
-            }
-        }
-
-        return newMsg;
-    }
-    void resolveMessage(NDEFSimplifiedMessage newMsg){
-        NDEFSimplifiedMessageType newMsgType = NDEFSimplifiedMessageType.NDEF_SIMPLE_MSG_TYPE_EMPTY;
-        if (newMsg != null) {
-            newMsgType = newMsg.getType();
-            NDEFSimplifiedMessageHandler.getStrFromMsgType(newMsgType);
-        }
-        switch (newMsgType) {
-            case NDEF_SIMPLE_MSG_TYPE_TEXT:
-                if (newMsg != null) {
-
-                }
-                break;
-            default:
-                // Nothing to do... for the moment
-                // Just hide current fragment, if not already hidden
-        }
-    }
+//    NFCTag newTag = NFCApplication.getApplication().getCurrentTag();
+//    public NDEFSimplifiedMessage resolvTag(NFCTag newTag){
+//
+//        NDEFSimplifiedMessage newMsg = null;
+//
+//        final int SUCCESS_RES = 1;
+//        int retRes = SUCCESS_RES;
+//
+//        Log.v(this.getClass().getName(), "updateSmartFragment entry ..");
+//        //if (newTag.getM_ModelChanged() == 1) return;
+//        // return new instance according to current tag - if not null
+//        // - Check if NDEF data are present for current tag
+//        int currentValideTLVBlockID = newTag.getCurrentValideTLVBlokID();
+//        if (currentValideTLVBlockID == -1) {
+//            // FBE newTag.decodeTag();
+//            retRes = newTag.decodeTag();
+//        }
+//
+//        if ( retRes!= SUCCESS_RES) {
+//            Log.v(this.getClass().getName(), "updateSmartFragment decodeTag failled ..");
+//        } else{
+//            NDEFSimplifiedMessageHandler ndefSimpleMsgHandler
+//                    = newTag.getNDEFSimplifiedHandler(currentValideTLVBlockID);
+//            if (ndefSimpleMsgHandler != null) {
+//                newMsg = newTag.getNDEFSimplifiedHandler(currentValideTLVBlockID).getNDEFSimplifiedMessage();
+//            }
+//        }
+//
+//        return newMsg;
+//    }
+//    void resolveMessage(NDEFSimplifiedMessage newMsg){
+//        NDEFSimplifiedMessageType newMsgType = NDEFSimplifiedMessageType.NDEF_SIMPLE_MSG_TYPE_EMPTY;
+//        if (newMsg != null) {
+//            newMsgType = newMsg.getType();
+//            NDEFSimplifiedMessageHandler.getStrFromMsgType(newMsgType);
+//        }
+//        switch (newMsgType) {
+//            case NDEF_SIMPLE_MSG_TYPE_TEXT:
+//                if (newMsg != null) {
+//
+//                }
+//                break;
+//            default:
+//                // Nothing to do... for the moment
+//                // Just hide current fragment, if not already hidden
+//        }
+//    }
 
 }
 

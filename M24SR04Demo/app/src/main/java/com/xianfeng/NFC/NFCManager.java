@@ -158,6 +158,7 @@ public class NFCManager {
 
     //写卡操作
     public void writeData(Intent intent,String data,NFCCallback.TagCallBack tagCallBack){
+
         NFCApplication currentApp = NFCApplication.getApplication();
         NFCTag currentTag = currentApp.getCurrentTag();
 

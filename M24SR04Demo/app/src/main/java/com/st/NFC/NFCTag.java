@@ -633,7 +633,7 @@ public class NFCTag {
 		// Update Tab information after write
 		// FBE
 		if (writeStatus == stndefwritestatus.WRITE_STATUS_OK)
-		    decodeTag();
+		    decodeTag();//中
 
 		return writeStatus;
 	}
@@ -658,6 +658,8 @@ public class NFCTag {
 				// else use native solution
 
 				// Update Object with UI Data if required
+
+				//中
 				if (this.getNDEFHandler(_mcurrentValidTLVBlockID) == null) // Physical tag not yet handled - then need to create a ndef handler here.
 				{
 					_NDEFHandlerArray[_mcurrentValidTLVBlockID] = new stnfcndefhandler();
@@ -667,7 +669,7 @@ public class NFCTag {
 
 				if (_NDEFSimplifiedHandlerArray[_mcurrentValidTLVBlockID] == null) {
 					_NDEFSimplifiedHandlerArray[_mcurrentValidTLVBlockID] = new NDEFSimplifiedMessageHandler(
-							_NDEFHandlerArray[TLVID]);
+							_NDEFHandlerArray[TLVID]); //中
 				}
 				stnfccchandler cchandler = (stnfccchandler) this.getCCHandler();
 				int evalspace = (cchandler == null ? -1 : cchandler.getndeffilelength(_mcurrentValidTLVBlockID));
@@ -685,7 +687,7 @@ public class NFCTag {
 					toast.show();
 
 					writeStatus = stndefwritestatus.WRITE_STATUS_ERR_IO;
-				} else {
+				} else {//中
 					// Check writable access
 					boolean tagWritableStatus = true;
 					try {
@@ -713,7 +715,7 @@ public class NFCTag {
 					// and
 					// write
 					// Tag
-					{
+					{//中
 						// Put the system in a Select NDEF File Mode.
 						if (setInSelectNDEFState(_mcurrentValidTLVBlockID) != 1) {
 							_STTagHandler.closeConnection();
@@ -721,20 +723,19 @@ public class NFCTag {
 						}
 
 						// if Write Password is required : request it
-
 						if (!_STTagHandler.isNDEFWriteUnLocked()) {
 							_STTagHandler.closeConnection();
 							return stndefwritestatus.WRITE_STATUS_ERR_PASSWORD_REQUIRED;
 						} else if (writeNDEFFile() == 0) {
 							Log.v(this.getClass().getName(), "writLockedNDEFFile error: IO ERR");
 							writeStatus = stndefwritestatus.WRITE_STATUS_ERR_IO;
-						} else {
+						} else {//中
 							writeStatus = stndefwritestatus.WRITE_STATUS_OK;
 						}
 						_STTagHandler.closeConnection();
 
 						// refresh data
-						decodeTagType4A();
+//						decodeTagType4A();
 					}
 
 					else // Tag is not a ST product
@@ -770,7 +771,8 @@ public class NFCTag {
 									_NdefMsgs = new NdefMessage[] { msgToWrite };
 
 									writeStatus = stndefwritestatus.WRITE_STATUS_OK;
-								} else if (lNdefFormatable != null) // lNdefTag==null
+								}
+								else if (lNdefFormatable != null) // lNdefTag==null
 								{
 									lNdefFormatable.connect();
 									lNdefFormatable.format(msgToWrite);
@@ -1117,31 +1119,34 @@ public class NFCTag {
 		final int SUCCESS_RES = 1;
 		int retRes = SUCCESS_RES;
 		if (this.getType() == NfcTagTypes.NFC_TAG_TYPE_4A) {
-			retRes = decodeTagType4A();
+			retRes = decodeTagType4A();//中
 		}
 		/*
 		 * else if (this.getType() == NfcTagTypes.NFC_TAG_TYPE_2 ||
 		 * this.getType() == NfcTagTypes.NFC_TAG_TYPE_V) { retRes =
 		 * decodeTagType2(); }
 		 */
-		else if (this.getType() == NfcTagTypes.NFC_TAG_TYPE_2) {
+//		else if (this.getType() == NfcTagTypes.NFC_TAG_TYPE_2) {
 //			retRes = decodeTagType2();
-		} else if (this.getType() == NfcTagTypes.NFC_TAG_TYPE_V) {
+//		} else if (this.getType() == NfcTagTypes.NFC_TAG_TYPE_V) {
 //			retRes = decodeTagTypeV();
-		}
+//		}
 
 		return retRes;
 	}
 
 	/*
-	 * Decoding functions for each type of tag
+	 * Decoding functions for edecodeTagach type of tag
 	 */
+	//读写都会通过它，说明这个函数不简单
+	//注意了各位
     private int decodeTagType4A() {
 		// Initialize parsing structure (STNfcTagHandler from ST NFC Lib)
 		final int SUCCESS_RES = 1;
 		int retRes = SUCCESS_RES;
 
 		// _STTagHandler = new STNfcTagHandler(_Tag);
+		//这个是处理芯片操作的管理者
 		_STTagHandler = (STNfcTagHandler) m_stnfcTagHandlerFactory.getTagHandler("STNfcTagHandler", _Tag,
 				this.getModel());
 		try {
@@ -1159,7 +1164,7 @@ public class NFCTag {
 
 		if (retRes != SUCCESS_RES) {
 			Log.v(this.getClass().getName(), "Error in decodeTagType4A: application selection failed");
-		} else {
+		} else { //中
 			try {
 				// Get CC File
 				// - Select CC file
@@ -1167,13 +1172,13 @@ public class NFCTag {
 				if (retRes != SUCCESS_RES) {
 					Log.v(this.getClass().getName(), "Error in decodeTagType4A: Cannot select CC file");
 					retRes = 0;
-				} else {
+				} else { //中
 					// - Read CC file length
 					int CCLength = _STTagHandler.requestCCReadLength();
 					if (CCLength == 0) {
 						Log.v(this.getClass().getName(), "Error in decodeTagType4A: CC file length is null");
 						retRes = 0;
-					} else {
+					} else { //中
 						// - Read CC content
 						byte[] CCBinary = new byte[CCLength];
 						retRes = _STTagHandler.requestCCRead(CCLength, CCBinary);
@@ -1181,7 +1186,7 @@ public class NFCTag {
 							Log.v(this.getClass().getName(),
 									"Error in decodeTagType4A: Failed to read CC file content");
 							retRes = 0;
-						} else {
+						} else { //中
 							_CCHandler = new stnfccchandler(CCBinary);
 							retRes = SUCCESS_RES;
 							// TBD - Lock must be managed by File not by CCFile
@@ -1194,7 +1199,7 @@ public class NFCTag {
 									Log.v(this.getClass().getName(),
 											"Error in decodeTagType4A: Cannot select NDEF file for access check");
 									retRes = SUCCESS_RES;
-								} else {
+								} else { //中
 									// Patch for new Pwd management Only needed
 									// for ST25TA version 0x20 read in Sysfile
 									// use verify cmd to know Read/Write status
@@ -1252,7 +1257,7 @@ public class NFCTag {
 														// Mode
 						_NDEFSimplifiedHandlerArray[i] = null;
 					}
-				} else {
+				} else { //中
 					// - Select NDEF File
 					this._mFileNB = ((stnfccchandler) (_CCHandler)).getnbNDEFFile();
 					for (int i = 0; i < _mFileNB; i++) {
@@ -1260,7 +1265,7 @@ public class NFCTag {
 								|| ((stnfccchandler) (_CCHandler)).isNDEFPermanentLOCKRead(i))) {
 							_NDEFHandlerArray[i] = null;
 							_NDEFSimplifiedHandlerArray[i] = null;
-						} else {
+						} else { //中
 							// retRes =
 							// _STTagHandler.selectNdef(_CCHandler.getfieldId(i));
 							GenErrorAppReport appret = _STTagHandler
@@ -1430,7 +1435,7 @@ public class NFCTag {
 		}
 		// Now we can write the NDEF File.
 		// Serialize NDEF file from
-
+		//这个函数可以写数据，updateBinary函数会拼写写命令
 		if ((_NDEFHandlerArray[_mcurrentValidTLVBlockID] == null)
 				|| (!_STTagHandler.updateBinary(_NDEFHandlerArray[_mcurrentValidTLVBlockID].serialize()))) {
 			Log.v(this.getClass().getName(), "Error in writLockedNDEFFile: Failed to update binary");

@@ -39,6 +39,7 @@ import android.nfc.Tag;
 import android.nfc.tech.IsoDep;
 import android.util.Log;
 
+///中中中
 public class Type4TagOperationM24SR extends Type4TagOperationBasicOp
 		implements Type4Tagm24sr7816STCommands, Iso7816_4APDU {
 	private String TAG = "Type4TagOperationM24SR";
@@ -86,6 +87,7 @@ public class Type4TagOperationM24SR extends Type4TagOperationBasicOp
 
 	}
 
+    //命令已启动，写数据
 	public boolean m24srupdateBinarySize(int size) {
 		boolean ret = true;
 		if ((size >= 0) && (size < 0xFFFF)) // Restricted to 246 bytes - ie 244
@@ -118,6 +120,75 @@ public class Type4TagOperationM24SR extends Type4TagOperationBasicOp
 	}
 	// m24srNCFForumupdateBinarySize
 
+    //中中中
+    //带有offset的更新数据操作
+    public boolean m24srupdateBinary(byte[] binary,int dataOffset) {
+        // Value of the M24SR
+        if (!m24srupdateBinarySize(0)) {
+            Log.d(TAG, "m24srupdateBinary - Fail to write Size");
+            return false;
+        }
+        // write binary
+        // Verify timeout
+        // int to = this.gettranscievetimeout();
+        // Patch for SSGxx phone ... need to update the default timeout of 309
+        // to more.
+        this.settranscievetimeout(1000);
+
+        // Get the current tag and update the max byte authorized to be written
+        // in APDU cmd
+        int MaxBytesWrite = 244;    //246
+        NFCApplication currentApp = (NFCApplication) NFCApplication.getApplication();
+        NFCTag currentTag = currentApp.getCurrentTag();
+        if (currentTag != null) {
+            MaxBytesWrite = currentTag.getmaxbyteswritten();
+            MaxBytesWrite = getMaxtranscievecmd(MaxBytesWrite);
+        }
+
+        //这个命令是发送的写操作命令
+        byte[] cmd = null;
+
+        // if (binary.length > 244)
+        if (true) {
+            // need to split binary and write in in several chunk
+            int remainBytesToWrite = binary.length;
+            int offset = 0;
+
+            while (remainBytesToWrite > 0) {
+
+                int dataToWrite = (remainBytesToWrite > MaxBytesWrite) ? MaxBytesWrite : remainBytesToWrite;
+                cmd = new byte[m24srNCFForumupdateBinary.length + dataToWrite + dataOffset];
+                remainBytesToWrite = remainBytesToWrite - dataToWrite;
+                System.arraycopy(m24srNCFForumupdateBinary, 0, cmd, 0, m24srNCFForumupdateBinary.length);
+                // update offset
+                cmd[3] = (byte) ((2 + offset) & 0xFF);
+                cmd[2] = (byte) (((2 + offset) & 0xFF00) >> 8);
+
+                cmd[LC_INDEX] = (byte) ((dataToWrite+dataOffset) & 0xFF);
+                System.arraycopy(binary, offset, cmd, LC_INDEX + 1 + dataOffset, dataToWrite);
+
+                offset = offset + dataToWrite;
+
+                _lasttranscieveAnswer.set(transcievecmd(cmd));
+                if ((_lasttranscieveAnswer.getSW1() == (byte) 0x90)
+                        && (_lasttranscieveAnswer.getSW2() == (byte) 0x00)) {
+                    Log.d(TAG, "m24srupdateBinaryPayload succeed" + binary.length + _lasttranscieveAnswer.translate());
+                } else {
+                    Log.d(TAG, "m24srupdateBinarywithPassword Failed - size to write" + binary.length
+                            + _lasttranscieveAnswer.translate());
+                    return false;
+                }
+                _lasttranscieveAnswer.reset();
+
+            }
+
+        }
+        // write binary size
+        return m24srupdateBinarySize(binary.length);
+    }
+
+	//中中中
+	//这个是更新卡片数据的操作
 	public boolean m24srupdateBinary(byte[] binary) {
 		// Value of the M24SR
 		if (!m24srupdateBinarySize(0)) {
@@ -133,7 +204,7 @@ public class Type4TagOperationM24SR extends Type4TagOperationBasicOp
 
 		// Get the current tag and update the max byte authorized to be written
 		// in APDU cmd
-		int MaxBytesWrite = 244;
+		int MaxBytesWrite = 244;    //246
 		NFCApplication currentApp = (NFCApplication) NFCApplication.getApplication();
 		NFCTag currentTag = currentApp.getCurrentTag();
 		if (currentTag != null) {
@@ -159,10 +230,14 @@ public class Type4TagOperationM24SR extends Type4TagOperationBasicOp
 				cmd[3] = (byte) ((2 + offset) & 0xFF);
 				cmd[2] = (byte) (((2 + offset) & 0xFF00) >> 8);
 
-				cmd[LC_INDEX] = (byte) (dataToWrite & 0xFF);
+
+				cmd[LC_INDEX] = (byte) ((dataToWrite) & 0xFF);
 				System.arraycopy(binary, offset, cmd, LC_INDEX + 1, dataToWrite);
+//                cmd[LE_INDEX] = (byte) dataOffset;
+
 				offset = offset + dataToWrite;
 				_lasttranscieveAnswer.set(transcievecmd(cmd));
+
 				if ((_lasttranscieveAnswer.getSW1() == (byte) 0x90)
 						&& (_lasttranscieveAnswer.getSW2() == (byte) 0x00)) {
 					Log.d(TAG, "m24srupdateBinaryPayload succeed" + binary.length + _lasttranscieveAnswer.translate());

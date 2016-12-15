@@ -29,15 +29,16 @@ package com.st.nfc4;
 
 public interface Iso7816_4APDU {
 
- static final int P1_INDEX = 2; // Position of P1 field in 7816-4
+    static final int P1_INDEX = 2; // Position of P1 field in 7816-4
 	// Request Command
- static final int P2_INDEX = 3; // Position of P2 field in 7816-4
+    static final int P2_INDEX = 3; // Position of P2 field in 7816-4
 	// Request Command
- static final int LC_INDEX = 4; // Position of P2 field in 7816-4
+    static final int LC_INDEX = 4; // Position of P2 field in 7816-4
 	// Request Command
- static final int DATA1_INDEX = 5; // Position of P2 field in 7816-4
+    static final int DATA1_INDEX = 5; // Position of P2 field in 7816-4
 		// Request Comma
- static final int DATA2_INDEX = 6; // Position of P2 field in 7816-4
-		// Request Comma
+    static final int DATA2_INDEX = 6; // Position of P2 field in 7816-4
+		// Request Comm
+    static final int LE_INDEX = 7; // Position of P2 field in 7816-4
 	
 }

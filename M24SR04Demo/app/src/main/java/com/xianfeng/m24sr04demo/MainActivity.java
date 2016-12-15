@@ -4,10 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -57,25 +54,25 @@ public class MainActivity extends AppCompatActivity {
         nfcWavesImg.setBackgroundResource(R.drawable.nfc_waves_anim);
 
 
-        testButton1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-
-                String string = editText.getText().toString();
-                System.out.println(string);
-                if (!string.equals(""))
-                    writedata_ = editText.getText().toString();
-
-                nfcManager_.writeData(null,writedata_, new NFCCallback.TagCallBack() {
-                    @Override
-                    public void currentTagStatus(NFCCallback.Status status) {
-                        if (status == NFCCallback.Status.TAG_EMPTY){
-                            loadingForWrite();
-                        }
-                    }
-                });
-            }
-        });
+//        testButton1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(final View view) {
+//
+//                String string = editText.getText().toString();
+//                System.out.println(string);
+//                if (!string.equals(""))
+//                    writedata_ = editText.getText().toString();
+//
+//                nfcManager_.writeData(null,writedata_, new NFCCallback.TagCallBack() {
+//                    @Override
+//                    public void currentTagStatus(NFCCallback.Status status) {
+//                        if (status == NFCCallback.Status.TAG_EMPTY){
+//                            loadingForWrite();
+//                        }
+//                    }
+//                });
+//            }
+//        });
 
         _readingFlag = true;
         _writingFlag = false;
@@ -141,6 +138,13 @@ public class MainActivity extends AppCompatActivity {
             if (_writingFlag){
                 NFCTag nfcTag = nfcManager_.getNFCTag(intent);
                 NFCApplication.getApplication().setCurrentTag(nfcTag);
+
+                String string = editText.getText().toString();
+                System.out.println(string);
+                if (!string.equals(""))
+                    writedata_ = editText.getText().toString();
+
+
                 nfcManager_.writeData(intent,writedata_, new NFCCallback.TagCallBack() {
                     @Override
                     public void currentTagStatus(NFCCallback.Status status) {

@@ -1,13 +1,16 @@
 package com.xianfeng.NFC;
 
-
+import com.st.nfc4.Type4TagOperationM24SR;
 /**
  * Created by xianfeng on 2016/11/14.
  */
 
 ///session
-//卡片逻辑
+//RF芯片逻辑
 public class RFInteraction {
+
+    //这个工具类有猫腻
+    protected Type4TagOperationM24SR m_Type4TagOperationM24SR;
 
     //RESPONSE CODE
     static final String RAPDU_CODE_COMPLETED = "9000";
@@ -18,10 +21,10 @@ public class RFInteraction {
     static final String RAPDU_CODE_P1OR2_INCORRECT = "6A86";
     static final String RAPDU_CODE_NOT_SUPPORTED = "6E00";
 
-    //ExtendedReadBinary command
-    String ExtendedReadBinaryCommand(String offset){
-        return "";
-    }
+//    //ExtendedReadBinary command
+//    String ExtendedReadBinaryCommand(String offset){
+//        return "";
+//    }
 
     //EnablePermanentState/DisablePermanentState command
     static final String ENABLE_CODE_READONLY = "A2280001";
@@ -32,19 +35,10 @@ public class RFInteraction {
     //SendInterrupt command
     static final String INTERRUPT_COMMAND = "A2D6001E00";
 
-
-    //访问命令
-    String readCommondAttach(String data){
-        String comondIwant = "";
-
-        return comondIwant;
-    }
-
-    String writeCommandAttach(String data){
-        String comondIwant = "";
-
-        return comondIwant;
-    }
+    //instruction code
+    static final int SYSTEMSELECT = 0XA4;
+    static final int READBINARY = 0XB0;
+    static final int UPDATEBINARY = 0XD6;
 
 
     //读写
@@ -52,11 +46,11 @@ public class RFInteraction {
 //        return "";
 //    }
 
-    void writeBlock(int start,int length,byte[] data){
+    public void writeBlock(int start,int length,byte[] data){
 
     }
 
-    byte[] readBlock(int start,int length){
+    public byte[] readBlock(int start,int length){
         byte[] var = new byte[4];
 
         return var;

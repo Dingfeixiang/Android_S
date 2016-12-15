@@ -171,7 +171,8 @@ import android.widget.Toast;
 	
 	public boolean updateBinary(byte [] binary)
 	{
-		return m_Type4TagOperationM24SR.m24srupdateBinary(binary);
+		//更新有offset的数据
+		return m_Type4TagOperationM24SR.m24srupdateBinary(binary,10);
 	}
 	
 	
