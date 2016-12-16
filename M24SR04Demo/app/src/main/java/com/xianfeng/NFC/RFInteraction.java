@@ -42,10 +42,6 @@ public class RFInteraction {
 
 
     //读写
-//    String readBlock(int start,int length){
-//        return "";
-//    }
-
     public void writeBlock(int start,int length,byte[] data){
 
     }

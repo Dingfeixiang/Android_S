@@ -182,26 +182,6 @@ public class NFCManager {
 
 
 
-
-
-    //关键处理函数，处理扫描到的NdefMessage
-    void processIntent(Intent intent) {
-        Parcelable[] rawMsgs = intent.getParcelableArrayExtra(
-                NfcAdapter.EXTRA_NDEF_MESSAGES);
-        // only one message sent during the beam
-        NdefMessage msg = (NdefMessage) rawMsgs[0];
-    }
-
-    /**
-     * Creates a custom MIME type encapsulated in an NDEF record
-     */
-    public NdefRecord createMimeRecord(String mimeType, byte[] payload) {
-        byte[] mimeBytes = mimeType.getBytes(Charset.forName("US-ASCII"));
-        NdefRecord mimeRecord = new NdefRecord(
-                NdefRecord.TNF_MIME_MEDIA, mimeBytes, new byte[0], payload);
-        return mimeRecord;
-    }
-
         /*
     * Writes an NdefMessage to a NFC tag
     */
