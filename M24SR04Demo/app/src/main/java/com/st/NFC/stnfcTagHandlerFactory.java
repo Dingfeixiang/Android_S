@@ -37,12 +37,12 @@ public class stnfcTagHandlerFactory {
 	}
 
 	public stnfcTagGenHandler getTagHandler(String tagHandlerType, Tag tagToHandle, String modelName) {
+
 		if (tagHandlerType == null) {
 			return null;
 		}
 		if (tagHandlerType.equalsIgnoreCase("STNfcTagHandler")) {
 			return new STNfcTagHandler(tagToHandle);
-
 		}
 		//中中中
 //		if (tagHandlerType.equalsIgnoreCase("STNfcTagVHandler")) {

@@ -29,7 +29,6 @@
 package com.st.NFC;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
@@ -53,14 +52,7 @@ import com.st.NDEF.NDEFSimplifiedMessageHandler;
 import com.st.NDEF.stnfcndefhandler;
 
 import com.st.NDEF.stndefwritestatus;
-import com.st.NFC.NFCTag.NfcTagTypes;
 
-//import com.st.nfcv.Helper;
-//import com.st.nfcv.NFCCommandVLR;
-//import com.st.nfcv.stnfcccLRhandler;
-//import com.st.nfcv.stnfcm24LRBasicOperation;
-//import com.st.nfcv.stnfcccLRhandler.TLVBlockMemory;
-//import com.st.nfcv.sysfileLRHandler;
 import com.st.util.GenErrorAppReport;
 import com.xianfeng.m24sr04demo.R;
 
@@ -109,7 +101,8 @@ public class NFCTag {
 		}
 	};
 	// IC Manufacturers codes, as defined in ISO/IEC 7816-6
-	public static String[] ICManufacturers = { /* 0x00 */ "Unknown", /* 0x01 */ "Motorola",
+	public static String[] ICManufacturers = {
+			/* 0x00 */ "Unknown", /* 0x01 */ "Motorola",
 			/* 0x02 */ "STMicroelectronics", /* 0x03 */ "Hitachi Ltd", /* 0x04 */ "NXP Semiconductors",
 			/* 0x05 */ "Infineon Technologies", /* 0x06 */ "Cylink", /* 0x07 */ "Texas Instruments",
 			/* 0x08 */ "Fujitsu Limited", /* 0x09 */ "Matsushita Electronics Corporation", /* 0x0A */ "NEC",
@@ -234,7 +227,8 @@ public class NFCTag {
 	};
 
 	// Products description
-	private final static intProductDescr[] intProductsDescr = new intProductDescr[] {
+	private final static intProductDescr[] intProductsDescr
+			= new intProductDescr[]{
 			// PRODUCT_UNKNOWN,
 			new intProductDescr("Unknown tag", "", 0, 0, 0, 0, 0, "", basicMenusList/* null */),
 			// PRODUCT_UNKNOWN_LR,
@@ -400,8 +394,8 @@ public class NFCTag {
 	private int _ManufacturerID;
 	private NfcTagTypes _Type;
 	private int _MemSize;
-	private int _BlckNb;
-	private int _BytesPerBlck;
+//	private int _BlckNb;
+//	private int _BytesPerBlck;
 	private NdefMessage[] _NdefMsgs = null;
 
 	public boolean tagInvalidate = false;
@@ -455,12 +449,12 @@ public class NFCTag {
 		return _NdefMsgs;
 	}
 
-	public int getCurrentValideTLVBlokID() {
-		return _mcurrentValidTLVBlockID;
-	}
-
 	public boolean isaValideTLVBlockIDSelected() {
 		return (_mcurrentValidTLVBlockID != -1);
+	}
+
+	public int getCurrentValideTLVBlokID() {
+		return _mcurrentValidTLVBlockID;
 	}
 
 	public void setCurrentValideTLVBlokID(int currentTLVBlockID) {
@@ -484,56 +478,8 @@ public class NFCTag {
 		return intProductsDescr[_intID]._ModelName;
 	}
 
-	public String getAddDescr() {
-		return intProductsDescr[_intID]._AddDescr;
-	}
-
-	public int getManufacturerID() {
-		return _ManufacturerID;
-	}
-
-	public String getManufacturer() {
-		return ICManufacturers[_ManufacturerID];
-	}
-
-	public int getLogo() {
-		return intProductsDescr[_intID]._Logo;
-	} /* = Drawable (ResourceId) */
-
-	public int getTranspLogo() {
-		return intProductsDescr[_intID]._TranspLogo;
-	} /* = Drawable (ResourceId) */
-
-	public String[] getTechList() {
-		return _Tag.getTechList();
-	}
-
-	public String getFootNote() {
-		return intProductsDescr[_intID]._FootNote;
-	}
-
-	public NfcMenus[] getMenusList() {
-		return intProductsDescr[_intID]._MenusList;
-	}
-
 	public NfcTagTypes getType() {
 		return _Type;
-	}
-
-	public String getTypeStr() {
-		return TagsTypesDescr.get(_Type);
-	}
-
-	public int getMemSize() {
-		return _MemSize;
-	}
-
-	public int getBlckNb() {
-		return _BlckNb;
-	}
-
-	public int getBytesPerBlck() {
-		return _BytesPerBlck;
 	}
 
 	// - NDEF level
@@ -619,9 +565,11 @@ public class NFCTag {
 		}
 	}
 
+
 	public stndefwritestatus writeNDEFMessage(NDEFSimplifiedMessage msgObject) {
+
 		// FBE
-		stndefwritestatus writeStatus = stndefwritestatus.WRITE_STATUS_ERR_NOT_SUPPORTED;
+		stndefwritestatus writeStatus;
 		if (_mcurrentValidTLVBlockID == -1) {
 			Log.v(this.getClass().getName(),
 					"writeNDEFMessage error: pb in NdefMessage retrieval, _mcurrentValidTLVBlockID = -1");
@@ -630,6 +578,7 @@ public class NFCTag {
 		} else {
 			writeStatus = writeNDEFMessage(msgObject, _mcurrentValidTLVBlockID);
 		}
+
 		// Update Tab information after write
 		// FBE
 		if (writeStatus == stndefwritestatus.WRITE_STATUS_OK)
@@ -678,6 +627,7 @@ public class NFCTag {
 				int bufferlength = tmpbuffer.length;
 				// int workaroundoldAPI = msgToWrite.getByteArrayLength();
 				// if (msgToWrite.getByteArrayLength() >= evalspace) {
+
 				if (bufferlength >= evalspace) {
 					String errmessage = "Write NDEF Message issue: " + " Bytes of msg to Write:" + bufferlength
 							+ " Available bytes space to Write:" + evalspace;
@@ -726,7 +676,7 @@ public class NFCTag {
 						if (!_STTagHandler.isNDEFWriteUnLocked()) {
 							_STTagHandler.closeConnection();
 							return stndefwritestatus.WRITE_STATUS_ERR_PASSWORD_REQUIRED;
-						} else if (writeNDEFFile() == 0) {
+						} else if (writeNDEFFile() == 0) { //写数据
 							Log.v(this.getClass().getName(), "writLockedNDEFFile error: IO ERR");
 							writeStatus = stndefwritestatus.WRITE_STATUS_ERR_IO;
 						} else {//中
@@ -744,7 +694,6 @@ public class NFCTag {
 												// handle
 						// unlock
 						{
-
 							writeStatus = stndefwritestatus.WRITE_STATUS_ERR_LOCKED_TAG_NOT_SUPPORTED;
 						} else // .. write with NDEF tech API
 						{
@@ -844,8 +793,8 @@ public class NFCTag {
 
 		// Fill in some internal variables
 		_MemSize = intProductsDescr[_intID]._intMemSize;
-		_BlckNb = intProductsDescr[_intID]._intBlckNb;
-		_BytesPerBlck = intProductsDescr[_intID]._intBytesPerBlck;
+//		_BlckNb = intProductsDescr[_intID]._intBlckNb;
+//		_BytesPerBlck = intProductsDescr[_intID]._intBytesPerBlck;
 
 		if (NFCTag.m_ModelName == "NA") {
 			NFCTag.m_ModelChanged = 0;
@@ -1146,13 +1095,14 @@ public class NFCTag {
 		int retRes = SUCCESS_RES;
 
 		// _STTagHandler = new STNfcTagHandler(_Tag);
-		//这个是处理芯片操作的管理者
-		_STTagHandler = (STNfcTagHandler) m_stnfcTagHandlerFactory.getTagHandler("STNfcTagHandler", _Tag,
-				this.getModel());
+		//这个是处理芯片操作的管理者 STNfcTagHandler
+		_STTagHandler = (STNfcTagHandler) m_stnfcTagHandlerFactory.
+				getTagHandler("STNfcTagHandler", _Tag, this.getModel());
 		try {
 			// Application Select
 			GenErrorAppReport appret = _STTagHandler.SelectCommand();
 			retRes = appret.m_err_value;
+
 		} catch (Exception e) {
 			// If an error occurred in any of these operations, log it, and
 			// remove the data
@@ -1303,6 +1253,7 @@ public class NFCTag {
 																					// 2
 																					// bytes
 									retRes = _STTagHandler.readNdefBinary(NDEFBinary);
+
 									if (retRes != SUCCESS_RES) {
 										Log.v(this.getClass().getName(),
 												"Error in decodeTagType4A: Failed to read NDEF file content");
@@ -1328,6 +1279,8 @@ public class NFCTag {
 				else
 					_mcurrentValidTLVBlockID = previousFileID;
 				NFCApplication.getApplication().setFileID(_mcurrentValidTLVBlockID);
+
+
 			} catch (Exception e) {
 				// If an error occurred in any of these operations, log it, and
 				// remove the data
@@ -1383,6 +1336,7 @@ public class NFCTag {
 				_SYSHandler = null;
 				retRes = 0;
 			}
+
 			// Close current connection
 			try {
 				_STTagHandler.closeConnection();

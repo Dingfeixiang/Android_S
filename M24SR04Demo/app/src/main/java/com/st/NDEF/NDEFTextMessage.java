@@ -47,6 +47,7 @@ public class NDEFTextMessage extends NDEFSimplifiedMessage {
 	 * Attributes
 	 */
 	private String _Text;
+	private int _offset;
 	private Locale _Locale;
 	boolean _Utf8Enc = true;
 
@@ -70,10 +71,15 @@ public class NDEFTextMessage extends NDEFSimplifiedMessage {
 	}
 	
 	
-	
 	// Accessors
 	public String  getText()                 { return _Text; }
 	public void    setText(String mText)     { _Text = mText; }
+	public int get_offset() {
+		return _offset;
+	}
+	public void set_offset(int _offset) {
+		this._offset = _offset;
+	}
 	public Locale  getLocale()               { return _Locale; }
 	public void    setLocale(Locale mLocale) { _Locale = mLocale; }
 	public boolean isUTF8Encoding()          { return _Utf8Enc; }
@@ -112,8 +118,6 @@ public class NDEFTextMessage extends NDEFSimplifiedMessage {
 			}
 		}
 	}
-
-	
 	public void setNDEFMessage(tnf mTnf, byte [] rtdType, byte [] ndefpayload) {
 		// If the NDEF message type is recognized, decode the data as per the applicable spec...
 		if (isSimplifiedMessage(mTnf, rtdType)) {
@@ -200,6 +204,5 @@ public class NDEFTextMessage extends NDEFSimplifiedMessage {
 	{
 		// update ST NDEF message object		
 		ndefHandler.setNdefRTDText(_Text);
-		
 	}
 }

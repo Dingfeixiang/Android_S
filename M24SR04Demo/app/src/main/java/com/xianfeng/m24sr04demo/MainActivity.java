@@ -124,8 +124,10 @@ public class MainActivity extends AppCompatActivity {
         }else {
 
             if (_readingFlag){
+
                 NFCTag nfcTag = nfcManager_.getNFCTag(intent);
                 NFCApplication.getApplication().setCurrentTag(nfcTag);
+
                 nfcManager_.readData(intent, new NFCCallback.ReadCallBack() {
                     @Override
                     public void readFinish(String something) {

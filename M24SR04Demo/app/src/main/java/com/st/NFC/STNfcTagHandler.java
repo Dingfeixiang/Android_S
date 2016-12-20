@@ -41,6 +41,8 @@ import android.view.Gravity;
 import android.widget.Toast;
 
 //public class STNfcTagHandler extends Type4TagOperationM24SR implements Type4Tagm24sr7816STCommands,Iso7816_4APDU {
+
+//处理NFC tag的管理者
 	public class STNfcTagHandler  implements stnfcTagGenHandler {
 	
 
@@ -168,7 +170,8 @@ import android.widget.Toast;
 	//m24srNCFForumupdateBinarySize
 	
 	// Update binary without size. Start at the Offset 2
-	
+
+	//中中中
 	public boolean updateBinary(byte [] binary)
 	{
 		//更新有offset的数据

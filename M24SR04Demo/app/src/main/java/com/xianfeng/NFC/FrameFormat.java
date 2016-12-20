@@ -3,20 +3,20 @@ package com.xianfeng.NFC;
 /**
  * Created by xianfeng on 2016/12/16.
  */
-//先锋卡结构
-public class CardFormat {
+//帧结构
+public class FrameFormat {
 
-    public CardFormat(String dataHex,byte dataAreaLength_c,byte dataAreaLength_d){
-        new CardFormat(converTobyte(dataHex),dataAreaLength_c,dataAreaLength_d);
+    public static final int FRAME_MAX_LENGTH = 120;
+
+    public FrameFormat(){
+
     }
 
-    byte[] converTobyte(String dataHex){
-        byte[] bytes = dataHex.getBytes();
-        return bytes;
+    public FrameFormat(String dataHex, byte dataAreaLength_c, byte dataAreaLength_d){
+        new FrameFormat(converTobyte(dataHex),dataAreaLength_c,dataAreaLength_d);
     }
-
     //参数依次为：数据，命令区数据域长度（最大108 0x6C），数据区数据长度（）
-    public CardFormat(byte[] data,byte dataAreaLength_c,byte dataAreaLength_d){
+    public FrameFormat(byte[] data, byte dataAreaLength_c, byte dataAreaLength_d){
 
         commandStart_c = copyByte(data,0x00,1);
         controlCode_c = copyByte(data,0x01,1);
@@ -40,12 +40,6 @@ public class CardFormat {
 
     }
 
-    byte[] copyByte(byte[] data,int start,int length){
-        byte[] byteIwant = new byte[length];
-        System.arraycopy(data,start,byteIwant,0,length);
-        return byteIwant;
-    }
-
     //command
     byte[] commandStart_c   = new byte[1];          //命令起始符 0
     byte[] controlCode_c    = new byte[1];          //控制代码 1
@@ -67,6 +61,8 @@ public class CardFormat {
     byte[] dataArea_d;                              //数据域 129
     byte[] verifyCode_d     = new byte[2];          //CRC校验值，低字节在前 129+m
     byte[] dataEnd_d        = new byte[1];          //命令结束符 131+m
+
+
 
     //获取当前数据
     public byte[] getWholeData(){
@@ -94,6 +90,15 @@ public class CardFormat {
         return wholeData;
     }
 
+    byte[] copyByte(byte[] data,int start,int length){
+        byte[] byteIwant = new byte[length];
+        System.arraycopy(data,start,byteIwant,0,length);
+        return byteIwant;
+    }
+    byte[] converTobyte(String dataHex){
+        byte[] bytes = dataHex.getBytes();
+        return bytes;
+    }
 }
 
 

@@ -169,6 +169,7 @@ public class NFCManager {
         }
 
         NFCMiddleware middleware = new NFCMiddleware(currentApp.getCurrentTag());
+
         if (middleware.writeTag(currentTag,data)){
             if(tagCallBack != null)
                 tagCallBack.currentTagStatus(NFCCallback.Status.TAG_WRITE_SUCCESS);

@@ -30,6 +30,7 @@ package com.st.NFC;
 
 import com.st.util.GenErrorAppReport;
 
+//中中中
 public interface stnfcTagGenHandler {
 
 	//void decode();
@@ -49,7 +50,6 @@ public interface stnfcTagGenHandler {
 
 
 	public int requestCCRead(int size, byte [] buffer);
-
 	public int requestSysRead(int size, byte [] buffer);
 
 	

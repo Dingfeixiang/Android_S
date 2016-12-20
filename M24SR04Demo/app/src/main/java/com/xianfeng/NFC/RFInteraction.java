@@ -41,16 +41,6 @@ public class RFInteraction {
     static final int UPDATEBINARY = 0XD6;
 
 
-    //读写
-    public void writeBlock(int start,int length,byte[] data){
-
-    }
-
-    public byte[] readBlock(int start,int length){
-        byte[] var = new byte[4];
-
-        return var;
-    }
 }
 
 

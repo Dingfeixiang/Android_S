@@ -20,11 +20,12 @@ import com.xianfeng.Util.TextRecord;
  * 中间件用于连接ST公司的库与本项目数据
  */
 
+//该类为中间件，用于连接ST lib与先锋NFC库
+//RFInteraction
 
 public class NFCMiddleware {
 
     private NFCTag tag_;
-    private stnfcndefhandler _mndefMessageHandler;
 
     NFCMiddleware(NFCTag tag){
         tag_ = tag;
@@ -45,7 +46,9 @@ public class NFCMiddleware {
             if (msgIwant != null){
                 NdefRecord[] records = msgIwant.getRecords();
                 if (records.length > 0){
+
                     dataString = TextRecord.parse(records[records.length-1]).getText();
+
                     System.out.println(dataString);
                 }else {
                     System.out.println("ndefrecord count is zero");
@@ -84,53 +87,20 @@ public class NFCMiddleware {
         }
     }
 
+    //读写
+    public boolean writeBlock(int start,int length,byte[] data){
+        boolean writeRes = false;
+        if (tag_ == null) return false;
 
-//    NFCTag newTag = NFCApplication.getApplication().getCurrentTag();
-//    public NDEFSimplifiedMessage resolvTag(NFCTag newTag){
-//
-//        NDEFSimplifiedMessage newMsg = null;
-//
-//        final int SUCCESS_RES = 1;
-//        int retRes = SUCCESS_RES;
-//
-//        Log.v(this.getClass().getName(), "updateSmartFragment entry ..");
-//        //if (newTag.getM_ModelChanged() == 1) return;
-//        // return new instance according to current tag - if not null
-//        // - Check if NDEF data are present for current tag
-//        int currentValideTLVBlockID = newTag.getCurrentValideTLVBlokID();
-//        if (currentValideTLVBlockID == -1) {
-//            // FBE newTag.decodeTag();
-//            retRes = newTag.decodeTag();
-//        }
-//
-//        if ( retRes!= SUCCESS_RES) {
-//            Log.v(this.getClass().getName(), "updateSmartFragment decodeTag failled ..");
-//        } else{
-//            NDEFSimplifiedMessageHandler ndefSimpleMsgHandler
-//                    = newTag.getNDEFSimplifiedHandler(currentValideTLVBlockID);
-//            if (ndefSimpleMsgHandler != null) {
-//                newMsg = newTag.getNDEFSimplifiedHandler(currentValideTLVBlockID).getNDEFSimplifiedMessage();
-//            }
-//        }
-//
-//        return newMsg;
-//    }
-//    void resolveMessage(NDEFSimplifiedMessage newMsg){
-//        NDEFSimplifiedMessageType newMsgType = NDEFSimplifiedMessageType.NDEF_SIMPLE_MSG_TYPE_EMPTY;
-//        if (newMsg != null) {
-//            newMsgType = newMsg.getType();
-//            NDEFSimplifiedMessageHandler.getStrFromMsgType(newMsgType);
-//        }
-//        switch (newMsgType) {
-//            case NDEF_SIMPLE_MSG_TYPE_TEXT:
-//                if (newMsg != null) {
-//
-//                }
-//                break;
-//            default:
-//                // Nothing to do... for the moment
-//                // Just hide current fragment, if not already hidden
-//        }
-//    }
+
+
+        return writeRes;
+    }
+
+    public byte[] readBlock(int start,int length){
+        byte[] var = new byte[4];
+
+        return var;
+    }
 
 }
